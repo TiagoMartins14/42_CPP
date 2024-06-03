@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 08:14:46 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/03 11:40:38 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:42:05 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,19 @@ public:
 
 	void	display_phonebook()
 	{
+		std::cout << std::setfill (' ') << std::setw (10);
+		std::cout << "Index" << "|";
+		std::cout << std::setfill (' ') << std::setw (10);
+		std::cout << "First Name" << "|";
+		std::cout << std::setfill (' ') << std::setw (10);
+		std::cout << "Last Name" << "|";
+		std::cout << std::setfill (' ') << std::setw (10);
+		std::cout << "Nickname" << "|" << std::endl;
 		for (int i = 0; i < 8; i++)
 		{
-			for (int j = 0; j < 5; j++)
+			std::cout << std::setfill (' ') << std::setw (10);
+			std::cout << i << "|";
+			for (int j = 0; j < 3; j++)
 			{
 				std::cout << std::setfill (' ') << std::setw (10);
 				std::cout << contacts[i][j] << "|";
@@ -77,6 +87,17 @@ public:
 		}
 		else
 			std::cout << "Invalid index" << std::endl;
+	}
+
+	void	push_contacts_up()
+	{
+		for (int i = 1; i < 8; i++)
+		{
+			for (int j = 0; j < 5; j++)
+				contacts[i - 1][j] = contacts[i][j];
+		}
+		for (int j = 0; j < 5; j++)
+			contacts[7][j] = "";
 	}
 };
 
