@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 08:14:46 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/03 22:39:28 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/03 22:55:01 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,4 +138,4 @@ public:
 
 /* input_utils.c */
 std::string	input_getter(std::string input);
-void	parse_input(std::string input, PhoneBook &phone_book);
+void		parse_input(std::string input, PhoneBook &phone_book);
