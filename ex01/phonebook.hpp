@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 08:14:46 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/03 13:27:36 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/03 22:39:28 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <string>
 #include <iomanip>
 #include <cstdlib>
+#include <cctype>
 
 typedef enum e_param
 {
@@ -46,7 +47,7 @@ public:
 class PhoneBook
 {
 private:
-	Contact contacts[8];
+	Contact contact[8];
 public:
 	int	saved_contacts;
 	PhoneBook()
@@ -62,15 +63,15 @@ public:
 			info[9] = '.';
 		}
 		if (parameter == FIRST_NAME)
-			contacts[i].first_name = info;
+			contact[i].first_name = info;
 		else if (parameter == LAST_NAME)
-			contacts[i].last_name = info;
+			contact[i].last_name = info;
 		else if (parameter == NICKNAME)
-			contacts[i].nickname = info;
+			contact[i].nickname = info;
 		else if (parameter == PHONE_NUMBER)
-			contacts[i].phone_number = info;
+			contact[i].phone_number = info;
 		else if (parameter == DARKEST_SECRET)
-			contacts[i].darkest_secret = info;
+			contact[i].darkest_secret = info;
 	}
 
 	void	display_phonebook()
@@ -87,45 +88,54 @@ public:
 		{
 			std::cout << std::setfill (' ') << std::setw (10);
 			std::cout << i << "|";
-			for (int j = 0; j < 3; j++)
-			{
-				std::cout << std::setfill (' ') << std::setw (10);
-				std::cout << contacts[i][j] << "|";
-			}
+			std::cout << std::setfill (' ') << std::setw (10);
+			std::cout << contact[i].first_name << "|";
+			std::cout << std::setfill (' ') << std::setw (10);
+			std::cout << contact[i].last_name << "|";
+			std::cout << std::setfill (' ') << std::setw (10);
+			std::cout << contact[i].nickname << "|";
 			std::cout << std::endl;
 		}
 	}
 
-
 	void	display_contact(const std::string index)
 	{
 		int i = std::atoi(index.c_str());
-		int j = 0;
 		if (i >= 0 && i <= 8)
 		{
 			std::cout << "First Name: ";
-			std::cout << contacts[i][j++] << std::endl;
+			std::cout << contact[i].first_name << std::endl;
 			std::cout << "Last Name: ";
-			std::cout << contacts[i][j++] << std::endl;
+			std::cout << contact[i].last_name << std::endl;
 			std::cout << "Nickname: ";
-			std::cout << contacts[i][j++] << std::endl;
+			std::cout << contact[i].nickname << std::endl;
 			std::cout << "Phone Number: ";
-			std::cout << contacts[i][j++] << std::endl;
+			std::cout << contact[i].phone_number << std::endl;
 			std::cout << "Darkest Secret: ";
-			std::cout << contacts[i][j++] << std::endl;
+			std::cout << contact[i].darkest_secret << std::endl;
 		}
 		else
-			std::cout << "Invalid index" << std::endl;
+			std::cout << "Error. Invalid index" << std::endl;
 	}
 
 	void	push_contacts_up()
 	{
 		for (int i = 1; i < 8; i++)
 		{
-			for (int j = 0; j < 5; j++)
-				contacts[i - 1][j] = contacts[i][j];
+			contact[i - 1].first_name = contact[i].first_name;
+			contact[i - 1].last_name = contact[i].last_name;
+			contact[i - 1].nickname = contact[i].nickname;
+			contact[i - 1].phone_number = contact[i].phone_number;
+			contact[i - 1].darkest_secret = contact[i].darkest_secret;
 		}
-		for (int j = 0; j < 5; j++)
-			contacts[7][j] = "";
+		contact[7].first_name = "";
+		contact[7].last_name = "";
+		contact[7].nickname = "";
+		contact[7].phone_number = "";
+		contact[7].darkest_secret = "";
 	}
 };
+
+/* input_utils.c */
+std::string	input_getter(std::string input);
+void	parse_input(std::string input, PhoneBook &phone_book);

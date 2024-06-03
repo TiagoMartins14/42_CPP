@@ -6,7 +6,7 @@
 #    By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 09:42:26 by tiaferna          #+#    #+#              #
-#    Updated: 2024/06/03 09:42:51 by tiaferna         ###   ########.fr        #
+#    Updated: 2024/06/03 22:39:46 by tiaferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = phonebook
 
 # Define the source and object files
-SRCS = phonebook.cpp
+SRCS = phonebook.cpp input_utils.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target to build the executable
