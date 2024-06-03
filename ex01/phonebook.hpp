@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 08:14:46 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/03 12:42:05 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:58:37 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 #include <string>
 #include <iomanip>
 #include <cstdlib>
-
-typedef enum e_action
-{
-	ADD,
-	SEARCH,
-	EXIT,
-}	t_action;
 
 class PhoneBook
 {
@@ -41,6 +34,11 @@ public:
 
 	void	add_info(std::string info, int i, int j)
 	{
+		if (info.size() > 10)
+		{
+			info.resize(10);
+			info[9] = '.';
+		}
 		contacts[i][j] = info;	
 	}
 
