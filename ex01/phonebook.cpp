@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:29:21 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/03 12:50:22 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:30:05 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,21 @@ void	parse_input(std::string input, PhoneBook &phone_book)
 			phone_book.push_contacts_up();
 			phone_book.saved_contacts = 7;
 		}
-		phone_book.display_phonebook();
 		std::cout << "First name: ";
 		std::cin >> value;
-		phone_book.add_info(value, phone_book.saved_contacts, 0);
+		phone_book.add_info(FIRST_NAME ,value, phone_book.saved_contacts);
 		std::cout << "Last name: ";
 		std::cin >> value;
-		phone_book.add_info(value, phone_book.saved_contacts, 1);
+		phone_book.add_info(LAST_NAME, value, phone_book.saved_contacts);
 		std::cout << "Nickname: ";
 		std::cin >> value;
-		phone_book.add_info(value, phone_book.saved_contacts, 2);
+		phone_book.add_info(NICKNAME, value, phone_book.saved_contacts);
 		std::cout << "Phone number: ";
 		std::cin >> value;
-		phone_book.add_info(value, phone_book.saved_contacts, 3);
+		phone_book.add_info(PHONE_NUMBER, value, phone_book.saved_contacts);
 		std::cout << "Darkest secret: ";
 		std::cin >> value;
-		phone_book.add_info(value, phone_book.saved_contacts, 4);
-		phone_book.display_phonebook();
+		phone_book.add_info(DARKEST_SECRET, value, phone_book.saved_contacts);
 		phone_book.saved_contacts++;	
 	}
 	else if (!input.compare("SEARCH"))
