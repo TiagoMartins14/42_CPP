@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 08:14:46 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/03 22:55:01 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:55:50 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iomanip>
 #include <cstdlib>
 #include <cctype>
+#include <limits>
 
 typedef enum e_param
 {
@@ -57,11 +58,6 @@ public:
 
 	void	add_info(t_param parameter , std::string info, int i)
 	{
-		if (info.size() > 10)
-		{
-			info.resize(10);
-			info[9] = '.';
-		}
 		if (parameter == FIRST_NAME)
 			contact[i].first_name = info;
 		else if (parameter == LAST_NAME)
@@ -74,8 +70,20 @@ public:
 			contact[i].darkest_secret = info;
 	}
 
+	std::string	truncate_string(std::string string)
+	{
+		if (string.size() > 10)
+		{
+			string.resize(10);
+			string[9] = '.';
+		}
+		return string;
+	}
+
 	void	display_phonebook()
 	{
+		std::string	string;
+		
 		std::cout << std::setfill (' ') << std::setw (10);
 		std::cout << "Index" << "|";
 		std::cout << std::setfill (' ') << std::setw (10);
@@ -88,12 +96,15 @@ public:
 		{
 			std::cout << std::setfill (' ') << std::setw (10);
 			std::cout << i << "|";
+			string = contact[i].first_name;
 			std::cout << std::setfill (' ') << std::setw (10);
-			std::cout << contact[i].first_name << "|";
+			std::cout << truncate_string(string) << "|";
+			string = contact[i].last_name;
 			std::cout << std::setfill (' ') << std::setw (10);
-			std::cout << contact[i].last_name << "|";
+			std::cout << truncate_string(string) << "|";
+			string = contact[i].nickname;
 			std::cout << std::setfill (' ') << std::setw (10);
-			std::cout << contact[i].nickname << "|";
+			std::cout << truncate_string(string) << "|";
 			std::cout << std::endl;
 		}
 	}
