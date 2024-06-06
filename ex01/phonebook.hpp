@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 08:14:46 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/04 19:55:50 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:52:49 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ public:
 	}
 };
 
-/* input_utils.c */
-std::string	input_getter(std::string input);
+/* input_utils.cpp */
 void		parse_input(std::string input, PhoneBook &phone_book);
+
+/* utils.cpp */
+void		perror_exit(char *str, int error);

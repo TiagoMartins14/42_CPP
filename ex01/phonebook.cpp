@@ -6,11 +6,21 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:29:21 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/03 22:52:26 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:57:34 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
+
+static std::string	input_getter(std::string input)
+{
+	if (!(std::cin >> input))
+	{
+		if (std::cin.eof())
+			exit(1);
+	}
+	return input;
+}
 
 int	main()
 {
@@ -28,7 +38,13 @@ int	main()
 	{
 		std::cout << std::endl << "* PhoneBook *" << std::endl <<std::endl;
 		std::cout << "ADD | SEARCH | EXIT" << std::endl;
-		input = input_getter(input);
-		parse_input(input, phone_book);
+		while (!(input.compare("""")))
+		{
+			input = input_getter(input);
+			if (!(input.compare("""")))
+				continue ;
+			parse_input(input, phone_book);
+		}
+		input = "";
 	}
 }
