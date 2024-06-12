@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 08:14:46 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/06 12:52:49 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:36:52 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ typedef enum e_param
 	PHONE_NUMBER,
 	DARKEST_SECRET,
 }	t_param;
+
+typedef enum e_word_amount
+{
+	SINGLE_WORD,
+	MULTIPLE_WORDS,
+}	t_word_amount;
 
 class Contact
 {
@@ -56,94 +62,71 @@ public:
 		saved_contacts = 0;
 	}
 
-	void	add_info(t_param parameter , std::string info, int i)
+	void add_info(t_param parameter, const std::string& info, int i)
 	{
-		if (parameter == FIRST_NAME)
-			contact[i].first_name = info;
-		else if (parameter == LAST_NAME)
-			contact[i].last_name = info;
-		else if (parameter == NICKNAME)
-			contact[i].nickname = info;
-		else if (parameter == PHONE_NUMBER)
-			contact[i].phone_number = info;
-		else if (parameter == DARKEST_SECRET)
-			contact[i].darkest_secret = info;
-	}
-
-	std::string	truncate_string(std::string string)
-	{
-		if (string.size() > 10)
+		if (i < 0 || i > 7)
+			return;
+		switch (parameter)
 		{
-			string.resize(10);
-			string[9] = '.';
-		}
-		return string;
-	}
-
-	void	display_phonebook()
-	{
-		std::string	string;
-		
-		std::cout << std::setfill (' ') << std::setw (10);
-		std::cout << "Index" << "|";
-		std::cout << std::setfill (' ') << std::setw (10);
-		std::cout << "First Name" << "|";
-		std::cout << std::setfill (' ') << std::setw (10);
-		std::cout << "Last Name" << "|";
-		std::cout << std::setfill (' ') << std::setw (10);
-		std::cout << "Nickname" << "|" << std::endl;
-		for (int i = 0; i < 8; i++)
-		{
-			std::cout << std::setfill (' ') << std::setw (10);
-			std::cout << i << "|";
-			string = contact[i].first_name;
-			std::cout << std::setfill (' ') << std::setw (10);
-			std::cout << truncate_string(string) << "|";
-			string = contact[i].last_name;
-			std::cout << std::setfill (' ') << std::setw (10);
-			std::cout << truncate_string(string) << "|";
-			string = contact[i].nickname;
-			std::cout << std::setfill (' ') << std::setw (10);
-			std::cout << truncate_string(string) << "|";
-			std::cout << std::endl;
+			case FIRST_NAME:
+				contact[i].first_name = info;
+				break;
+			case LAST_NAME:
+				contact[i].last_name = info;
+				break;
+			case NICKNAME:
+				contact[i].nickname = info;
+				break;
+			case PHONE_NUMBER:
+				contact[i].phone_number = info;
+				break;
+			case DARKEST_SECRET:
+				contact[i].darkest_secret = info;
+				break;
 		}
 	}
 
-	void	display_contact(const std::string index)
+	std::string truncate_string(const std::string& str) const
 	{
-		int i = std::atoi(index.c_str());
-		if (i >= 0 && i <= 8)
-		{
-			std::cout << "First Name: ";
-			std::cout << contact[i].first_name << std::endl;
-			std::cout << "Last Name: ";
-			std::cout << contact[i].last_name << std::endl;
-			std::cout << "Nickname: ";
-			std::cout << contact[i].nickname << std::endl;
-			std::cout << "Phone Number: ";
-			std::cout << contact[i].phone_number << std::endl;
-			std::cout << "Darkest Secret: ";
-			std::cout << contact[i].darkest_secret << std::endl;
-		}
-		else
-			std::cout << "Error. Invalid index" << std::endl;
-	}
+        if (str.size() > 10) {
+            return str.substr(0, 9) + '.';
+        }
+        return str;
+    }
+
+	void display_phonebook()
+	{
+        std::cout << std::setw(10) << "Index" << "|"
+                  << std::setw(10) << "First Name" << "|"
+                  << std::setw(10) << "Last Name" << "|"
+                  << std::setw(10) << "Nickname" << "|" << std::endl;
+        for (int i = 0; i < 8; i++) {
+            std::cout << std::setw(10) << i << "|"
+                      << std::setw(10) << truncate_string(contact[i].first_name) << "|"
+                      << std::setw(10) << truncate_string(contact[i].last_name) << "|"
+                      << std::setw(10) << truncate_string(contact[i].nickname) << "|" << std::endl;;
+        }
+    }
+
+    void display_contact(const std::string& index) const
+	{
+        int i = std::atoi(index.c_str());
+        if (i >= 0 && i < 8) {
+            std::cout << "First Name: " << contact[i].first_name << "\n"
+                      << "Last Name: " << contact[i].last_name << "\n"
+                      << "Nickname: " << contact[i].nickname << "\n"
+                      << "Phone Number: " << contact[i].phone_number << "\n"
+                      << "Darkest Secret: " << contact[i].darkest_secret << "\n";
+        } else {
+            std::cout << "Error. Invalid index\n";
+        }
+    }
 
 	void	push_contacts_up()
 	{
 		for (int i = 1; i < 8; i++)
-		{
-			contact[i - 1].first_name = contact[i].first_name;
-			contact[i - 1].last_name = contact[i].last_name;
-			contact[i - 1].nickname = contact[i].nickname;
-			contact[i - 1].phone_number = contact[i].phone_number;
-			contact[i - 1].darkest_secret = contact[i].darkest_secret;
-		}
-		contact[7].first_name = "";
-		contact[7].last_name = "";
-		contact[7].nickname = "";
-		contact[7].phone_number = "";
-		contact[7].darkest_secret = "";
+			contact[i - 1] = contact[i];
+		contact[7] = Contact();
 	}
 };
 
