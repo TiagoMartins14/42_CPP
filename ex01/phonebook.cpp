@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:29:21 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/06 12:57:34 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:27:31 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static std::string	input_getter(std::string input)
 int	main()
 {
 	std::string	input = "";
-	PhoneBook phone_book;
 	// TEST
 		// for (int i = 0; i < 7; i++)
 		// 	for (int j = 0; j < 5; j++)
@@ -43,7 +42,7 @@ int	main()
 			input = input_getter(input);
 			if (!(input.compare("""")))
 				continue ;
-			parse_input(input, phone_book);
+			parse_input(input);
 		}
 		input = "";
 	}

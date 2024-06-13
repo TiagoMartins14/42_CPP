@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 22:32:53 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/12 22:49:58 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:28:26 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,8 +180,9 @@ static void	search_contact(PhoneBook &phone_book)
 	phone_book.display_contact(value);
 }
 
-void	parse_input(std::string input, PhoneBook &phone_book)
+void	parse_input(std::string input)
 {
+	PhoneBook phone_book;
 	std::string value;
 
 	if (!input.compare("ADD"))
