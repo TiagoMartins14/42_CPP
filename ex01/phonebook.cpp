@@ -6,43 +6,41 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:29:21 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/13 12:27:31 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:42:29 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
-static std::string	input_getter(std::string input)
+static std::string	input_getter(std::string input, bool *prompt)
 {
 	if (!(std::cin >> input))
 	{
 		if (std::cin.eof())
-			exit(1);
+			*prompt = false;
 	}
 	return input;
 }
 
 int	main()
 {
+	PhoneBook	phone_book;
 	std::string	input = "";
-	// TEST
-		// for (int i = 0; i < 7; i++)
-		// 	for (int j = 0; j < 5; j++)
-		// 		phone_book.add_info("fill", i, j);
-		// for (int j = 0; j < 5; j++)
-		// 	phone_book.add_info("last", 7, j);
-		// phone_book.saved_contacts = 8;
-	// TEST
-	while (1)
+	bool		prompt = true;
+
+	while (prompt)
 	{
 		std::cout << std::endl << "* PhoneBook *" << std::endl <<std::endl;
 		std::cout << "ADD | SEARCH | EXIT" << std::endl;
 		while (!(input.compare("""")))
 		{
-			input = input_getter(input);
+			input = input_getter(input, &prompt);
+			if (prompt == false)
+				break ;
 			if (!(input.compare("""")))
 				continue ;
-			parse_input(input);
+			if (parse_input(input, phone_book, &prompt) == 0)
+				prompt = false;
 		}
 		input = "";
 	}
