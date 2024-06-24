@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 18:34:59 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/24 15:39:13 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/24 16:06:45 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,15 @@ Account::Account(int initial_deposit)
 			  << ";amount:" << initial_deposit
 			  << ";created" << std::endl;
 }
+
+Account::~Account(void)
+{
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex 
+			  << ";amount:" << _amount
+			  << ";closed" << std::endl;
+}
+
 void	Account::makeDeposit(int deposit)
 {	
 	_nbDeposits++;
@@ -72,9 +81,11 @@ void	Account::makeDeposit(int deposit)
 			  << ";p_amount:" << _amount
 			  << ";deposit:" << deposit
 			  << ";amount:" << (_amount + deposit)
-			  << ";nb_deposits:" << _nbDeposits;
+			  << ";nb_deposits:" << _nbDeposits << std::endl;
 	
 	_amount += deposit;
+	_totalNbDeposits++;
+	_totalAmount += deposit;
 }
 
 bool	Account::makeWithdrawal(int withdrawal)
@@ -97,7 +108,14 @@ bool	Account::makeWithdrawal(int withdrawal)
 			  << ";nb_withdrawals:" << _nbWithdrawals << std::endl;
 			  
 	_amount -= withdrawal;
+	_totalNbWithdrawals++;
+	_totalAmount -= withdrawal;
 	return true;
+}
+
+int		Account::checkAmount( void ) const
+{
+	return	_amount;
 }
 
 void	Account::displayStatus(void) const
@@ -105,6 +123,6 @@ void	Account::displayStatus(void) const
 	_displayTimestamp();
 	std::cout << "index:" << _accountIndex 
 			  << ";amount:" << _amount
-			  << ";deposits" << _nbDeposits
+			  << ";deposits:" << _nbDeposits
 			  << ";withdrawals:" << _nbWithdrawals << std::endl;
 }
