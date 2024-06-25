@@ -6,7 +6,7 @@
 #    By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 09:42:26 by tiaferna          #+#    #+#              #
-#    Updated: 2024/06/25 15:26:50 by tiaferna         ###   ########.fr        #
+#    Updated: 2024/06/25 15:49:51 by tiaferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Define the target executable
-NAME = phonebook
+NAME = MyAwesomePhoneBook
 
 # Define the source and object files
 SRCS = Contact.cpp inputUtils.cpp myAwesomePhoneBook.cpp PhoneBook.cpp utils.cpp
