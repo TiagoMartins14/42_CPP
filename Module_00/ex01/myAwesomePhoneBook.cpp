@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   myAwesomePhoneBook.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 09:29:21 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/14 14:42:29 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:39:45 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
-
-static std::string	input_getter(std::string input, bool *prompt)
-{
-	if (!(std::cin >> input))
-	{
-		if (std::cin.eof())
-			*prompt = false;
-	}
-	return input;
-}
+#include "myAwesomePhoneBook.hpp"
 
 int	main()
 {
-	PhoneBook	phone_book;
+	PhoneBook	phoneBook;
 	std::string	input = "";
 	bool		prompt = true;
 
@@ -34,12 +24,12 @@ int	main()
 		std::cout << "ADD | SEARCH | EXIT" << std::endl;
 		while (!(input.compare("""")))
 		{
-			input = input_getter(input, &prompt);
+			input = inputGetter(input, &prompt);
 			if (prompt == false)
 				break ;
 			if (!(input.compare("""")))
 				continue ;
-			if (parse_input(input, phone_book, &prompt) == 0)
+			if (parseInput(input, phoneBook, &prompt) == 0)
 				prompt = false;
 		}
 		input = "";

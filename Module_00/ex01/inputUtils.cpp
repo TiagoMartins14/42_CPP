@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_utils.cpp                                    :+:      :+:    :+:   */
+/*   inputUtils.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 22:32:53 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/14 14:44:47 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:39:14 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phonebook.hpp"
+#include "myAwesomePhoneBook.hpp"
 
-static bool is_single_word(std::string str)
+static bool isSingleWord(std::string str)
 {
     int i = 0;
     int len = str.length();
@@ -28,7 +28,7 @@ static bool is_single_word(std::string str)
     return i == len;
 }
 
-static bool	is_alphabetic(std::string str)
+static bool	isAlphabetic(std::string str)
 {
 	if (str.empty()) 
 		return false;
@@ -38,7 +38,7 @@ static bool	is_alphabetic(std::string str)
 	return true;
 }
 
-static bool	is_numeric(std::string str)
+static bool	isNumeric(std::string str)
 {
 	size_t	i = 0;
 	
@@ -52,7 +52,7 @@ static bool	is_numeric(std::string str)
 	return true;
 }
 
-static bool	is_alphanumeric(std::string str)
+static bool	isAlphanumeric(std::string str)
 {
 	if (str.empty()) 
 		return false;
@@ -62,7 +62,7 @@ static bool	is_alphanumeric(std::string str)
 	return true;
 }
 
-static std::string	input_getter_alphanumeric(std::string input, t_word_amount amount, bool *prompt)
+static std::string	inputGetterAlphanumeric(std::string input, t_word_amount amount, bool *prompt)
 {
 	bool flag = false;
 
@@ -76,12 +76,12 @@ static std::string	input_getter_alphanumeric(std::string input, t_word_amount am
 				return "";
 			}
 		}
-		if (amount == SINGLE_WORD && is_single_word(input) == false)
+		if (amount == SINGLE_WORD && isSingleWord(input) == false)
 		{
 			std::cout << "Invalid input. Please enter only one word" << std::endl;
 			continue ;
 		}
-		if (!is_alphanumeric(input))
+		if (!isAlphanumeric(input))
 		{
 			std::cout << "Invalid input. Please enter only alphanumeric characters" << std::endl;
 			continue ;
@@ -91,7 +91,7 @@ static std::string	input_getter_alphanumeric(std::string input, t_word_amount am
 	return input;
 }
 
-static std::string	input_getter_alphabetic(std::string input, bool *prompt)
+static std::string	inputGetterAlphabetic(std::string input, bool *prompt)
 {
 	bool flag = false;
 
@@ -105,12 +105,12 @@ static std::string	input_getter_alphabetic(std::string input, bool *prompt)
 				return "";
 			}
 		}
-		if (!is_single_word(input))
+		if (!isSingleWord(input))
 		{
 			std::cout << "Invalid input. Please enter only one word" << std::endl;
 			continue ;
 		}
-		if (!is_alphabetic(input))
+		if (!isAlphabetic(input))
 		{
 			std::cout << "Invalid input. Please enter only alphabetic characters" << std::endl;
 			continue ;
@@ -120,7 +120,7 @@ static std::string	input_getter_alphabetic(std::string input, bool *prompt)
 	return input;
 }
 
-static std::string	input_getter_numeric(std::string input, bool *prompt)
+static std::string	inputGetterNumeric(std::string input, bool *prompt)
 {
 	bool flag = false;
 
@@ -134,12 +134,12 @@ static std::string	input_getter_numeric(std::string input, bool *prompt)
 				return "";
 			}
 		}
-		if (!is_single_word(input))
+		if (!isSingleWord(input))
 		{
 			std::cout << "Invalid input. Please enter only one word" << std::endl;
 			continue ;
 		}
-		if (!is_numeric(input))
+		if (!isNumeric(input))
 		{
 			std::cout << "Invalid input. Please enter only numeric characters" << std::endl;
 			continue ;
@@ -149,64 +149,64 @@ static std::string	input_getter_numeric(std::string input, bool *prompt)
 	return input;
 }
 
-static void	add_contact(PhoneBook &phone_book, bool *prompt)
+static void	addContact(PhoneBook &phoneBook, bool *prompt)
 {
 	std::string value;
 	
-	if (phone_book.saved_contacts > 7)
+	if (phoneBook.getSavedContacts() > 7)
 	{
-		phone_book.push_contacts_up();
-		phone_book.saved_contacts = 7;
+		phoneBook.pushContactsUp();
+		phoneBook.setSavedContacts(7);
 	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout << "First name: ";
-	value = input_getter_alphabetic(value, prompt);
+	value = inputGetterAlphabetic(value, prompt);
 	if (*prompt == false)
 		return ;
-	phone_book.add_info(FIRST_NAME ,value, phone_book.saved_contacts);
+	phoneBook.addInfo(FIRST_NAME ,value, phoneBook.getSavedContacts());
 	std::cout << "Last name: ";
-	value = input_getter_alphabetic(value, prompt);
+	value = inputGetterAlphabetic(value, prompt);
 	if (*prompt == false)
 		return ;
-	phone_book.add_info(LAST_NAME, value, phone_book.saved_contacts);
+	phoneBook.addInfo(LAST_NAME, value, phoneBook.getSavedContacts());
 	std::cout << "Nickname: ";
-	value = input_getter_alphanumeric(value, SINGLE_WORD, prompt);
+	value = inputGetterAlphanumeric(value, SINGLE_WORD, prompt);
 	if (*prompt == false)
 		return ;
-	phone_book.add_info(NICKNAME, value, phone_book.saved_contacts);
+	phoneBook.addInfo(NICKNAME, value, phoneBook.getSavedContacts());
 	std::cout << "Phone number: ";
-	value = input_getter_numeric(value, prompt);
+	value = inputGetterNumeric(value, prompt);
 	if (*prompt == false)
 		return ;
-	phone_book.add_info(PHONE_NUMBER, value, phone_book.saved_contacts);
+	phoneBook.addInfo(PHONE_NUMBER, value, phoneBook.getSavedContacts());
 	std::cout << "Darkest secret: ";
-	value = input_getter_alphanumeric(value, MULTIPLE_WORDS, prompt);
+	value = inputGetterAlphanumeric(value, MULTIPLE_WORDS, prompt);
 	if (*prompt == false)
 		return ;
-	phone_book.add_info(DARKEST_SECRET, value, phone_book.saved_contacts);
-	phone_book.saved_contacts++;
+	phoneBook.addInfo(DARKEST_SECRET, value, phoneBook.getSavedContacts());
+	phoneBook.setSavedContacts(phoneBook.getSavedContacts() + 1);
 }
 
-static void	search_contact(PhoneBook &phone_book, bool *prompt)
+static void	searchContact(PhoneBook &phoneBook, bool *prompt)
 {
 	std::string	value;
 
-	phone_book.display_phonebook();
+	phoneBook.displayPhonebook();
 	std::cout << "Index of entry: ";
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	value = input_getter_numeric(value, prompt);
+	value = inputGetterNumeric(value, prompt);
 	std::cout << std::endl;
-	phone_book.display_contact(value);
+	phoneBook.displayContact(value);
 }
 
-int	parse_input(std::string input, PhoneBook &phone_book, bool *prompt)
+int	parseInput(std::string input, PhoneBook &phoneBook, bool *prompt)
 {
 	std::string value;
 
 	if (!input.compare("ADD"))
-		add_contact(phone_book, prompt);
+		addContact(phoneBook, prompt);
 	else if (!input.compare("SEARCH"))
-		search_contact(phone_book, prompt);
+		searchContact(phoneBook, prompt);
 	else if (!input.compare("EXIT"))
 		return 0;
 	return 1;
