@@ -6,7 +6,7 @@
 #    By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/25 16:51:04 by tiaferna          #+#    #+#              #
-#    Updated: 2024/06/25 16:51:34 by tiaferna         ###   ########.fr        #
+#    Updated: 2024/06/25 17:25:40 by tiaferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = BraiiiiiiinnnzzzZ
 
 # Define the source and object files
-SRCS = main.cpp Zombie.cpp
+SRCS = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target to build the executable
