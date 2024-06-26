@@ -6,7 +6,7 @@
 #    By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/26 08:18:56 by tiaferna          #+#    #+#              #
-#    Updated: 2024/06/26 08:19:26 by tiaferna         ###   ########.fr        #
+#    Updated: 2024/06/26 10:11:15 by tiaferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = UnnecessaryViolence
 
 # Define the source and object files
-SRCS = main.cpp
+SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target to build the executable
