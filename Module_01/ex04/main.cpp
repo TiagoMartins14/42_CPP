@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:27:04 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/28 12:27:17 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/29 22:14:38 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,27 @@ std::string	createOutFileName(std::string inFileName)
 	return outFileName;
 }
 
+void	replaceText(std::ifstream &inFile, std::ofstream &outFile, std::string argv2, std::string argv3)
+{
+	std::size_t	wordLen = argv3.size();
+	std::size_t	startingPosition = 0;
+	std::size_t	wordIndex;
+	std::string	textLine;
+	std::string	output;
+	
+	while (std::getline(inFile, textLine))
+	{
+		wordIndex = textLine.find(argv2);
+		while (wordIndex != std::string::npos)
+		{
+			output = argv2.substr(startingPosition, wordIndex - 1);
+			output += argv3;
+		}
+	}
+	// std::size_t	pos = inFile.find(argv2, startingPosition);
+	
+}
+
 int	main(int argc, char **argv)
 {
 	if ( argc == 4)
@@ -74,11 +95,10 @@ int	main(int argc, char **argv)
 		std::ofstream	outFile;
 		std::string		outFileName = createOutFileName(argv[1]);
 
-		
-	
 		if (openInFile(inFile, argv[1]) == false)
 			perrorExit("Error", inFile, outFile);
 		if (openOutFile(outFile, outFileName) == false)
 			perrorExit("Error", inFile, outFile);
+		replaceText(inFile, outFile, argv[2], argv[3]);
 	}
 }
