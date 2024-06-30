@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:27:04 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/30 15:04:46 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/30 15:07:22 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,7 @@ int	main(int argc, char **argv)
 		if (openOutFile(outFile, outFileName) == false)
 			perrorExit("Error", inFile, outFile);
 		replaceText(inFile, outFile, argv[2], argv[3]);
+		inFile.close();
+		outFile.close();
 	}
 }
