@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:27:04 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/29 22:14:38 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/06/30 15:04:46 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,25 +66,30 @@ std::string	createOutFileName(std::string inFileName)
 	return outFileName;
 }
 
-void	replaceText(std::ifstream &inFile, std::ofstream &outFile, std::string argv2, std::string argv3)
+void	replaceText(std::ifstream &inFile, std::ofstream &outFile, const std::string &searchStr, const std::string &replaceStr)
 {
-	std::size_t	wordLen = argv3.size();
-	std::size_t	startingPosition = 0;
-	std::size_t	wordIndex;
 	std::string	textLine;
 	std::string	output;
-	
-	while (std::getline(inFile, textLine))
-	{
-		wordIndex = textLine.find(argv2);
-		while (wordIndex != std::string::npos)
+	std::size_t	startPos;
+	std::size_t	foundPos;
+
+	while (std::getline(inFile, textLine)) {
+		startPos = 0;
+		output.clear();
+		while (true)
 		{
-			output = argv2.substr(startingPosition, wordIndex - 1);
-			output += argv3;
+			foundPos = textLine.find(searchStr, startPos);
+			if (foundPos == std::string::npos)
+			{
+				output += textLine.substr(startPos);
+				break;
+			}
+			output += textLine.substr(startPos, foundPos - startPos);
+			output += replaceStr;
+			startPos = foundPos + searchStr.size();
 		}
+		outFile << output << std::endl;
 	}
-	// std::size_t	pos = inFile.find(argv2, startingPosition);
-	
 }
 
 int	main(int argc, char **argv)
