@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   error.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 11:27:04 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/01 15:44:58 by tiaferna         ###   ########.fr       */
+/*   Created: 2024/07/01 15:41:35 by tiaferna          #+#    #+#             */
+/*   Updated: 2024/07/01 15:43:03 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SedIsForLosers.hpp"
 
-int	main(int argc, char **argv)
+static void perror_cpp(const std::string &message)
 {
-	if ( argc == 4)
-	{
-		std::ifstream	inFile;
-		std::ofstream	outFile;
-		std::string		outFileName = createOutFileName(argv[1]);
+    std::cerr << message << ": " << std::strerror(errno) << std::endl;
+}
 
-		if (openInFile(inFile, argv[1]) == false)
-			perrorExit("Error", inFile, outFile);
-		if (openOutFile(outFile, outFileName) == false)
-			perrorExit("Error", inFile, outFile);
-		replaceText(inFile, outFile, argv[2], argv[3]);
+void	perrorExit(std::string errorMsg, std::ifstream &inFile, std::ofstream &outFile)
+{
+	if (inFile.is_open())
 		inFile.close();
+	if (outFile.is_open())
 		outFile.close();
-	}
+	perror_cpp(errorMsg);
+	exit(2);
 }

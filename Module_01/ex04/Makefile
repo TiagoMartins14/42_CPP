@@ -6,7 +6,7 @@
 #    By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/28 11:39:32 by tiaferna          #+#    #+#              #
-#    Updated: 2024/06/28 11:39:56 by tiaferna         ###   ########.fr        #
+#    Updated: 2024/07/01 15:55:05 by tiaferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = SedIsForLosers
 
 # Define the source and object files
-SRCS = main.cpp
+SRCS = main.cpp error.cpp fileUtils.cpp replaceText.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target to build the executable
