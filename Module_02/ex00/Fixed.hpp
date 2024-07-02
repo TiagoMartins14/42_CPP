@@ -6,10 +6,11 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:56:28 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/02 17:31:00 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:25:34 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #include <iostream>
 
 class Fixed
