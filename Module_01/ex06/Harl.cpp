@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:28:09 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/02 15:40:00 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:43:55 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	Harl::complain(std::string level)
 
 	while (codeLevel <= ERROR && levels[codeLevel] != level)
 		codeLevel++;
-	// if (codeLevel > ERROR)
-	// 	return ;
 
 	void	(Harl::*func[4]) () = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
