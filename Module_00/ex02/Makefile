@@ -6,12 +6,12 @@
 #    By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/03 09:42:26 by tiaferna          #+#    #+#              #
-#    Updated: 2024/06/24 14:52:00 by tiaferna         ###   ########.fr        #
+#    Updated: 2024/07/02 15:34:48 by tiaferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Define the compiler and compiler flags
-CXX = g++
+CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Define the target executable
