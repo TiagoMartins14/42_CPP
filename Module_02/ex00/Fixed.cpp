@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:11:23 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/02 17:43:03 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/02 18:27:08 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ Fixed& Fixed::operator=(const Fixed& other)
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
 		_fpValue = other._fpValue;
+	return *this;
 }
 
 Fixed::~Fixed()
