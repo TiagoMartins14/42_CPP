@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:28:09 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/02 15:32:56 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:40:00 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,16 @@ void	Harl::complain(std::string level)
 
 	switch (codeLevel)
 	{
-		case DEBUG:
-			(this->*func[codeLevel++]) ();
-			// break ;
-		case INFO:
-			(this->*func[codeLevel++]) ();
-			// break ;
-		case WARNING:
-			(this->*func[codeLevel++]) ();
-			// break ;
-		case ERROR:
-			(this->*func[codeLevel]) ();
-			break ;
 		default:
 			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 			break ;
+		case DEBUG:
+			(this->*func[codeLevel++]) ();
+		case INFO:
+			(this->*func[codeLevel++]) ();
+		case WARNING:
+			(this->*func[codeLevel++]) ();
+		case ERROR:
+			(this->*func[codeLevel]) ();
 	}
 }
