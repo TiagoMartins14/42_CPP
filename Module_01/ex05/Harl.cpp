@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:28:09 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/01 18:31:16 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:58:31 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	Harl::error(void)
 
 void	Harl::complain(std::string level)
 {
-	int	code = DEBUG;
+	int	codeLevel = DEBUG;
 	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	while (code <= ERROR && levels[code] != level)
-		code++;
-	if (code > ERROR)
+	while (codeLevel <= ERROR && levels[codeLevel] != level)
+		codeLevel++;
+	if (codeLevel > ERROR)
 	{
 		std::cout << "UNKNOWN: I hate it when you put a level that doesn't exist!" << std::endl;
 		return ;
@@ -47,5 +47,5 @@ void	Harl::complain(std::string level)
 
 	void	(Harl::*func[4]) () = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
-	(this->*func[code]) ();
+	(this->*func[codeLevel]) ();
 }
