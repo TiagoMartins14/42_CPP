@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 17:11:23 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/03 14:40:42 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:07:05 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
+	this->_fpValue = 0;
 }
 
-Fixed::Fixed(Fixed& other)
+Fixed::Fixed(const Fixed& other)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	operator=(other);
+	*this = other;
 }
 
-Fixed& Fixed::operator=(Fixed& other)
+Fixed& Fixed::operator=(const Fixed& other)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
