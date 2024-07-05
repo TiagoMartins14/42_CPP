@@ -6,12 +6,13 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 22:58:27 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/04 23:19:52 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/05 17:57:51 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <iostream>
+#include <cmath>
 
 class Fixed
 {

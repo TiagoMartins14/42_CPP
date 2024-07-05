@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:25:12 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/05 14:43:34 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/05 17:57:19 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ Fixed::Fixed(const int integer)
 Fixed::Fixed(const float floatingPoint)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->_fpValue = floatingPoint * (1 << this->_numOfFractionalBits);
+	this->_fpValue = roundf(floatingPoint * (1 << this->_numOfFractionalBits));
 }
 
 Fixed& Fixed::operator=(const Fixed& other)
@@ -44,6 +44,13 @@ Fixed& Fixed::operator=(const Fixed& other)
 	return *this;
 }
 
+std::ostream &operator<<(std::ostream& out, const Fixed &fixed)
+{
+	out << fixed.toFloat();
+	return out;
+}
+
+
 Fixed::~Fixed()
 {
 	std::cout << "Destructor called" << std::endl;
@@ -51,12 +58,20 @@ Fixed::~Fixed()
 
 int	Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
 	return _fpValue;
 }
 
 void Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called" << std::endl;
 	_fpValue = raw;
+}
+
+float	Fixed::toFloat(void) const
+{
+	return static_cast<float>(this->_fpValue) / (1 << _numOfFractionalBits);
+}
+
+int		Fixed::toInt(void) const
+{
+	return static_cast<int>(this->_fpValue) >> _numOfFractionalBits;
 }
