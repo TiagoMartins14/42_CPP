@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:25:12 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/07 22:46:04 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/07 23:20:41 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ Fixed&	Fixed::operator+(const Fixed& other)
 {
 	std::cout << "Adition assignment operator called" << std::endl;
 	this->_fpValue += other.getRawBits();
-
 	return *this;
 }
 
@@ -65,7 +64,6 @@ Fixed&	Fixed::operator*(const Fixed& other)
 	long long result = static_cast<long long>(this->getRawBits()) * other.getRawBits();
 	result >>= _numOfFractionalBits;
 	this->_fpValue = static_cast<int>(result);
-
 	return *this;
 }
 
@@ -74,8 +72,33 @@ Fixed&	Fixed::operator/(const Fixed& other)
 	std::cout << "Division assignment operator called" << std::endl;
 	long long numerator = static_cast<long long>(_fpValue) << _numOfFractionalBits;
 	_fpValue = static_cast<int>(numerator / other.getRawBits());
-
 	return *this;
+}
+
+Fixed&	Fixed::operator++()
+{
+	++_fpValue;
+	return *this;
+}
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed temp = *this;
+	++_fpValue;
+	return temp;
+}
+
+Fixed&	Fixed::operator--()
+{
+	--_fpValue;
+	return *this;
+}
+
+Fixed	Fixed::operator--(int)
+{
+	Fixed temp = *this;
+	--_fpValue;
+	return temp;
 }
 
 bool	Fixed::operator>(const Fixed& other)

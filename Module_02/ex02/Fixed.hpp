@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 22:58:27 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/07 14:56:54 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/07 23:19:52 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ public:
 	Fixed&	operator-(const Fixed& other);
 	Fixed&	operator*(const Fixed& other);
 	Fixed&	operator/(const Fixed& other);
+	Fixed&	operator++();
+	Fixed	operator++(int);
+	Fixed&	operator--();
+	Fixed	operator--(int);
 	bool	operator>(const Fixed& other);
 	bool	operator<(const Fixed& other);
 	bool	operator>=(const Fixed& other);
