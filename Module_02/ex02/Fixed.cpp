@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:25:12 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/07 15:09:33 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/07 22:46:04 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,8 @@ Fixed&	Fixed::operator*(const Fixed& other)
 Fixed&	Fixed::operator/(const Fixed& other)
 {
 	std::cout << "Division assignment operator called" << std::endl;
-	int result = this->getRawBits() / other.getRawBits();
-	result >>= _numOfFractionalBits;
-	this->_fpValue = static_cast<int>(result);
+	long long numerator = static_cast<long long>(_fpValue) << _numOfFractionalBits;
+	_fpValue = static_cast<int>(numerator / other.getRawBits());
 
 	return *this;
 }
@@ -138,7 +137,7 @@ bool	Fixed::operator!=(const Fixed& other)
 	std::cout << "Different than assignment operator called" << std::endl;
 	if (this != &other)
 	{
-		if (this->_fpValue |= other._fpValue)
+		if (this->_fpValue != other._fpValue)
 			return true;
 	}
 	return false;
