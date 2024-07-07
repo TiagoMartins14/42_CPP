@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 22:58:27 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/05 17:57:51 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/07 14:56:54 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,22 @@ public:
 	Fixed(const Fixed& other);
 	Fixed(const int integer);
 	Fixed(const float floatingPoint);
+	
 	Fixed&	operator=(const Fixed& other);
+	Fixed&	operator+(const Fixed& other);
+	Fixed&	operator-(const Fixed& other);
+	Fixed&	operator*(const Fixed& other);
+	Fixed&	operator/(const Fixed& other);
+	bool	operator>(const Fixed& other);
+	bool	operator<(const Fixed& other);
+	bool	operator>=(const Fixed& other);
+	bool	operator<=(const Fixed& other);
+	bool	operator==(const Fixed& other);
+	bool	operator!=(const Fixed& other);
 	friend std::ostream &operator<<(std::ostream& out, const Fixed &fixed);
+	
 	~Fixed();
+	
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
 	float	toFloat(void) const;
