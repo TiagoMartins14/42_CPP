@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:25:12 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/05 17:57:19 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/07 15:09:33 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,106 @@ Fixed& Fixed::operator=(const Fixed& other)
 	if (this != &other)
 		_fpValue = other.getRawBits();
 	return *this;
+}
+
+Fixed&	Fixed::operator+(const Fixed& other)
+{
+	std::cout << "Adition assignment operator called" << std::endl;
+	this->_fpValue += other.getRawBits();
+
+	return *this;
+}
+
+Fixed&	Fixed::operator-(const Fixed& other)
+{
+	std::cout << "Subtraction assignment operator called" << std::endl;
+	this->_fpValue -= other.getRawBits();
+
+	return *this;
+}
+Fixed&	Fixed::operator*(const Fixed& other)
+{
+	std::cout << "Multiplication assignment operator called" << std::endl;
+	long long result = static_cast<long long>(this->getRawBits()) * other.getRawBits();
+	result >>= _numOfFractionalBits;
+	this->_fpValue = static_cast<int>(result);
+
+	return *this;
+}
+
+Fixed&	Fixed::operator/(const Fixed& other)
+{
+	std::cout << "Division assignment operator called" << std::endl;
+	int result = this->getRawBits() / other.getRawBits();
+	result >>= _numOfFractionalBits;
+	this->_fpValue = static_cast<int>(result);
+
+	return *this;
+}
+
+bool	Fixed::operator>(const Fixed& other)
+{
+	std::cout << "Bigger than assignment operator called" << std::endl;
+	if (this != &other)
+	{
+		if (this->_fpValue > other._fpValue)
+			return true;
+	}
+	return false;
+}
+
+bool	Fixed::operator<(const Fixed& other)
+{
+	std::cout << "Smaller than assignment operator called" << std::endl;
+	if (this != &other)
+	{
+		if (this->_fpValue < other._fpValue)
+			return true;
+	}
+	return false;
+}
+
+bool	Fixed::operator>=(const Fixed& other)
+{
+	std::cout << "Bigger or equal than assignment operator called" << std::endl;
+	if (this != &other)
+	{
+		if (this->_fpValue >= other._fpValue)
+			return true;
+	}
+	return false;
+}
+
+bool	Fixed::operator<=(const Fixed& other)
+{
+	std::cout << "Smaller or equal than assignment operator called" << std::endl;
+	if (this != &other)
+	{
+		if (this->_fpValue <= other._fpValue)
+			return true;
+	}
+	return false;
+}
+
+bool	Fixed::operator==(const Fixed& other)
+{
+	std::cout << "Sames as assignment operator called" << std::endl;
+	if (this != &other)
+	{
+		if (this->_fpValue == other._fpValue)
+			return true;
+	}
+	return false;
+}
+bool	Fixed::operator!=(const Fixed& other)
+{
+	std::cout << "Different than assignment operator called" << std::endl;
+	if (this != &other)
+	{
+		if (this->_fpValue |= other._fpValue)
+			return true;
+	}
+	return false;
 }
 
 std::ostream &operator<<(std::ostream& out, const Fixed &fixed)
