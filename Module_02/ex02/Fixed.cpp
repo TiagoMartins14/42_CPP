@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 14:25:12 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/07 23:20:41 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/08 14:52:00 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,31 @@
 
 Fixed::Fixed()
 {
-	std::cout << "Default constructor called" << std::endl;
+	// std::cout << "Default constructor called" << std::endl;
 	this->_fpValue = 0;
 }
 
 Fixed::Fixed(const Fixed& other)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	// std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
 Fixed::Fixed(const int integer)
 {
-	std::cout << "Int constructor called" << std::endl;
+	// std::cout << "Int constructor called" << std::endl;
 	this->_fpValue = integer * (1 << this->_numOfFractionalBits);
 	
 }
 Fixed::Fixed(const float floatingPoint)
 {
-	std::cout << "Float constructor called" << std::endl;
+	// std::cout << "Float constructor called" << std::endl;
 	this->_fpValue = roundf(floatingPoint * (1 << this->_numOfFractionalBits));
 }
 
 Fixed& Fixed::operator=(const Fixed& other)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	// std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
 		_fpValue = other.getRawBits();
 	return *this;
@@ -46,21 +46,21 @@ Fixed& Fixed::operator=(const Fixed& other)
 
 Fixed&	Fixed::operator+(const Fixed& other)
 {
-	std::cout << "Adition assignment operator called" << std::endl;
+	// std::cout << "Adition assignment operator called" << std::endl;
 	this->_fpValue += other.getRawBits();
 	return *this;
 }
 
 Fixed&	Fixed::operator-(const Fixed& other)
 {
-	std::cout << "Subtraction assignment operator called" << std::endl;
+	// std::cout << "Subtraction assignment operator called" << std::endl;
 	this->_fpValue -= other.getRawBits();
 
 	return *this;
 }
 Fixed&	Fixed::operator*(const Fixed& other)
 {
-	std::cout << "Multiplication assignment operator called" << std::endl;
+	// std::cout << "Multiplication assignment operator called" << std::endl;
 	long long result = static_cast<long long>(this->getRawBits()) * other.getRawBits();
 	result >>= _numOfFractionalBits;
 	this->_fpValue = static_cast<int>(result);
@@ -69,7 +69,7 @@ Fixed&	Fixed::operator*(const Fixed& other)
 
 Fixed&	Fixed::operator/(const Fixed& other)
 {
-	std::cout << "Division assignment operator called" << std::endl;
+	// std::cout << "Division assignment operator called" << std::endl;
 	long long numerator = static_cast<long long>(_fpValue) << _numOfFractionalBits;
 	_fpValue = static_cast<int>(numerator / other.getRawBits());
 	return *this;
@@ -103,7 +103,7 @@ Fixed	Fixed::operator--(int)
 
 bool	Fixed::operator>(const Fixed& other)
 {
-	std::cout << "Bigger than assignment operator called" << std::endl;
+	// std::cout << "Bigger than assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		if (this->_fpValue > other._fpValue)
@@ -114,7 +114,7 @@ bool	Fixed::operator>(const Fixed& other)
 
 bool	Fixed::operator<(const Fixed& other)
 {
-	std::cout << "Smaller than assignment operator called" << std::endl;
+	// std::cout << "Smaller than assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		if (this->_fpValue < other._fpValue)
@@ -125,7 +125,7 @@ bool	Fixed::operator<(const Fixed& other)
 
 bool	Fixed::operator>=(const Fixed& other)
 {
-	std::cout << "Bigger or equal than assignment operator called" << std::endl;
+	// std::cout << "Bigger or equal than assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		if (this->_fpValue >= other._fpValue)
@@ -136,7 +136,7 @@ bool	Fixed::operator>=(const Fixed& other)
 
 bool	Fixed::operator<=(const Fixed& other)
 {
-	std::cout << "Smaller or equal than assignment operator called" << std::endl;
+	// std::cout << "Smaller or equal than assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		if (this->_fpValue <= other._fpValue)
@@ -147,7 +147,7 @@ bool	Fixed::operator<=(const Fixed& other)
 
 bool	Fixed::operator==(const Fixed& other)
 {
-	std::cout << "Sames as assignment operator called" << std::endl;
+	// std::cout << "Sames as assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		if (this->_fpValue == other._fpValue)
@@ -157,7 +157,7 @@ bool	Fixed::operator==(const Fixed& other)
 }
 bool	Fixed::operator!=(const Fixed& other)
 {
-	std::cout << "Different than assignment operator called" << std::endl;
+	// std::cout << "Different than assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		if (this->_fpValue != other._fpValue)
@@ -175,7 +175,7 @@ std::ostream &operator<<(std::ostream& out, const Fixed &fixed)
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+	// std::cout << "Destructor called" << std::endl;
 }
 
 int	Fixed::getRawBits(void) const
@@ -196,4 +196,24 @@ float	Fixed::toFloat(void) const
 int		Fixed::toInt(void) const
 {
 	return static_cast<int>(this->_fpValue) >> _numOfFractionalBits;
+}
+
+Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
+    return (a.getRawBits() < b.getRawBits()) ? a : b;
+}
+
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+    return (a.getRawBits() < b.getRawBits()) ? a : b;
+}
+
+Fixed& Fixed::max(Fixed& a, Fixed& b)
+{
+    return (a.getRawBits() > b.getRawBits()) ? a : b;
+}
+
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+    return (a.getRawBits() > b.getRawBits()) ? a : b;
 }
