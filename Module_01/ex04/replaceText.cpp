@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:42:36 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/01 15:45:03 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/09 16:47:05 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	replaceText(std::ifstream &inFile, std::ofstream &outFile, const std::strin
 	std::size_t	startPos;
 	std::size_t	foundPos;
 
-	while (std::getline(inFile, textLine)) {
+	while (std::getline(inFile, textLine))
+	{
 		startPos = 0;
 		output.clear();
 		while (true)
