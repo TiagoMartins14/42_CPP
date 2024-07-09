@@ -1,3 +1,0 @@
-valgrind ./SedIsForLosers inFile.txt "" i
-valgrind ./SedIsForLosers pasta 
-chmod 000
