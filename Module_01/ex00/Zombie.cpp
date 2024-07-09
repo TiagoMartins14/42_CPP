@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:25:26 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/25 17:22:04 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/09 14:25:53 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		Zombie::setName( std::string name)
 
 void		Zombie::announce( void )
 {
-	std::cout << "<" << _name << ">: BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << "<" << this->getName() << ">: BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
 Zombie::Zombie( std::string name )
