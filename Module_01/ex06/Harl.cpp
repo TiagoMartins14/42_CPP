@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 17:28:09 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/02 15:43:55 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/09 15:35:25 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@ void	Harl::complain(std::string level)
 			break ;
 		case DEBUG:
 			(this->*func[codeLevel++]) ();
+			// fall through
 		case INFO:
 			(this->*func[codeLevel++]) ();
+			// fall through
 		case WARNING:
 			(this->*func[codeLevel++]) ();
+			// fall through
 		case ERROR:
 			(this->*func[codeLevel]) ();
 	}
