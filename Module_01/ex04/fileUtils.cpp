@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:42:13 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/09 17:04:03 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:38:42 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,4 @@ bool	openOutFile( std::ofstream &outFile, const std::string &fileName)
 	if (!outFile.is_open())
 		return false;
 	return true;
-}
-
-std::string	createOutFileName(std::string inFileName)
-{
-	std::string	outFileName;
-	int			j = inFileName.size();
-
-	for (int i = inFileName.size(); i >= 0; i--)
-	{
-		if (inFileName[i] == '.')
-		{
-			j = i;
-			break ;
-		}
-	}
-	outFileName = inFileName.substr(0, j);
-	outFileName.append(".replace");	
-	return outFileName;
 }
