@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 09:35:07 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/06/26 11:06:08 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:52:26 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,8 @@ void	HumanB::setWeapon( Weapon& weapon )
 
 void	HumanB::attack( void )
 {
-	std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
+	if (_weapon)
+		std::cout << _name << " attacks with their " << _weapon->getType() << std::endl;
+	else
+		std::cout << _name << " attacks with their empty hands!" << std::endl;
 }
