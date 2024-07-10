@@ -6,7 +6,7 @@
 #    By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/01 19:14:01 by tiaferna          #+#    #+#              #
-#    Updated: 2024/07/02 15:33:52 by tiaferna         ###   ########.fr        #
+#    Updated: 2024/07/10 15:03:39 by tiaferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Define the target executable
-NAME = harlFilter
+NAME = HarlFilter
 
 # Define the source and object files
 SRCS = main.cpp Harl.cpp
