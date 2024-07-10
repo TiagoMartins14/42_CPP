@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 16:25:26 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/09 14:25:53 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:20:54 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ Zombie::Zombie( std::string name )
 
 Zombie::~Zombie( void )
 {
-	std::cout << _name << " destroied" << std::endl;
+	std::cout << _name << " destroyed" << std::endl;
 }
