@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 11:27:04 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/09 16:50:30 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:37:55 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main(int argc, char **argv)
 		const std::string r_string = argv[3];
 		std::ifstream	inFile;
 		std::ofstream	outFile;
-		std::string		outFileName = createOutFileName(argv[1]);
+		std::string		inFileName = argv[1];
+		std::string		outFileName = inFileName.append(".replace");
 
 		if (openInFile(inFile, argv[1]) == false)
 			perrorExit("Error", inFile, outFile);
@@ -32,4 +33,6 @@ int	main(int argc, char **argv)
 		inFile.close();
 		outFile.close();
 	}
+	else
+		std::cout << "Error: Usage: ./SedIsForLosers [infile name] [word] [word replacer]" << std::endl;
 }
