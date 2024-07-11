@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+         #
+#    By: tiago <tiago@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/04 22:55:09 by tiaferna          #+#    #+#              #
-#    Updated: 2024/07/09 15:12:19 by tiaferna         ###   ########.fr        #
+#    Updated: 2024/07/11 23:07:04 by tiago            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = BSP
 
 # Define the source and object files
-SRCS = main.cpp Fixed.cpp
+SRCS = main.cpp Fixed.cpp Point.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target to build the executable
