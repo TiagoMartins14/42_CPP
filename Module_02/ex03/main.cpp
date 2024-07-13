@@ -6,7 +6,7 @@
 /*   By: tiago <tiago@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 17:21:48 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/13 12:19:52 by tiago            ###   ########.fr       */
+/*   Updated: 2024/07/13 12:28:54 by tiago            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 #include <cmath>
 #include "Fixed.hpp"
 #include "Point.hpp"
-#include "bsp.hpp"
+
+bool BSP(Point A, Point B, Point C, Point Point);
+void bspMessage(bool BSP, Point A, Point B, Point C, Point Point);
 
 // Regular triangle, point is inside
 void test_case_1()
