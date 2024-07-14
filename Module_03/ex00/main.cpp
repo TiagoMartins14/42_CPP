@@ -6,7 +6,7 @@
 /*   By: tiago <tiago@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 14:52:01 by tiago             #+#    #+#             */
-/*   Updated: 2024/07/14 16:02:34 by tiago            ###   ########.fr       */
+/*   Updated: 2024/07/14 16:21:56 by tiago            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int main(void)
 	Old_Biden.beRepaired(5);
 	std::cout << Old_Biden << std::endl;
 
+	std::cout << "Old_Biden = Crazy_trump" << std::endl;
 	Old_Biden = CrazyTrump;
 	std::cout << Old_Biden << std::endl;
 
