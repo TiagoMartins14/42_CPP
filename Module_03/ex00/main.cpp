@@ -6,6 +6,33 @@
 /*   By: tiago <tiago@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/13 14:52:01 by tiago             #+#    #+#             */
-/*   Updated: 2024/07/13 14:52:03 by tiago            ###   ########.fr       */
+/*   Updated: 2024/07/14 16:02:34 by tiago            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ClapTrap.hpp"
+
+int main(void)
+{
+	ClapTrap Old_Biden("Old Biden");
+	ClapTrap CrazyTrump("Crazy Trump");
+	ClapTrap BidenClone(Old_Biden);
+
+	std::cout << Old_Biden << std::endl;
+	std::cout << CrazyTrump << std::endl;
+
+	Old_Biden.attack(CrazyTrump.getName());
+	std::cout << Old_Biden << std::endl;
+
+	Old_Biden.takeDamage(10);
+	std::cout << Old_Biden << std::endl;
+
+	Old_Biden.beRepaired(5);
+	std::cout << Old_Biden << std::endl;
+
+	Old_Biden = CrazyTrump;
+	std::cout << Old_Biden << std::endl;
+
+	BidenClone.beRepaired(90);
+	std::cout << BidenClone << std::endl;
+}
