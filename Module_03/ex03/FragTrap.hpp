@@ -6,7 +6,7 @@
 /*   By: tiago <tiago@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:01:10 by tiago             #+#    #+#             */
-/*   Updated: 2024/07/16 11:45:57 by tiago            ###   ########.fr       */
+/*   Updated: 2024/07/16 17:15:02 by tiago            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ public:
 	FragTrap(const std::string &Name);
 	FragTrap(const FragTrap &other);
 	~FragTrap();
-	FragTrap &operator=(const FragTrap &other);
 
 	void highFivesGuys(void);
-	void attack(const std::string &target);
-
-	friend std::ostream &operator<<(std::ostream &out, const FragTrap &scavTrap);
 };

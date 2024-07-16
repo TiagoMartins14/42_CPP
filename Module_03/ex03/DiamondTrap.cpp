@@ -6,7 +6,7 @@
 /*   By: tiago <tiago@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:56:36 by tiago             #+#    #+#             */
-/*   Updated: 2024/07/16 16:37:15 by tiago            ###   ########.fr       */
+/*   Updated: 2024/07/16 22:45:39 by tiago            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,6 @@ DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScavTrap(o
 {
 	*this = other;
 	std::cout << "DiamondTrap [" << _name << "] created" << std::endl;
-}
-
-DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other)
-{
-	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &other)
-	{
-		this->_name = other._name;
-		this->_hitPoints = other._hitPoints;
-		this->_energyPoints = other._energyPoints;
-		this->_attackDamage = other._attackDamage;
-		this->ClapTrap::_name = other.ClapTrap::_name;
-	}
-	return *this;
 }
 
 void DiamondTrap::whoAmI()

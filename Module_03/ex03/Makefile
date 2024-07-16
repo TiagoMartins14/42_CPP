@@ -6,7 +6,7 @@
 #    By: tiago <tiago@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/15 14:51:02 by tiago             #+#    #+#              #
-#    Updated: 2024/07/16 10:00:40 by tiago            ###   ########.fr        #
+#    Updated: 2024/07/16 17:12:12 by tiago            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Define the target executable
-NAME = RepetitiveWork
+NAME = NowItsWierd
 
 # Define the source and object files
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target to build the executable
