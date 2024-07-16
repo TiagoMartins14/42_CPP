@@ -6,27 +6,28 @@
 /*   By: tiago <tiago@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 15:05:34 by tiago             #+#    #+#             */
-/*   Updated: 2024/07/15 19:29:18 by tiago            ###   ########.fr       */
+/*   Updated: 2024/07/16 10:32:31 by tiago            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
-	ScavTrap ScavOne("Scavenger One");
-	ScavTrap ScavTwo(ScavOne);
-	ScavTrap ScavThree;
+	FragTrap FragOne("Scavenger One");
+	FragTrap FragTwo(FragOne);
+	FragTrap FragThree;
 
 	std::cout << "------------ScavOne--------------" << std::endl;
-	ScavOne.attack("Gambuzino");
-	std::cout << ScavOne << std::endl;
+	FragOne.attack("Gambuzino");
+	std::cout << FragOne << std::endl;
 	std::cout << "------------ScavTwo--------------" << std::endl;
-	ScavTwo.guardGate();
-	std::cout << ScavTwo << std::endl;
-	ScavTwo.attack("Gambas");
-	std::cout << ScavTwo << std::endl;
+	FragTwo.guardGate();
+	FragTwo.highFivesGuys();
+	std::cout << FragTwo << std::endl;
+	FragTwo.attack("Gambas");
+	std::cout << FragTwo << std::endl;
 	std::cout << "-----------ScavThree-------------" << std::endl;
-	ScavThree = ScavOne;
-	std::cout << ScavThree << std::endl;
+	FragThree = FragOne;
+	std::cout << FragThree << std::endl;
 }
