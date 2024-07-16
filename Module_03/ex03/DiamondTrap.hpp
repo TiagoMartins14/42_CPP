@@ -6,7 +6,7 @@
 /*   By: tiago <tiago@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:56:34 by tiago             #+#    #+#             */
-/*   Updated: 2024/07/16 11:51:47 by tiago            ###   ########.fr       */
+/*   Updated: 2024/07/16 16:30:35 by tiago            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,4 @@ public:
 	DiamondTrap &operator=(const DiamondTrap &other);
 
 	void whoAmI();
-	void attack(const std::string &target);
-
-	friend std::ostream &operator<<(std::ostream &out, const DiamondTrap &scavTrap);
 };
