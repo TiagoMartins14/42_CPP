@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiago <tiago@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:56:34 by tiago             #+#    #+#             */
-/*   Updated: 2024/07/16 22:45:32 by tiago            ###   ########.fr       */
+/*   Updated: 2024/07/17 14:38:32 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,7 @@ public:
 	~DiamondTrap();
 
 	void whoAmI();
+
+private:
+	std::string _name;
 };
