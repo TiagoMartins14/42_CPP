@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiago <tiago@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 13:44:19 by tiago             #+#    #+#             */
-/*   Updated: 2024/07/16 10:22:34 by tiago            ###   ########.fr       */
+/*   Updated: 2024/07/17 13:52:49 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,6 @@ ScavTrap::ScavTrap(const ScavTrap &copy) : ClapTrap(copy)
 {
 	*this = copy;
 	std::cout << "ScavTrap [" << _name << "] created" << std::endl;
-}
-
-ScavTrap &ScavTrap::operator=(const ScavTrap &other)
-{
-	std::cout << "Copy assignment operator called" << std::endl;
-	if (this != &other)
-	{
-		this->_name = other._name;
-		this->_hitPoints = other._hitPoints;
-		this->_energyPoints = other._energyPoints;
-		this->_attackDamage = other._attackDamage;
-	}
-	return *this;
 }
 
 void ScavTrap::guardGate(void)
