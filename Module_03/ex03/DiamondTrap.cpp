@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiago <tiago@student.42.fr>                +#+  +:+       +#+        */
+/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 10:56:36 by tiago             #+#    #+#             */
-/*   Updated: 2024/07/16 22:45:39 by tiago            ###   ########.fr       */
+/*   Updated: 2024/07/17 14:39:11 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScavTrap(o
 void DiamondTrap::whoAmI()
 {
 	std::cout << "Name: " << _name << std::endl;
-	std::cout << "Clap Trap name: " << this->ClapTrap::_name << std::endl;
+	std::cout << "ClapTrap name: " << this->ClapTrap::_name << std::endl;
 }
 
 DiamondTrap::~DiamondTrap()
