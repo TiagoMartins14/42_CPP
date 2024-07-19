@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:34:49 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/17 16:08:56 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:22:24 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 Dog::Dog() : Animal()
 {
 	std::cout << "Dog default constructor called" << std::endl;
+	_type = "Default Dog";
 }
 
-Dog::Dog(const Dog &copy) : Dog(copy)
+Dog::Dog(const Dog &copy) : Animal(copy)
 {
 	std::cout << "Dog copy constructor called" << std::endl;
 }
@@ -36,7 +37,7 @@ Dog::~Dog()
 	std::cout << "Dog destructor called" << std::endl;
 }
 
-void Dog::makeSound()
+void Dog::makeSound() const
 {
 	std::cout << _type << ": Woof Woof!" << std::endl;
 }

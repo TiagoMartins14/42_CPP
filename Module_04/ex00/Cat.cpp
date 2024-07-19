@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:34:37 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/17 16:05:17 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:21:47 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 Cat::Cat() : Animal()
 {
 	std::cout << "Cat default constructor called" << std::endl;
+	_type = "Default Cat";
 }
 
-Cat::Cat(const Cat &copy) : Cat(copy)
+Cat::Cat(const Cat &copy) : Animal(copy)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
 }
@@ -36,7 +37,7 @@ Cat::~Cat()
 	std::cout << "Cat destructor called" << std::endl;
 }
 
-void Cat::makeSound()
+void Cat::makeSound() const
 {
 	std::cout << _type << ": Meeeeoooow!" << std::endl;
 }
