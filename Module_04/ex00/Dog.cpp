@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:34:49 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/19 15:22:24 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:54:09 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ Dog::~Dog()
 
 void Dog::makeSound() const
 {
-	std::cout << _type << ": Woof Woof!" << std::endl;
+	std::cout << BLUE << _type << ": Woof Woof!" << RESET << std::endl;
 }

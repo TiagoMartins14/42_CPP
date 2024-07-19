@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:34:37 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/19 15:21:47 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:53:42 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ Cat::~Cat()
 
 void Cat::makeSound() const
 {
-	std::cout << _type << ": Meeeeoooow!" << std::endl;
+	std::cout << PURPLE << _type << ": Meeeeoooow!" << RESET << std::endl;
 }

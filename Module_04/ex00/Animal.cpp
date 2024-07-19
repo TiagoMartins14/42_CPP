@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:03:12 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/19 14:56:37 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:51:09 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,5 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-	std::cout << _type << ": [Generic animal sound]" << std::endl;
+	std::cout << GREEN << _type << ": [Wrong Generic animal sound]" << RESET << std::endl;
 }

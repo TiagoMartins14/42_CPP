@@ -6,7 +6,7 @@
 #    By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/17 14:58:34 by tiaferna          #+#    #+#              #
-#    Updated: 2024/07/17 15:16:17 by tiaferna         ###   ########.fr        #
+#    Updated: 2024/07/19 15:52:15 by tiaferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = Polymorphism
 
 # Define the source and object files
-SRCS = main.cpp Animal.cpp Cat.cpp Dog.cpp
+SRCS = main.cpp Animal.cpp WrongAnimal.cpp Cat.cpp WrongCat.cpp Dog.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target to build the executable
