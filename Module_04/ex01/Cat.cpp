@@ -16,6 +16,7 @@ Cat::Cat() : Animal()
 {
 	std::cout << "Cat default constructor called" << std::endl;
 	_type = "Default Cat";
+	new Brain();
 }
 
 Cat::Cat(const Cat &copy) : Animal(copy)
@@ -40,4 +41,9 @@ Cat::~Cat()
 void Cat::makeSound() const
 {
 	std::cout << PURPLE << _type << ": Meeeeoooow!" << RESET << std::endl;
+}
+
+Brain Cat::Brain()
+{
+	_brain = 	
 }
