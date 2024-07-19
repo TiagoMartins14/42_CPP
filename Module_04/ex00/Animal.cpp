@@ -6,7 +6,7 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:03:12 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/19 14:49:49 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:56:37 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ Animal::~Animal()
 	std::cout << "Animal destructor called" << std::endl;
 }
 
-std::string Animal::getType()
+std::string Animal::getType() const
 {
 	return _type;
 }
 
-void Animal::makeSound()
+void Animal::makeSound() const
 {
 	std::cout << _type << ": [Generic animal sound]" << std::endl;
 }

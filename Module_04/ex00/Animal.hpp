@@ -6,10 +6,11 @@
 /*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:59:52 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/17 16:28:33 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:19:32 by tiaferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #include <string>
 #include <iostream>
 
@@ -22,8 +23,8 @@ public:
 	Animal();
 	Animal(const Animal &copy);
 	Animal &operator=(const Animal &copy);
-	~Animal();
+	virtual ~Animal();
 
-	std::string getType();
-	void makeSound();
+	std::string getType() const;
+	virtual void makeSound() const;
 };
