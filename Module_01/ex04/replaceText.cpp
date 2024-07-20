@@ -12,6 +12,14 @@
 
 #include "SedIsForLosers.hpp"
 
+void	copyFile(std::ifstream &inFile, std::ofstream &outFile)
+{
+	std::string	textLine;
+
+	while (std::getline(inFile, textLine))
+		outFile << textLine << std::endl;
+}
+
 void	replaceText(std::ifstream &inFile, std::ofstream &outFile, const std::string &searchStr, const std::string &replaceStr)
 {
 	std::string	textLine;

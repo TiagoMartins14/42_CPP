@@ -27,3 +27,4 @@ bool		openOutFile( std::ofstream &outFile, const std::string &fileName);
 
 //  replaceText.cpp
 void		replaceText(std::ifstream &inFile, std::ofstream &outFile, const std::string &searchStr, const std::string &replaceStr);
+void		copyFile(std::ifstream &inFile, std::ofstream &outfile);
