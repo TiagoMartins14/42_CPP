@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tiaferna <tiaferna@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tiago <tiago@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:34:37 by tiaferna          #+#    #+#             */
-/*   Updated: 2024/07/19 16:53:42 by tiaferna         ###   ########.fr       */
+/*   Updated: 2024/07/22 22:23:21 by tiago            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ Cat::Cat() : Animal()
 {
 	std::cout << "Cat default constructor called" << std::endl;
 	_type = "Default Cat";
-	new Brain();
+	_brain = new Brain();
 }
 
 Cat::Cat(const Cat &copy) : Animal(copy)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
+	_brain = new Brain();
 }
 
 Cat &Cat::operator=(const Cat &copy)
@@ -36,14 +37,10 @@ Cat &Cat::operator=(const Cat &copy)
 Cat::~Cat()
 {
 	std::cout << "Cat destructor called" << std::endl;
+	delete _brain;
 }
 
 void Cat::makeSound() const
 {
 	std::cout << PURPLE << _type << ": Meeeeoooow!" << RESET << std::endl;
-}
-
-Brain Cat::Brain()
-{
-	_brain = 	
 }
