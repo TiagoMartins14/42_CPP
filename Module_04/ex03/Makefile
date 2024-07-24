@@ -6,7 +6,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = Interface&Recap
 
 # Define the source and object files
-SRCS = main.cpp Animal.cpp Brain.cpp Cat.cpp Dog.cpp
+SRCS = main.cpp A_Materia.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Default target to build the executable
