@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <iostream>
 #include <A_Materia.hpp>
 
 class IMateriaSource

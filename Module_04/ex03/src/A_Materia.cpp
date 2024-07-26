@@ -1,14 +1,25 @@
-#include "../includes/A_Materia.hpp"
+#include "A_Materia.hpp"
 
 AMateria::AMateria()
 {
 	_type = "not defined";
 }
 
-AMateria::AMateria(std::string const &type)
+AMateria::AMateria(std::string const &type) : _type(type) {}
+
+AMateria::AMateria(const AMateria &other)
 {
-	_type = type;
+	*this = other;
 }
+
+AMateria &AMateria::operator=(const AMateria &copy)
+{
+	if (this != &copy)
+		this->_type = copy._type;
+	return *this;
+}
+
+AMateria::~AMateria() {}
 
 std::string const &AMateria::getType() const
 {
@@ -17,5 +28,5 @@ std::string const &AMateria::getType() const
 
 void AMateria::use(ICharacter &target)
 {
-	std::cout << "* " << _type << " was used on " << target.getName() << " *" << std::endl;
+	(void)target;
 }

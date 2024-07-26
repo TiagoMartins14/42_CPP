@@ -1,3 +1,5 @@
+#pragma once
+#include "A_Materia.hpp"
 #include "I_MateriaSource.hpp"
 
 class MateriaSource : public IMateriaSource
@@ -9,7 +11,7 @@ public:
 	MateriaSource();
 	MateriaSource(const MateriaSource &other);
 	MateriaSource &operator=(const MateriaSource &copy);
-	~MateriaSource() {}
+	~MateriaSource();
 
 	void learnMateria(AMateria *materia);
 	AMateria *createMateria(std::string const &type);

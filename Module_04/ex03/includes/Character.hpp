@@ -1,9 +1,8 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include "I_Character.hpp"
 #include "A_Materia.hpp"
-#include "I_MateriaSource.hpp"
+#include "I_Character.hpp"
 
 class Character : public ICharacter
 {
@@ -21,5 +20,5 @@ public:
 	std::string const &getName() const;
 	void equip(AMateria *m);
 	void unequip(int idx);
-	void use(int idx, Character &target);
+	void use(int idx, ICharacter &target);
 };

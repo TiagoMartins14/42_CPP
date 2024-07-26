@@ -1,4 +1,4 @@
-#include "../includes/Ice.hpp"
+#include "Ice.hpp"
 
 Ice::Ice() : AMateria("ice") {}
 
@@ -13,6 +13,8 @@ Ice &Ice::operator=(const Ice &copy)
 		this->_type = copy._type;
 	return (*this);
 }
+
+Ice::~Ice() {}
 
 Ice *Ice::clone() const
 {
