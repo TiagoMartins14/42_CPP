@@ -24,7 +24,7 @@ Bureaucrat::operator= (const Bureaucrat &copy)
 {
 	if (this != &copy)
 		{
-			this->_name = copy._name;
+			// this->_name = copy._name; // _name is const
 			this->_grade = copy._grade;
 		}
 	return *this;
@@ -60,6 +60,19 @@ Bureaucrat::decrementGrade ()
 			throw GradeTooLowException ();
 		}
 	_grade++;
+}
+
+void
+Bureaucrat::signForm (Form form)
+{
+	if (_grade <= form.getGradeToSign ())
+		{
+			form.beSigned (*this);
+			std::cout << _name << " signed " << form.getName () << std::endl;
+		}
+	else
+		std::cout << _name << " couldn't sign " << form.getName ()
+				  << " because grade is too low!" << std::endl;
 }
 
 const char *
