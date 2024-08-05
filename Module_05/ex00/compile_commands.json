@@ -1,0 +1,42 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-pedantic",
+      "-std=c++98",
+      "-I",
+      "includes",
+      "-c",
+      "-o",
+      "src/main.o",
+      "src/main.cpp"
+    ],
+    "directory": "/home/tiago-martins/Desktop/42/42_CPP/Module_05/ex00",
+    "file": "/home/tiago-martins/Desktop/42/42_CPP/Module_05/ex00/src/main.cpp",
+    "output": "/home/tiago-martins/Desktop/42/42_CPP/Module_05/ex00/src/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-Wshadow",
+      "-pedantic",
+      "-std=c++98",
+      "-I",
+      "includes",
+      "-c",
+      "-o",
+      "src/Bureaucrat.o",
+      "src/Bureaucrat.cpp"
+    ],
+    "directory": "/home/tiago-martins/Desktop/42/42_CPP/Module_05/ex00",
+    "file": "/home/tiago-martins/Desktop/42/42_CPP/Module_05/ex00/src/Bureaucrat.cpp",
+    "output": "/home/tiago-martins/Desktop/42/42_CPP/Module_05/ex00/src/Bureaucrat.o"
+  }
+]
