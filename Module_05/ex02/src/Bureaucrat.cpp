@@ -63,7 +63,7 @@ Bureaucrat::decrementGrade ()
 }
 
 void
-Bureaucrat::signForm (Form form)
+Bureaucrat::signForm (AForm form)
 {
 	if (_grade <= form.getGradeToSign ())
 		{
