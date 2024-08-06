@@ -1,5 +1,9 @@
 #pragma once
 #include "AForm.hpp"
+#include <cstdlib>
+#include <ctime>
+
+class Bureaucrat;
 
 class RobotomyRequestForm : public AForm
 {
@@ -7,7 +11,7 @@ class RobotomyRequestForm : public AForm
 	std::string _target;
 
   public:
-	RobotomyRequestForm (std::string _target);
+	RobotomyRequestForm (std::string target);
 	RobotomyRequestForm (const RobotomyRequestForm &other);
 	RobotomyRequestForm &operator= (const RobotomyRequestForm &copy);
 	~RobotomyRequestForm ();
