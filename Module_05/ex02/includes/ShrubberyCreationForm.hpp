@@ -3,8 +3,6 @@
 #include <fstream>
 #include <sys/stat.h>
 
-class Bureaucrat;
-
 class ShrubberyCreationForm : public AForm
 {
   private:
@@ -16,5 +14,10 @@ class ShrubberyCreationForm : public AForm
 	ShrubberyCreationForm &operator= (const ShrubberyCreationForm &copy);
 	~ShrubberyCreationForm ();
 
-	void createForm () const;
+	const std::string &getTarget () const;
+
+	void executeForm () const;
+
+	static int const signGrade = 145;
+	static int const executeGrade = 137;
 };
