@@ -16,8 +16,8 @@ class AForm
 	AForm ();
 	AForm (const std::string name, const int gradeToSign,
 		   const int gradeToExecute);
-	AForm (const Form &other);
-	AForm &operator= (const Form &copy);
+	AForm (const AForm &other);
+	AForm &operator= (const AForm &copy);
 	~AForm ();
 
 	const std::string getName ();
