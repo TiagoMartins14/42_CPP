@@ -21,7 +21,7 @@ PresidentialPardonForm::operator= (const PresidentialPardonForm &copy)
 PresidentialPardonForm::~PresidentialPardonForm () {}
 
 void
-PresidentialPardonForm::executePardon () const
+PresidentialPardonForm::executeForm () const
 {
 	std::cout << _target << " has been pardoned by Zaphod Beeblebrox!"
 			  << std::endl;
