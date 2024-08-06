@@ -13,4 +13,11 @@ class PresidentialPardonForm : public AForm
 	~PresidentialPardonForm ();
 
 	void executePardon () const;
+
+	const std::string &getTarget () const;
+
+	void executeForm () const;
+
+	static int const signGrade = 25;
+	static int const executeGrade = 5;
 };
