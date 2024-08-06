@@ -21,7 +21,7 @@ ShrubberyCreationForm::operator= (const ShrubberyCreationForm &copy)
 ShrubberyCreationForm::~ShrubberyCreationForm () {}
 
 void
-ShrubberyCreationForm::createForm () const
+ShrubberyCreationForm::executeForm () const
 {
 	std::ofstream outFile;
 	std::string fileName (_target + "_shrubbery");
@@ -54,4 +54,10 @@ ShrubberyCreationForm::createForm () const
 			outFile.close ();
 		}
 	return;
+}
+
+const std::string &
+ShrubberyCreationForm::getTarget () const
+{
+	return _target;
 }
