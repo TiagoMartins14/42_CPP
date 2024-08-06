@@ -16,7 +16,7 @@ class ShrubberyCreationForm : public AForm
 
 	const std::string &getTarget () const;
 
-	void executeForm () const;
+	void executeAction () const;
 
 	static int const signGrade = 145;
 	static int const executeGrade = 137;

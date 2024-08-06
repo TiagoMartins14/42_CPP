@@ -13,7 +13,7 @@ class AForm
 	bool _signed;
 
   protected:
-	virtual void executeForm () const = 0;
+	virtual void executeAction () const = 0;
 
   public:
 	AForm ();

@@ -20,7 +20,7 @@ RobotomyRequestForm::operator= (const RobotomyRequestForm &copy)
 RobotomyRequestForm::~RobotomyRequestForm () {}
 
 void
-RobotomyRequestForm::executeForm () const
+RobotomyRequestForm::executeAction () const
 {
 	std::cout << "[Drilling noises]" << std::endl << std::endl;
 
