@@ -16,5 +16,10 @@ class RobotomyRequestForm : public AForm
 	RobotomyRequestForm &operator= (const RobotomyRequestForm &copy);
 	~RobotomyRequestForm ();
 
-	void executeRobotomy () const;
+	const std::string &getTarget () const;
+
+	void executeForm () const;
+
+	static int const signGrade = 72;
+	static int const executeGrade = 45;
 };

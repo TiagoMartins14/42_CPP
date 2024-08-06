@@ -20,7 +20,7 @@ RobotomyRequestForm::operator= (const RobotomyRequestForm &copy)
 RobotomyRequestForm::~RobotomyRequestForm () {}
 
 void
-RobotomyRequestForm::executeRobotomy () const
+RobotomyRequestForm::executeForm () const
 {
 	std::cout << "[Drilling noises]" << std::endl << std::endl;
 
@@ -34,4 +34,10 @@ RobotomyRequestForm::executeRobotomy () const
 		}
 	else
 		std::cout << _target << " failed to be robotomized!" << std::endl;
+}
+
+const std::string &
+RobotomyRequestForm::getTarget () const
+{
+	return _target;
 }
