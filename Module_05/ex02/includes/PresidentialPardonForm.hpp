@@ -3,7 +3,11 @@
 
 class PresidentialPardonForm : public AForm
 {
-	PresidentialPardonForm ();
+  private:
+	std::string _target;
+
+  public:
+	PresidentialPardonForm (std::string target);
 	PresidentialPardonForm (const PresidentialPardonForm &other);
 	PresidentialPardonForm &operator= (const PresidentialPardonForm &copy);
 	~PresidentialPardonForm ();
