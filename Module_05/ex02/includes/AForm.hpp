@@ -12,6 +12,9 @@ class AForm
 	const int _gradeToExecute;
 	bool _signed;
 
+  protected:
+	virtual void executeForm () const = 0;
+
   public:
 	AForm ();
 	AForm (const std::string name, const int gradeToSign,
