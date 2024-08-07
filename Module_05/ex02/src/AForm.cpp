@@ -1,10 +1,5 @@
 #include "AForm.hpp"
 
-AForm::AForm ()
-	: _name ("no name"), _gradeToSign (1), _gradeToExecute (1), _signed (false)
-{
-}
-
 AForm::AForm (const std::string name, const int gradeToSign,
 			  const int gradeToExecute)
 	: _name (name), _gradeToSign (gradeToSign),
@@ -71,4 +66,10 @@ const char *
 AForm::GradeTooLowException::what () const throw ()
 {
 	return "Grade too low";
+}
+
+const char *
+AForm::FormNotSignedException::what () const throw ()
+{
+	return "Form is already signed";
 }

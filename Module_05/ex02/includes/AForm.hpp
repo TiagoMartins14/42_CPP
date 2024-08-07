@@ -12,24 +12,27 @@ class AForm
 	const int _gradeToExecute;
 	bool _signed;
 
-  protected:
-	virtual void executeAction () const = 0;
-
   public:
-	AForm ();
+	// Consttructors and destructor
 	AForm (const std::string name, const int gradeToSign,
 		   const int gradeToExecute);
 	AForm (const AForm &other);
-	AForm &operator= (const AForm &copy);
 	~AForm ();
+	// Operators
+	AForm &operator= (const AForm &copy);
 
+	// Getters
 	const std::string getName ();
 	int getGradeToSign ();
 	int getGradeToExecute ();
 	bool getSigned ();
+
+	// Form actions
 	void beSigned (Bureaucrat &bureaucrat);
 	void execute (Bureaucrat const &executor) const;
+	virtual void executeAction () const = 0;
 
+	// Excceptions
 	class GradeTooHighException : public std::exception
 	{
 	  public:
@@ -37,6 +40,12 @@ class AForm
 	};
 
 	class GradeTooLowException : public std::exception
+	{
+	  public:
+		const char *what () const throw ();
+	};
+
+	class FormNotSignedException : public std::exception
 	{
 	  public:
 		const char *what () const throw ();
