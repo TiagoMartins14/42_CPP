@@ -64,7 +64,7 @@ AForm::execute (Bureaucrat const &executor) const
 	else if (!this->_signed)
 		throw AForm::FormNotSignedException ();
 	else
-		this->execute ();
+		this->executeAction ();
 }
 
 const char *
