@@ -6,7 +6,7 @@
 #define MAX_GRADE 1
 #define MIN_GRADE 150
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -15,7 +15,6 @@ class Bureaucrat
 	int _grade;
 
   public:
-	Bureaucrat ();
 	Bureaucrat (std::string name, int grade);
 	Bureaucrat (const Bureaucrat &other);
 	~Bureaucrat ();
@@ -26,7 +25,7 @@ class Bureaucrat
 
 	void incrementGrade ();
 	void decrementGrade ();
-	void signForm (AForm form);
+	void signForm (AForm &form);
 
 	class GradeTooHighException : public std::exception
 	{
@@ -35,6 +34,12 @@ class Bureaucrat
 	};
 
 	class GradeTooLowException : public std::exception
+	{
+	  public:
+		const char *what () const throw ();
+	};
+
+	class AlreadySignedException : public std::exception
 	{
 	  public:
 		const char *what () const throw ();
