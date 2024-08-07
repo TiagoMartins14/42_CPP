@@ -8,8 +8,19 @@ int
 main ()
 {
 	Bureaucrat *B1 = new Bureaucrat ("B1", 5);
-	Form *F1 = new Form ("F1", 4, 2);
-	B1->signForm (*F1);
-	B1->incrementGrade ();
-	B1->signForm (*F1);
+	ShrubberyCreationForm *ShrubForm = new ShrubberyCreationForm ("ShrubForm");
+	RobotomyRequestForm *RobForm = new RobotomyRequestForm ("RobForm");
+	PresidentialPardonForm *PresForm = new PresidentialPardonForm ("PresForm");
+	B1->signForm (*ShrubForm);
+	B1->signForm (*RobForm);
+	B1->signForm (*PresForm);
+
+	ShrubForm->execute (*B1);
+	RobForm->execute (*B1);
+	PresForm->execute (*B1);
+
+	delete B1;
+	delete ShrubForm;
+	delete RobForm;
+	delete PresForm;
 }
