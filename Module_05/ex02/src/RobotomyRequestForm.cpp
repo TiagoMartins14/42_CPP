@@ -22,7 +22,7 @@ RobotomyRequestForm::~RobotomyRequestForm () {}
 void
 RobotomyRequestForm::executeAction () const
 {
-	std::cout << "[Drilling noises]" << std::endl << std::endl;
+	std::cout << "[Drilling noises]" << std::endl;
 
 	srand (static_cast<unsigned int> (time (0)));
 
