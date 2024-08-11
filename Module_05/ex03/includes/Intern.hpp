@@ -1,5 +1,8 @@
 #pragma once
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "PardonRequestForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 #include <string>
 
 class Intern
@@ -14,5 +17,5 @@ class Intern
 	Intern &operator= (const Intern &copy);
 
 	// Member function
-	Form *makeForm (std::string &form, std::string &target);
+	AForm *makeForm (std::string &form, std::string &target);
 };
