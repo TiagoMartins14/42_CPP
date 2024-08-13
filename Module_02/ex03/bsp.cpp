@@ -15,17 +15,17 @@
 
 bool BSP(Point A, Point B, Point C, Point Point)
 {
-    Fixed PointOne = 1.0f;
+    Fixed pointOne = 1.0f;
 
     Fixed denominator = ((B.getY() - C.getY()) * (A.getX() - C.getX()) + (C.getX() - B.getX()) * (A.getY() - C.getY()));
     if (denominator == 0.0f)
         return false;
 
-    Fixed lambda_1 = ((B.getY() - C.getY()) * (Point.getX() - C.getX()) + (C.getX() - B.getX()) * (Point.getY() - C.getY())) / denominator;
-    Fixed lambda_2 = ((C.getY() - A.getY()) * (Point.getX() - C.getX()) + (A.getX() - C.getX()) * (Point.getY() - C.getY())) / denominator;
-    Fixed lambda_3 = PointOne - lambda_1 - lambda_2;
+    Fixed lambda1 = ((B.getY() - C.getY()) * (Point.getX() - C.getX()) + (C.getX() - B.getX()) * (Point.getY() - C.getY())) / denominator;
+    Fixed lambda2 = ((C.getY() - A.getY()) * (Point.getX() - C.getX()) + (A.getX() - C.getX()) * (Point.getY() - C.getY())) / denominator;
+    Fixed lambda3 = pointOne - lambda1 - lambda2;
 
-    return lambda_1 > 0 && lambda_2 > 0 && lambda_3 > 0;
+    return lambda1 > 0 && lambda2 > 0 && lambda3 > 0;
 }
 
 void bspMessage(bool BSP, Point A, Point B, Point C, Point Point)
