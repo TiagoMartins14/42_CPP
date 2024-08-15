@@ -22,5 +22,5 @@ class Intern {
 	Intern &operator=(const Intern &copy);
 
 	// Member function
-	AForm *makeForm(std::string &form, std::string &target) const;
+	AForm *makeForm(const std::string &form, const std::string &target) const;
 };

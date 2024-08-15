@@ -1,5 +1,7 @@
 #include "Intern.hpp"
 
+Intern::Intern() {}
+
 Intern::Intern(const Intern &other) { *this = other; }
 
 Intern &Intern::operator=(const Intern &copy) {
@@ -7,14 +9,19 @@ Intern &Intern::operator=(const Intern &copy) {
 	return *this;
 }
 
-AForm *Intern::makeForm(std::string &form, std::string &target) const {
+Intern::~Intern() {}
+
+AForm *Intern::makeForm(const std::string &form,
+						const std::string &target) const {
 	int formIndex = 0;
-	const std::string formList[3] = {"shrubbery creation", "robotmy request",
+	const std::string formList[3] = {"shrubbery creation", "robotomy request",
 									 "presidential pardon"};
 
 	while (formIndex < 3 && formList[formIndex] != form) formIndex++;
 
-	if (formIndex > 3) {
+	std::cout << formIndex << std::endl;
+
+	if (formIndex == 3) {
 		std::cout << "The intern does't know how to create such form! - "
 				  << form << std::endl;
 		return NULL;
