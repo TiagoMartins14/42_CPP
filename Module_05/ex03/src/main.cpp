@@ -7,8 +7,18 @@
 
 int main() {
 	Intern someRandomIntern;
-	AForm* rrf;
-	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	AForm* shrubForm;
+	AForm* robotForm;
+	AForm* presidForm;
+	AForm* fakeNewsForm;
 
-	delete rrf;
+	shrubForm = someRandomIntern.makeForm("shrubbery creation", "Bender");
+	robotForm = someRandomIntern.makeForm("robotomy request", "Cleo");
+	presidForm = someRandomIntern.makeForm("presidential pardon", "Donald");
+	fakeNewsForm = someRandomIntern.makeForm("fake news", "Easton");
+
+	delete shrubForm;
+	delete robotForm;
+	delete presidForm;
+	delete fakeNewsForm;
 }
