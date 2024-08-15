@@ -29,3 +29,14 @@ AForm *Intern::makeForm(std::string &form, std::string &target) const {
 
 	return (this->*createFormList[formIndex])(target);
 }
+
+AForm *Intern::createShrubberyCreationForm(const std::string &target) const {
+	return new ShrubberyCreationForm(target);
+}
+
+AForm *Intern::createRobotomyRequestForm(const std::string &target) const {
+	return new RobotomyRequestForm(target);
+}
+AForm *Intern::createPresidentialPardonForm(const std::string &target) const {
+	return new PresidentialPardonForm(target);
+}
