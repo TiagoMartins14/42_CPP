@@ -18,9 +18,6 @@ AForm *Intern::makeForm(const std::string &form,
 									 "presidential pardon"};
 
 	while (formIndex < 3 && formList[formIndex] != form) formIndex++;
-
-	std::cout << formIndex << std::endl;
-
 	if (formIndex == 3) {
 		std::cout << "The intern does't know how to create such form! - "
 				  << form << std::endl;
