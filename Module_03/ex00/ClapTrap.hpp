@@ -31,10 +31,10 @@ public:
 	void attack(const std::string &target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
-	std::string getName(void);
-	int getAttackDamage(void);
-	int getHitPoints(void);
-	int getEnergyPoints(void);
-
-	friend std::ostream &operator<<(std::ostream &out, const ClapTrap &clapTrap);
+	std::string getName(void) const;
+	int getAttackDamage(void) const;
+	int getHitPoints(void) const;
+	int getEnergyPoints(void) const;
 };
+
+std::ostream &operator<<(std::ostream &out, const ClapTrap &clapTrap);

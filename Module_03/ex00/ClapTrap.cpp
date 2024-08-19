@@ -89,32 +89,32 @@ void ClapTrap::beRepaired(unsigned int amount)
 				  << std::endl;
 }
 
-std::string ClapTrap::getName(void)
+std::string ClapTrap::getName(void) const
 {
 	return _name;
 }
 
-int ClapTrap::getAttackDamage(void)
+int ClapTrap::getAttackDamage(void) const
 {
 	return _attackDamage;
 }
 
-int ClapTrap::getHitPoints(void)
+int ClapTrap::getHitPoints(void) const
 {
 	return _hitPoints;
 }
 
-int ClapTrap::getEnergyPoints(void)
+int ClapTrap::getEnergyPoints(void) const
 {
 	return _energyPoints;
 }
 
 std::ostream &operator<<(std::ostream &out, const ClapTrap &clapTrap)
 {
-	out << "[" << clapTrap._name << "] "
-		<< "Hit Points: " << clapTrap._hitPoints
-		<< "| Energy Points: " << clapTrap._energyPoints
-		<< "| Attack Damage: " << clapTrap._attackDamage
+	out << "[" << clapTrap.getName() << "] "
+		<< "Hit Points: " << clapTrap.getHitPoints()
+		<< "| Energy Points: " << clapTrap.getEnergyPoints()
+		<< "| Attack Damage: " << clapTrap.getAttackDamage()
 		<< std::endl;
 
 	return out;
