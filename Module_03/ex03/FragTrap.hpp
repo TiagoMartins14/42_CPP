@@ -23,3 +23,5 @@ public:
 
 	void highFivesGuys(void);
 };
+
+std::ostream &operator<<(std::ostream &out, const FragTrap &scavTrap);

@@ -87,3 +87,14 @@ void ScavTrap::attack(const std::string &target)
 		std::cout << "ScavTrap [" << _name << "] wants to attack but he has no energy left!"
 				  << std::endl;
 }
+
+std::ostream &operator<<(std::ostream &out, const ScavTrap &ScavTrap)
+{
+	out << "[" << ScavTrap.getName() << "] "
+		<< "Hit Points: " << ScavTrap.getHitPoints()
+		<< "| Energy Points: " << ScavTrap.getEnergyPoints()
+		<< "| Attack Damage: " << ScavTrap.getAttackDamage()
+		<< std::endl;
+
+	return out;
+}
