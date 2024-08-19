@@ -77,10 +77,10 @@ void ScavTrap::attack(const std::string &target)
 
 std::ostream &operator<<(std::ostream &out, const ScavTrap &ScavTrap)
 {
-	out << "[" << ScavTrap._name << "] "
-		<< "Hit Points: " << ScavTrap._hitPoints
-		<< "| Energy Points: " << ScavTrap._energyPoints
-		<< "| Attack Damage: " << ScavTrap._attackDamage
+	out << "[" << ScavTrap.getName() << "] "
+		<< "Hit Points: " << ScavTrap.getHitPoints()
+		<< "| Energy Points: " << ScavTrap.getEnergyPoints()
+		<< "| Attack Damage: " << ScavTrap.getAttackDamage()
 		<< std::endl;
 
 	return out;
