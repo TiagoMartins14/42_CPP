@@ -37,16 +37,22 @@ void ScalarConverter::convert(const std::string input) {
 	} else if (input.length() > 1) {
 		for (size_t i = 0; i < input.length(); i++) {
 			if (i == 0 && input[i] == '-') continue;
-			if (i == input.length() - 1 && input[i] == 'f' && dotCounter == 1) {
-				inputType = FLOAT;
-				break;
-			}
 			if (input[i] == '.') {
 				dotCounter++;
 			}
-			if (dotCounter > 1 || input[i] < 48 || input[i] > 57)
+			if (dotCounter > 1) invalidInputError();
+			if (input[i] < 48 || input[i] > 57 ||
+				(input[i] == 'f' && i != input.length() - 1))
 				invalidInputError();
+			if (i == input.length() - 1) {
+				if (dotCounter == 0)
+					inputType = INT;
+				else if (input[i] == 'f')
+					inputType = FLOAT;
+				else
+					inputType = DOUBLE;
+			}
 		}
-		inputType = INT;
 	}
+	// Now print the right conversions
 }
