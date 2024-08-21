@@ -40,6 +40,19 @@ DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), ScavTrap(o
 	std::cout << "DiamondTrap [" << _name << "] created" << std::endl;
 }
 
+DiamondTrap &DiamondTrap::operator=(const DiamondTrap &copy)
+{
+	if (this != &copy)
+	{
+		this->_name = copy._name;
+		this->_hitPoints = copy._hitPoints;
+		this -> _energyPoints = copy._energyPoints;
+		this->_attackDamage = copy._attackDamage;
+		this->ClapTrap::_name = copy.ClapTrap::_name;
+	}
+	return *this;
+}
+
 void DiamondTrap::whoAmI()
 {
 	std::cout << "Name: " << _name << std::endl;

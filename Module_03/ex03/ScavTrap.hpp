@@ -13,16 +13,15 @@
 #pragma once
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 public:
 	ScavTrap();
 	ScavTrap(const std::string &Name);
 	ScavTrap(const ScavTrap &other);
 	~ScavTrap();
+	ScavTrap &operator=(const ScavTrap &other);
 
 	void guardGate();
 	void attack(const std::string &target);
 };
-
-std::ostream &operator<<(std::ostream &out, const ScavTrap &scavTrap);

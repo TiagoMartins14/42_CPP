@@ -57,14 +57,3 @@ FragTrap::~FragTrap()
 {
 	std::cout << "FragTrap [" << _name << "] destroyed" << std::endl;
 }
-
-std::ostream &operator<<(std::ostream &out, const FragTrap &FragTrap)
-{
-	out << "[" << FragTrap.getName() << "] "
-		<< "Hit Points: " << FragTrap.getHitPoints()
-		<< "| Energy Points: " << FragTrap.getEnergyPoints()
-		<< "| Attack Damage: " << FragTrap.getAttackDamage()
-		<< std::endl;
-
-	return out;
-}
