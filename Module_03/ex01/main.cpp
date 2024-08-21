@@ -18,15 +18,15 @@ int main()
 	ScavTrap ScavTwo(ScavOne);
 	ScavTrap ScavThree;
 
-	std::cout << "------------ScavOne--------------" << std::endl;
+	std::cout << std::endl << "------------ScavOne--------------" << std::endl;
 	ScavOne.attack("Gambuzino");
 	std::cout << ScavOne << std::endl;
-	std::cout << "------------ScavTwo--------------" << std::endl;
+	std::cout << std::endl << "------------ScavTwo--------------" << std::endl;
 	ScavTwo.guardGate();
 	std::cout << ScavTwo << std::endl;
 	ScavTwo.attack("Gambas");
 	std::cout << ScavTwo << std::endl;
-	std::cout << "-----------ScavThree-------------" << std::endl;
+	std::cout << std::endl << "-----------ScavThree-------------" << std::endl;
 	ScavThree = ScavOne;
 	std::cout << ScavThree << std::endl;
 }

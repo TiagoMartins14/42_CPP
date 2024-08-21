@@ -12,24 +12,24 @@
 
 #include "DiamondTrap.hpp"
 
-int main()
+int main() 
 {
 	DiamondTrap DiamondOne("DiamondOne");
 	DiamondTrap DiamondTwo(DiamondOne);
 	DiamondTrap DiamondThree;
 
+	std::cout << std::endl << "------------DiamondOne--------------" << std::endl;
 	DiamondOne.whoAmI();
-	std::cout << "------------DiamondOne--------------" << std::endl;
 	DiamondOne.attack("Gambuzino");
 	std::cout << DiamondOne << std::endl;
-	std::cout << "------------DiamondTwo--------------" << std::endl;
+	std::cout << std::endl << "------------DiamondTwo--------------" << std::endl;
 	DiamondTwo.highFivesGuys();
 	DiamondTwo.guardGate();
 	DiamondTwo.whoAmI();
 	std::cout << DiamondTwo << std::endl;
 	DiamondTwo.attack("Gambas");
 	std::cout << DiamondTwo << std::endl;
-	std::cout << "-----------DiamondThree-------------" << std::endl;
+	std::cout << std::endl << "-----------DiamondThree-------------" << std::endl;
 	DiamondThree = DiamondOne;
 	std::cout << DiamondThree << std::endl;
 }

@@ -36,4 +36,11 @@ int main(void)
 
 	BidenClone.beRepaired(90);
 	std::cout << BidenClone << std::endl;
+
+	for (int i = 0; i < 9; i++)
+		BidenClone.beRepaired(1);
+
+	std::cout << BidenClone << std::endl;
+	
+	BidenClone.attack("CrazyTrump");
 }
