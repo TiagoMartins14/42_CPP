@@ -22,6 +22,40 @@ std::string invalidInputError() {
 	exit(2);
 }
 
+e_inputType inputTypeChecker(const std::string input) {
+	int dotCounter = 0;
+
+	if (input.length() == 0)
+		invalidInputError();
+	else if (input.length() == 1) {
+		if (input[0] >= 48 && input[0] <= 57)
+			return INT;
+		else if ((input[0] >= 65 && input[0] <= 90) ||
+				 (input[0] >= 97 && input[0] <= 122))
+			return CHAR;
+	} else if (input.length() > 1) {
+		for (size_t i = 0; i < input.length(); i++) {
+			if (i == 0 && input[i] == '-') continue;
+			if (input[i] == '.') {
+				dotCounter++;
+				if (dotCounter > 1) invalidInputError();
+				continue;
+			}
+			if (input[i] < 48 || input[i] > 57 ||
+				(input[i] == 'f' && i != input.length() - 1))
+				invalidInputError();
+			if (i == input.length() - 1) {
+				if (dotCounter == 0)
+					return INT;
+				else if (input[i] == 'f')
+					return FLOAT;
+				else
+					return DOUBLE;
+			}
+		}
+	}
+}
+
 void ScalarConverter::convert(const std::string input) {
 	int inputType;
 	int dotCounter = 0;
@@ -55,4 +89,10 @@ void ScalarConverter::convert(const std::string input) {
 		}
 	}
 	// Now print the right conversions
+	switch (inputType) {
+		default:
+			invalidInputError();
+		case:
+			CHAR
+	}
 }
