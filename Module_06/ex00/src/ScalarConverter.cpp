@@ -3,13 +3,14 @@
 #include <climits>
 #include <stdexcept>
 
-ScalarConverter::ScalarConverter(std::string input) : _input(input) {}
+ScalarConverter::ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter &other) {
 	*this = other;
 }
 
 ScalarConverter &ScalarConverter::operator=(const ScalarConverter &copy) {
+	(void)copy;
 	return *this;
 }
 
@@ -52,33 +53,66 @@ e_inputType inputTypeChecker(const std::string &input) {
 	return INVALID;
 }
 
-static void printChar(std::string &input) {
+static void printChar(const std::string &input) {
 	std::cout << "char: ";
 	if (inputTypeChecker(input) == CHAR) {
 		std::cout << input;
+	} else if (inputTypeChecker(input) == INT) {
+		std::stringstream ss(input);
+		int num;
+
+		ss >> num;
+		if (num < 0 || num > 127 || (num >= 9 && num <= 13) || num == 32)
+			std::cout << "impossible";
+		else
+			std::cout << static_cast<char>(num);
 	} else
 		std::cout << "impossible";
 	std::cout << std::endl;
 }
 
-static void printInt(std::string input) {
+static void printInt(const std::string &input) {
+	std::stringstream ss(input);
+	int num;
+
+	ss >> num;
 	std::cout << "int: ";
-	if (inputTypeChecker(input) == INT) {
-		std::cout << input;
+	if (!ss.fail()) {
+		std::cout << static_cast<int>(num);
 	} else
 		std::cout << "impossible";
 	std::cout << std::endl;
 }
-static void printDouble(std::string input);
-static void printFloat(std::string input);
 
-void ScalarConverter::convert(const std::string input) {
-	int inputType = inputTypeChecker(input);
-	// Now print the right conversions
-	switch (inputType) {
-		default:
-			invalidInputError();
-		case:
-			CHAR
-	}
+static void printDouble(const std::string &input) {
+	std::stringstream ss(input);
+	double num;
+
+	ss >> num;
+	std::cout << "double: ";
+	if (!ss.fail()) {
+		std::cout << static_cast<double>(num);
+	} else
+		std::cout << "impossible";
+	std::cout << std::endl;
+}
+
+static void printFloat(const std::string &input) {
+	std::stringstream ss(input);
+	float num;
+
+	ss >> num;
+	std::cout << "float: ";
+	if (!ss.fail()) {
+		std::cout << static_cast<float>(num);
+	} else
+		std::cout << "impossible";
+	std::cout << std::endl;
+}
+
+void ScalarConverter::convert(const std::string &input) {
+	printChar(input);
+	printInt(input);
+	printDouble(input);
+	printFloat(input);
 }
