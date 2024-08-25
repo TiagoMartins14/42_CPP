@@ -5,21 +5,15 @@
 #include <sstream>
 #include <string>
 
-enum e_inputType {
-	CHAR,
-	INT,
-	DOUBLE,
-	FLOAT,
-	INVALID,
-};
+enum e_inputType { CHAR, INT, DOUBLE, FLOAT, INVALID };
 
 class ScalarConverter {
    public:
-	ScalarConverter(std::string input);
+	ScalarConverter();
 	ScalarConverter(const ScalarConverter &other);
 	ScalarConverter &operator=(const ScalarConverter &copy);
 	~ScalarConverter();
 
 	static std::string invalidInputError();
-	static void convert(const std::string input);
+	static void convert(const std::string &input);
 };
