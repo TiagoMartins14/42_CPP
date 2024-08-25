@@ -22,50 +22,55 @@ std::string invalidInputError() {
 	exit(2);
 }
 
-bool intChecker(const std::string input) {
-	long num;
-
+e_inputType inputTypeChecker(const std::string &input) {
 	std::stringstream ss(input);
-	ss >> num;
 
-	if (ss.fail() || num < INT_MIN || num > INT_MAX) return false;
-	return true;
-}
+	int intValue;
+	ss >> intValue;
+	if (!ss.fail() && ss.eof()) {
+		return INT;
+	}
 
-e_inputType inputTypeChecker(const std::string input) {
-	int dotCounter = 0;
+	ss.clear();
+	ss.str(input);
 
-	if (input.length() == 0)
-		invalidInputError();
-	else if (input.length() == 1) {
-		if (input[0] >= 48 && input[0] <= 57)
-			return INT;
-		else if ((input[0] >= 65 && input[0] <= 90) ||
-				 (input[0] >= 97 && input[0] <= 122))
-			return CHAR;
-	} else if (input.length() > 1) {
-		for (size_t i = 0; i < input.length(); i++) {
-			if (i == 0 && input[i] == '-') continue;
-			if (input[i] == '.') {
-				dotCounter++;
-				if (dotCounter > 1) invalidInputError();
-				continue;
-			}
-			if (input[i] < 48 || input[i] > 57 ||
-				(input[i] == 'f' && i != input.length() - 1))
-				invalidInputError();
-			if (i == input.length() - 1) {
-				if (dotCounter == 0)
-					return INT;
-				else if (input[i] == 'f')
-					return FLOAT;
-				else
-					return DOUBLE;
-			}
+	double doubleValue;
+	ss >> doubleValue;
+	if (!ss.fail()) {
+		if (ss.eof()) {
+			return DOUBLE;
+		} else if (input[input.length() - 1] == 'f' &&
+				   input.find('.') != std::string::npos) {
+			return FLOAT;
 		}
 	}
+
+	if (input.length() == 1 && std::isprint(input[0])) {
+		return CHAR;
+	}
+
 	return INVALID;
 }
+
+static void printChar(std::string &input) {
+	std::cout << "char: ";
+	if (inputTypeChecker(input) == CHAR) {
+		std::cout << input;
+	} else
+		std::cout << "impossible";
+	std::cout << std::endl;
+}
+
+static void printInt(std::string input) {
+	std::cout << "int: ";
+	if (inputTypeChecker(input) == INT) {
+		std::cout << input;
+	} else
+		std::cout << "impossible";
+	std::cout << std::endl;
+}
+static void printDouble(std::string input);
+static void printFloat(std::string input);
 
 void ScalarConverter::convert(const std::string input) {
 	int inputType = inputTypeChecker(input);
