@@ -1,6 +1,8 @@
 #pragma once
+#include <climits>
 #include <cstdlib>
 #include <iostream>
+#include <sstream>
 #include <string>
 
 enum e_inputType {
@@ -8,6 +10,7 @@ enum e_inputType {
 	INT,
 	DOUBLE,
 	FLOAT,
+	INVALID,
 };
 
 class ScalarConverter {
