@@ -53,7 +53,7 @@ static int decimalCount(const std::string &input) {
 static void printChar(const std::string &input) {
   std::cout << "char: ";
   if (inputTypeChecker(input) == CHAR) {
-    std::cout << input;
+    std::cout << "'" << input << "'";
   } else if (inputTypeChecker(input) == INT ||
              inputTypeChecker(input) == FLOAT ||
              inputTypeChecker(input) == DOUBLE) {
@@ -61,10 +61,10 @@ static void printChar(const std::string &input) {
     int num;
 
     ss >> num;
-    if (num < 0 || num > 127 || (num >= 9 && num <= 13) || num == 32)
+    if (num < 33 || num > 126)
       std::cout << "impossible";
     else
-      std::cout << static_cast<char>(num);
+      std::cout << "'" << static_cast<char>(num) << "'";
   } else
     std::cout << "impossible";
   std::cout << std::endl;
