@@ -17,16 +17,16 @@ int main()
 	FragTrap FragOne("FraggerOne");
 	FragTrap FragThree;
 
-	std::cout << std::endl << "------------ScavOne--------------" << std::endl;
+	std::cout << std::endl << "------------FragOne--------------" << std::endl;
 	FragOne.attack("Gambuzino");
 	std::cout << FragOne << std::endl;
-	std::cout << std::endl << "------------ScavTwo--------------" << std::endl;
+	std::cout << std::endl << "------------FragTwo--------------" << std::endl;
 	FragTrap FragTwo(FragOne);
 	FragTwo.highFivesGuys();
 	std::cout << FragTwo << std::endl;
 	FragTwo.attack("Gambas");
 	std::cout << FragTwo << std::endl;
-	std::cout << std::endl << "-----------ScavThree-------------" << std::endl;
+	std::cout << std::endl << "-----------FragThree-------------" << std::endl;
 	FragThree = FragOne;
 	std::cout << FragThree << std::endl;
 }
