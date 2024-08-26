@@ -15,6 +15,5 @@ public:
   ScalarConverter &operator=(const ScalarConverter &copy);
   ~ScalarConverter();
 
-  static std::string invalidInputError();
   static void convert(const std::string &input);
 };
