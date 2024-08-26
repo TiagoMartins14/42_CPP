@@ -97,9 +97,7 @@ static void printDouble(const std::string &input) {
     double num;
 
     ss >> num;
-    if (inputTypeChecker(input) == DOUBLE)
-      std::cout << input;
-    else if (!ss.fail()) {
+    if (!ss.fail()) {
       if (inputTypeChecker(input) == FLOAT)
         std::cout.precision(decimalCount(input) - 1);
       else
@@ -124,9 +122,7 @@ static void printFloat(const std::string &input) {
     float num;
 
     ss >> num;
-    if (inputTypeChecker(input) == FLOAT)
-      std::cout << input;
-    else if (!ss.fail()) {
+    if (!ss.fail()) {
       std::cout.precision(decimalCount(input));
       std::cout << std::fixed << std::showpoint << static_cast<float>(num)
                 << "f";
