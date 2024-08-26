@@ -13,13 +13,6 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &copy) {
 
 ScalarConverter::~ScalarConverter() {}
 
-std::string invalidInputError() {
-  std::cerr
-      << "Invalid input. Valid input: <char> or <int> or <double> or <float>"
-      << std::endl;
-  exit(2);
-}
-
 e_inputType inputTypeChecker(const std::string &input) {
   std::stringstream ss(input);
 
