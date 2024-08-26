@@ -1,8 +1,5 @@
 #include "ScalarConverter.hpp"
 
-#include <limits>
-#include <stdexcept>
-
 ScalarConverter::ScalarConverter() {}
 
 ScalarConverter::ScalarConverter(const ScalarConverter &other) {
