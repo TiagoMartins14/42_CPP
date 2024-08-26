@@ -1,6 +1,6 @@
 #include "ScalarConverter.hpp"
 
-#include <climits>
+#include <limits>
 #include <stdexcept>
 
 ScalarConverter::ScalarConverter() {}
@@ -94,37 +94,55 @@ static void printInt(const std::string &input) {
 }
 
 static void printDouble(const std::string &input) {
-  std::stringstream ss(input);
-  double num;
-
-  ss >> num;
   std::cout << "double: ";
-  if (inputTypeChecker(input) == DOUBLE)
-    std::cout << input;
-  else if (!ss.fail()) {
-    if (inputTypeChecker(input) == FLOAT)
-      std::cout.precision(decimalCount(input) - 1);
-    else
-      std::cout.precision(decimalCount(input));
-    std::cout << std::fixed << std::showpoint << static_cast<double>(num);
-  } else
-    std::cout << "impossible";
+  if (input == "+inf" || input == "+inff")
+    std::cout << std::numeric_limits<double>::infinity();
+  else if (input == "-inf" || input == "-inff")
+    std::cout << -std::numeric_limits<double>::infinity();
+  else if (input == "nan" || input == "nanf")
+    std::cout << std::numeric_limits<double>::quiet_NaN();
+  else {
+
+    std::stringstream ss(input);
+    double num;
+
+    ss >> num;
+    if (inputTypeChecker(input) == DOUBLE)
+      std::cout << input;
+    else if (!ss.fail()) {
+      if (inputTypeChecker(input) == FLOAT)
+        std::cout.precision(decimalCount(input) - 1);
+      else
+        std::cout.precision(decimalCount(input));
+      std::cout << std::fixed << std::showpoint << static_cast<double>(num);
+    } else
+      std::cout << "impossible";
+  }
   std::cout << std::endl;
 }
 
 static void printFloat(const std::string &input) {
-  std::stringstream ss(input);
-  float num;
-
-  ss >> num;
   std::cout << "float: ";
-  if (inputTypeChecker(input) == FLOAT)
-    std::cout << input;
-  else if (!ss.fail()) {
-    std::cout.precision(decimalCount(input));
-    std::cout << std::fixed << std::showpoint << static_cast<float>(num) << "f";
-  } else
-    std::cout << "impossible";
+  if (input == "+inf" || input == "+inff")
+    std::cout << std::numeric_limits<double>::infinity() << "f";
+  else if (input == "-inf" || input == "-inff")
+    std::cout << -std::numeric_limits<double>::infinity() << "f";
+  else if (input == "nan" || input == "nanf")
+    std::cout << std::numeric_limits<double>::quiet_NaN() << "f";
+  else {
+    std::stringstream ss(input);
+    float num;
+
+    ss >> num;
+    if (inputTypeChecker(input) == FLOAT)
+      std::cout << input;
+    else if (!ss.fail()) {
+      std::cout.precision(decimalCount(input));
+      std::cout << std::fixed << std::showpoint << static_cast<float>(num)
+                << "f";
+    } else
+      std::cout << "impossible";
+  }
   std::cout << std::endl;
 }
 
