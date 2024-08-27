@@ -16,10 +16,12 @@
 
 class Brain
 {
-protected:
-	std::string _ideas[100];
+private:
+	std::string *_ideas;
 
 public:
 	Brain();
+	Brain(const Brain &other);
+	Brain &operator=(const Brain &copy);
 	~Brain();
 };
