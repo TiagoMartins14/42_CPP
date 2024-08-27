@@ -42,5 +42,5 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-	std::cout << GREEN << _type << ": [Wrong Generic animal sound]" << RESET << std::endl;
+	std::cout << GREEN << _type << ": [Generic animal sound]" << RESET << std::endl;
 }
