@@ -32,6 +32,8 @@ Brain::Brain(const Brain &other)
 
 Brain &Brain::operator=(const Brain &copy)
 {
+	std::cout << "Brain = assignment operator called" << std::endl;
+
 	if (this != &copy)
 	{
 		delete[] this->_ideas;
