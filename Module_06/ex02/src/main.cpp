@@ -1,38 +1,50 @@
-#include "A.cpp"
-#include "B.cpp"
-#include "Base.hpp"
-#include "C.cpp"
-#include "identifyRealType.hpp"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
-Base *generate(void) {
-  std::srand(std::time(0));
-  int randomNum = std::rand() % 3;
+#include "A.hpp"
+#include "B.hpp"
+#include "Base.hpp"
+#include "C.hpp"
 
-  Base *base = NULL;
+Base* generate(void) {
+	std::srand(std::time(0));
+	int randomNum = std::rand() % 3;
 
-  switch (randomNum) {
-  case baseA:
-    base = new A;
-    break;
+	switch (randomNum) {
+		case 0:
+			return new A;
 
-  case baseB:
-    base = new B;
-    break;
+		case 1:
+			return new B;
 
-  case baseC:
-    base = new C;
-    break;
-
-  default:
-    base = NULL;
-  }
-  return base;
+		case 3:
+			return new C;
+		default:
+			return NULL;
+	}
 }
 
-void identify(Base *p) {}
+void identify(Base* p) {
+	if (dynamic_cast<A*>(p))
+		std::cout << "A" << std::endl;
+	else if (dynamic_cast<B*>(p))
+		std::cout << "B" << std::endl;
+	else if (dynamic_cast<C*>(p))
+		std::cout << "C" << std::endl;
+	else
+		std::cout << "Unknow type!" << std::endl;
+}
 
-void identify(Base &p) {}
+void identify(Base& p) {
+	if (dynamic_cast<A*>(&p))
+		std::cout << "A" << std::endl;
+	else if (dynamic_cast<B*>(&p))
+		std::cout << "B" << std::endl;
+	else if (dynamic_cast<C*>(&p))
+		std::cout << "C" << std::endl;
+	else
+		std::cout << "Unknow type!" << std::endl;
+}
 
 int main() { return 0; }
