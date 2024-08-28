@@ -18,7 +18,7 @@ Base* generate(void) {
 		case 1:
 			return new B;
 
-		case 3:
+		case 2:
 			return new C;
 		default:
 			return NULL;
@@ -47,4 +47,16 @@ void identify(Base& p) {
 		std::cout << "Unknow type!" << std::endl;
 }
 
-int main() { return 0; }
+int main() {
+	Base* p = generate();
+
+	std::cout << "Identify via pointer: ";
+	identify(*p);
+
+	std::cout << "Identify via reference: ";
+	identify(*p);
+
+	delete p;
+
+	return 0;
+}
