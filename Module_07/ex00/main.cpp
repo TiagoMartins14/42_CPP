@@ -2,20 +2,22 @@
 
 #include "whatever.hpp"
 
-template <typename T>
-void swap(T &val1, T &val2) {
-	T temp = val1;
+int main(void) {
+	int a = 2;
+	int b = 3;
 
-	val1 = val2;
-	val2 = temp;
-}
+	::swap(a, b);
+	std::cout << "a = " << a << ", b = " << b << std::endl;
+	std::cout << "min( a, b ) = " << ::min(a, b) << std::endl;
+	std::cout << "max( a, b ) = " << ::max(a, b) << std::endl;
 
-int main() {
-	int val1 = 5;
-	int val2 = 10;
+	std::string c = "chaine1";
+	std::string d = "chaine2";
 
-	::swap(val1, val2);
+	::swap(c, d);
+	std::cout << "c = " << c << ", d = " << d << std::endl;
+	std::cout << "min( c, d ) = " << ::min(c, d) << std::endl;
+	std::cout << "max( c, d ) = " << ::max(c, d) << std::endl;
 
-	std::cout << "val1 is " << val1 << " and val2 is " << val2 << std::endl;
 	return 0;
 }
