@@ -3,7 +3,7 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = Array
 
-SRCS = main.cpp
+SRCS = main.cpp 
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
