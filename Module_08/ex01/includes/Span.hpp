@@ -1,8 +1,10 @@
 #pragma once
+#include <vector>
 
 class Span {
    private:
-	unsigned int _N;
+	unsigned int _maxSize;
+	std::vector<int> _intContainer;
 
    public:
 	Span(unsigned int N);
