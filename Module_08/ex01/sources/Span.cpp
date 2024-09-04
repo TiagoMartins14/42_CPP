@@ -38,3 +38,19 @@ int Span::shortestSpan() {
 	}
 	return shortestSpan;
 }
+
+int Span::longestSpan() {
+	if (_intContainer.size() < 2)
+		throw std::logic_error("Not enough numbers to find a span");
+
+	std::vector<int> sortedContainer = _intContainer;
+	std::sort(sortedContainer.begin(), sortedContainer.end());
+
+	int longestSpan = sortedContainer[1] - sortedContainer[0];
+	int span;
+	for (size_t i = 1; i < sortedContainer.size() - 1; i++) {
+		span = sortedContainer[i + 1] - sortedContainer[i];
+		if (span < longestSpan) longestSpan = span;
+	}
+	return longestSpan;
+}
