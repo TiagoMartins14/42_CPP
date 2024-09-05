@@ -24,25 +24,25 @@ AForm::operator= (const AForm &copy)
 }
 
 const std::string
-AForm::getName ()
+AForm::getName () const
 {
 	return _name;
 }
 
 int
-AForm::getGradeToSign ()
+AForm::getGradeToSign () const
 {
 	return _gradeToSign;
 }
 
 int
-AForm::getGradeToExecute ()
+AForm::getGradeToExecute () const
 {
 	return _gradeToExecute;
 }
 
 bool
-AForm::getSigned ()
+AForm::getSigned () const
 {
 	return _signed;
 }
