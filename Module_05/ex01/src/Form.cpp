@@ -1,10 +1,5 @@
 #include "Form.hpp"
 
-Form::Form ()
-	: _name ("no name"), _gradeToSign (1), _gradeToExecute (1), _signed (false)
-{
-}
-
 Form::Form (const std::string name, const int gradeToSign,
 			const int gradeToExecute)
 	: _name (name), _gradeToSign (gradeToSign),
