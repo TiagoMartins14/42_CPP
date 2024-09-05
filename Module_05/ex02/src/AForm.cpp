@@ -84,3 +84,13 @@ AForm::FormNotSignedException::what () const throw ()
 {
 	return "Form is already signed";
 }
+
+std::ostream &
+operator<< (std::ostream &out, const AForm &aform)
+{
+	out << aform.getName () << ", grade to sign: "
+		<< aform.getGradeToSign () << "; grade to execute: "
+		<< aform.getGradeToExecute ();
+
+	return out;
+}
