@@ -1,7 +1,5 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat () : _name ("no name"), _grade (150) {}
-
 Bureaucrat::Bureaucrat (std::string name, int grade) : _name (name)
 {
 	if (grade < MAX_GRADE)

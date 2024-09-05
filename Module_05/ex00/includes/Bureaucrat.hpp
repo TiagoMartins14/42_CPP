@@ -12,14 +12,13 @@ class Bureaucrat
 	int _grade;
 
   public:
-	Bureaucrat ();
 	Bureaucrat (std::string name, int grade);
 	Bureaucrat (const Bureaucrat &other);
 	~Bureaucrat ();
 	Bureaucrat &operator= (const Bureaucrat &copy);
 
-	std::string getName ();
-	int getGrade ();
+	const std::string getName () const;
+	int getGrade () const;
 
 	void incrementGrade ();
 	void decrementGrade ();
