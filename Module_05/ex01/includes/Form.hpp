@@ -20,10 +20,10 @@ class Form
 	Form &operator= (const Form &copy);
 	~Form ();
 
-	const std::string getName ();
-	int getGradeToSign ();
-	int getGradeToExecute ();
-	bool getSigned ();
+	const std::string getName () const;
+	int getGradeToSign () const;
+	int getGradeToExecute () const;
+	bool getSigned () const;
 	void beSigned (Bureaucrat &bureaucrat);
 
 	class GradeTooHighException : public std::exception
