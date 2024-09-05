@@ -53,7 +53,7 @@ AForm::beSigned (Bureaucrat &bureaucrat)
 	if (bureaucrat.getGrade () <= this->getGradeToSign ())
 		this->_signed = true;
 	else
-		GradeTooLowException ();
+		throw AForm::GradeTooLowException ();
 }
 
 void
@@ -82,7 +82,7 @@ AForm::GradeTooLowException::what () const throw ()
 const char *
 AForm::FormNotSignedException::what () const throw ()
 {
-	return "Form is already signed";
+	return "Form is not signed";
 }
 
 std::ostream &

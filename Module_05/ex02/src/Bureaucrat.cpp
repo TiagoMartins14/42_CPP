@@ -72,8 +72,7 @@ Bureaucrat::signForm (AForm &form)
 			std::cout << _name << " signed " << form.getName () << std::endl;
 		}
 	else
-		std::cout << _name << " couldn't sign " << form.getName ()
-				  << " because grade is too low!" << std::endl;
+		throw AForm::GradeTooLowException();
 	try
 		{
 			form.beSigned (*this);
@@ -103,10 +102,10 @@ Bureaucrat::AlreadySignedException::what () const throw ()
 }
 
 std::ostream &
-operator<< (std::ostream &out, Bureaucrat &bureaucrat)
+operator<< (std::ostream &out, const Bureaucrat &bureaucrat)
 {
 	out << bureaucrat.getName () << ", bureaucrat grade "
-		<< bureaucrat.getGrade () << "." << std::endl;
+		<< bureaucrat.getGrade () << ".";
 
 	return out;
 }
