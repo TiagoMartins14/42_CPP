@@ -20,8 +20,8 @@ class Bureaucrat
 	~Bureaucrat ();
 	Bureaucrat &operator= (const Bureaucrat &copy);
 
-	std::string getName ();
-	int getGrade ();
+	std::string getName () const;
+	int getGrade () const;
 
 	void incrementGrade ();
 	void decrementGrade ();
