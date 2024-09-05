@@ -31,13 +31,13 @@ Bureaucrat::operator= (const Bureaucrat &copy)
 }
 
 std::string
-Bureaucrat::getName ()
+Bureaucrat::getName () const
 {
 	return _name;
 }
 
 int
-Bureaucrat::getGrade ()
+Bureaucrat::getGrade () const
 {
 	return _grade;
 }
@@ -63,7 +63,7 @@ Bureaucrat::decrementGrade ()
 }
 
 void
-Bureaucrat::signForm (Form form)
+Bureaucrat::signForm (Form &form)
 {
 	if (_grade <= form.getGradeToSign ())
 		{

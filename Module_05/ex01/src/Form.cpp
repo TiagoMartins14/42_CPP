@@ -24,25 +24,25 @@ Form::operator= (const Form &copy)
 }
 
 const std::string
-Form::getName ()
+Form::getName () const
 {
 	return _name;
 }
 
 int
-Form::getGradeToSign ()
+Form::getGradeToSign () const
 {
 	return _gradeToSign;
 }
 
 int
-Form::getGradeToExecute ()
+Form::getGradeToExecute () const
 {
 	return _gradeToExecute;
 }
 
 bool
-Form::getSigned ()
+Form::getSigned () const
 {
 	return _signed;
 }
