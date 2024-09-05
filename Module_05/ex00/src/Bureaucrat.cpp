@@ -29,13 +29,13 @@ Bureaucrat::operator= (const Bureaucrat &copy)
 }
 
 std::string
-Bureaucrat::getName ()
+Bureaucrat::getName () const
 {
 	return _name;
 }
 
 int
-Bureaucrat::getGrade ()
+Bureaucrat::getGrade () const
 {
 	return _grade;
 }
