@@ -19,8 +19,8 @@ AForm *Intern::makeForm(const std::string &form,
 
 	while (formIndex < 3 && formList[formIndex] != form) formIndex++;
 	if (formIndex == 3) {
-		std::cout << "The intern does't know how to create such form! - "
-				  << form << std::endl;
+		std::cout << "The intern does't know how to create a " << form << " form!"
+				  << std::endl;
 		return NULL;
 	}
 
@@ -29,7 +29,7 @@ AForm *Intern::makeForm(const std::string &form,
 				 &Intern::createRobotomyRequestForm,
 				 &Intern::createPresidentialPardonForm};
 
-	std::cout << "The Intern successfully created a " << form << std::endl;
+	std::cout << "The Intern successfully created a " << form << " form" << std::endl;
 
 	return (this->*createFormList[formIndex])(target);
 }
