@@ -8,12 +8,12 @@ class BitcoinExchange {
 	std::map<std::string, std::string> _dailyExchangeRates;
 
    public:
-	BitcoinExchange(std::map<std::string, std::string> dailyValues,
-					std::map<std::string, std::string> dailyExchangeRates);
+	BitcoinExchange(std::map<std::string, std::string> &dailyValues,
+					std::map<std::string, std::string> &dailyExchangeRates);
 	BitcoinExchange(const BitcoinExchange &copy);
 	BitcoinExchange &operator=(const BitcoinExchange &copy);
 	~BitcoinExchange();
 
 	template <typename T>
-	T calculateExchange(T value, T exchangeRate);
+	const T calculateExchange(const T value, const T exchangeRate);
 };
