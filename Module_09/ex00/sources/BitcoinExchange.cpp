@@ -19,9 +19,7 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &copy) {
 
 BitcoinExchange::~BitcoinExchange() {}
 
-template <typename T>
-const T BitcoinExchange::calculateExchange(const T value,
-										   const T exchangeRate) {
+float BitcoinExchange::calculateExchange(float value, float exchangeRate) {
 	return (value * exchangeRate);
 }
 
@@ -39,7 +37,5 @@ float stringToFloat(const std::string &str) {
 	return number;
 }
 
-template <typename T>
-const T getExchangeRate(
-	std::map<std::string, std::string> &dailyValues,
-	std::map<std::string, std::string> &dailyExchangeRates) {}
+float getExchangeRate(std::map<std::string, std::string> &dailyValues,
+					  std::map<std::string, std::string> &dailyExchangeRates) {}

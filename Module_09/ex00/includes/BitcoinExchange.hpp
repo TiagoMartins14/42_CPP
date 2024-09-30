@@ -19,14 +19,11 @@ class BitcoinExchange {
 
 	float stringToFloat(const std::string &str);
 
-	template <typename T>
-	const T getExchangeRate(
+	float getExchangeRate(
 		std::map<std::string, std::string> &dailyValues,
 		std::map<std::string, std::string> &dailyExchangeRates);
 
-	template <typename T>
-	const T calculateExchange(const T value, const T exchangeRate);
+	float calculateExchange(float value, float exchangeRate);
 
-	template <typename T>
-	void printDailyExchange(const T);
+	void printDailyExchange(float);
 };
