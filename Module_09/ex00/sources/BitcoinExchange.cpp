@@ -19,10 +19,6 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &copy) {
 
 BitcoinExchange::~BitcoinExchange() {}
 
-float BitcoinExchange::calculateExchange(float value, float exchangeRate) {
-	return (value * exchangeRate);
-}
-
 float stringToFloat(const std::string &str) {
 	char *end;
 	errno = 0;
@@ -37,5 +33,36 @@ float stringToFloat(const std::string &str) {
 	return number;
 }
 
-float getExchangeRate(std::map<std::string, std::string> &dailyValues,
-					  std::map<std::string, std::string> &dailyExchangeRates) {}
+float getExchangeRate(std::string &valueDate,
+					  std::map<std::string, std::string> &dailyExchangeRates) {
+	std::string oldestDate = dailyExchangeRates.begin()->first;
+	std::string exchangeRateDate = "0000-00-00";
+
+	std::map<std::string, std::string>::iterator it;
+	for (it = dailyExchangeRates.begin(); it != dailyExchangeRates.end();
+		 it++) {
+		if (it->first < oldestDate) oldestDate = it->first;
+	}
+
+	if (valueDate < oldestDate)
+		throw std::runtime_error(
+			"No exchange rate found for this date or older.");
+
+	// Get the closest exchange rate date to the valueDate given;
+	for (it = dailyExchangeRates.begin(); it != dailyExchangeRates.end();
+		 it++) {
+		if (it->first < valueDate && exchangeRateDate < it->first)
+			exchangeRateDate = it->first;
+	}
+
+	// Get the exchange rate for the closest found date
+	for (it = dailyExchangeRates.begin(); it != dailyExchangeRates.end();
+		 it++) {
+		if (it->first == exchangeRateDate) return stringToFloat(it->second);
+	}
+	return 0;
+}
+
+float BitcoinExchange::calculateExchange(float value, float exchangeRate) {
+	return (value * exchangeRate);
+}

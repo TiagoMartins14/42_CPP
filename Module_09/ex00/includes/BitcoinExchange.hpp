@@ -20,7 +20,7 @@ class BitcoinExchange {
 	float stringToFloat(const std::string &str);
 
 	float getExchangeRate(
-		std::map<std::string, std::string> &dailyValues,
+		std::string &valueDate,
 		std::map<std::string, std::string> &dailyExchangeRates);
 
 	float calculateExchange(float value, float exchangeRate);
