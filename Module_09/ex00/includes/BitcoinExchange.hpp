@@ -1,6 +1,7 @@
 #pragma once
 #include <cerrno>
 #include <cstdlib>
+#include <iostream>
 #include <map>
 #include <stdexcept>
 #include <string>
@@ -25,5 +26,5 @@ class BitcoinExchange {
 
 	float calculateExchange(float value, float exchangeRate);
 
-	void printDailyExchange(float);
+	void printDailyExchange(std::string date, float exchangeValue);
 };

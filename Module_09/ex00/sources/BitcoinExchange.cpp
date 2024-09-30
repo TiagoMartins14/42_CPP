@@ -66,3 +66,12 @@ float getExchangeRate(std::string &valueDate,
 float BitcoinExchange::calculateExchange(float value, float exchangeRate) {
 	return (value * exchangeRate);
 }
+
+void printDailyExchange(std::string date, float value, float exchangeValue) {
+	if (value == static_cast<int>(value))
+		std::cout << date << " => " << static_cast<int>(value) << " = "
+				  << exchangeValue << std::endl;
+	else
+		std::cout << date << " => " << value << " = " << exchangeValue
+				  << std::endl;
+}
