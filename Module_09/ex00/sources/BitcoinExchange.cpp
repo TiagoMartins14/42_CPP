@@ -33,7 +33,7 @@ float stringToFloat(const std::string &str) {
 	return number;
 }
 
-float getExchangeRate(std::string &valueDate,
+float getExchangeRate(const std::string &valueDate,
 					  std::map<std::string, std::string> &dailyExchangeRates) {
 	std::string oldestDate = dailyExchangeRates.begin()->first;
 	std::string exchangeRateDate = "0000-00-00";
@@ -74,4 +74,16 @@ void printDailyExchange(std::string date, float value, float exchangeValue) {
 	else
 		std::cout << date << " => " << value << " = " << exchangeValue
 				  << std::endl;
+}
+
+void BitcoinExchange::printReport() {
+	std::map<std::string, std::string>::iterator it;
+	for (it = _dailyValues.begin(); it != _dailyValues.end(); it++) {
+		std::string date = it->first;
+		float value = stringToFloat(it->second);
+		float exchangeRate = getExchangeRate(it->first, _dailyExchangeRates);
+		float exchangeValue = calculateExchange(value, exchangeRate);
+
+		printDailyExchange(date, value, exchangeValue);
+	}
 }
