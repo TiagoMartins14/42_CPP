@@ -34,6 +34,7 @@ main ()
 		{
 			try
 				{
+					std::cout << *brian << " It will be incremented by one..." << std::endl; 
 					brian->incrementGrade ();
 				}
 			catch (const Bureaucrat::GradeTooHighException &e)
