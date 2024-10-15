@@ -1,9 +1,25 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(
-	std::map<std::string, std::string> &dailyValues,
-	std::map<std::string, std::string> &dailyExchangeRates)
-	: _dailyValues(dailyValues), _dailyExchangeRates(dailyExchangeRates) {}
+BitcoinExchange::BitcoinExchange(std::ifstream &inputFile,
+								 std::ifstream &dataFile) {
+	if (!inputFile.is_open()) {
+		std::cerr << "Error: Could not open input file!" << std::endl;
+		exit(1);
+	}
+
+	if (!dataFile.is_open()) {
+		std::cerr << "Error: Could not open data file!" << std::endl;
+		exit(2);
+	}
+
+	std::string line;
+
+	// line.clear();
+	std::getline(dataFile, line);
+	while (std::getline(dataFile, line)) {
+		split(line, _dailyExchangeRates, ',');
+	}
+}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy)
 	: _dailyValues(copy._dailyValues),
@@ -19,26 +35,77 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &copy) {
 
 BitcoinExchange::~BitcoinExchange() {}
 
-float stringToFloat(const std::string &str) {
+void BitcoinExchange::trimWhiteSpaces(std::string &str) {
+	size_t start = 0;
+	while (start < str.size() && std::isspace(str[start])) {
+		++start;
+	}
+
+	size_t end = str.size();
+	while (end > start && std::isspace(str[end - 1])) {
+		--end;
+	}
+	str.substr(start, end - start);
+}
+
+void BitcoinExchange::split(
+	std::string line, std::multimap<std::string, std::string> &inputFileMap,
+	char delimiter) {
+	size_t pos = line.find(delimiter);
+	if (pos == std::string::npos)
+		inputFileMap.insert(std::make_pair(line, "Invalid input."));
+	else {
+		std::string key = line.substr(0, pos);
+		std::string value = line.substr(pos + 1);
+		trimWhiteSpaces(key);
+		trimWhiteSpaces(value);
+		inputFileMap.insert(std::make_pair(key, value));
+	}
+}
+
+// For tests only
+void BitcoinExchange::printMap(
+	const std::multimap<std::string, std::string> &myMap) {
+	for (std::multimap<std::string, std::string>::const_iterator it =
+			 myMap.begin();
+		 it != myMap.end(); ++it) {
+		std::cout << "Key: " << it->first << ", Value: " << it->second
+				  << std::endl;
+	}
+}
+
+float BitcoinExchange::stringToFloat(
+	const std::multimap<std::string, std::string>::iterator &it) {
 	char *end;
 	errno = 0;
+	if (!(it->second).compare("Invalid input."))
+		throw std::runtime_error("bad input => " + it->first);
 
-	float number = std::strtof(str.c_str(), &end);
+	float number = std::strtof((it->second).c_str(), &end);
 
-	if (end == str.c_str()) throw std::runtime_error("Invalid input.");
+	if (end == (it->second).c_str())
+		throw std::runtime_error("invalid input: " + it->second);
 
 	if (errno == ERANGE)
-		throw std::runtime_error("Input value is outside the range for float.");
+		throw std::runtime_error("input value " + it->second +
+								 " is outside the range for float.");
+
+	if (number < 0) throw std::runtime_error("not a positive number.");
+	if ((it->second).find('.') == std::string::npos) {
+		if (std::atol((it->second).c_str()) > INT_MAX)
+			throw std::runtime_error("too large a number");
+	}
 
 	return number;
 }
 
-float getExchangeRate(const std::string &valueDate,
-					  std::map<std::string, std::string> &dailyExchangeRates) {
+float BitcoinExchange::getExchangeRate(
+	const std::string &valueDate,
+	std::multimap<std::string, std::string> &dailyExchangeRates) {
 	std::string oldestDate = dailyExchangeRates.begin()->first;
 	std::string exchangeRateDate = "0000-00-00";
 
-	std::map<std::string, std::string>::iterator it;
+	std::multimap<std::string, std::string>::iterator it;
 	for (it = dailyExchangeRates.begin(); it != dailyExchangeRates.end();
 		 it++) {
 		if (it->first < oldestDate) oldestDate = it->first;
@@ -46,7 +113,7 @@ float getExchangeRate(const std::string &valueDate,
 
 	if (valueDate < oldestDate)
 		throw std::runtime_error(
-			"No exchange rate found for this date or older.");
+			"no exchange rate found for this date or older.");
 
 	// Get the closest exchange rate date to the valueDate given;
 	for (it = dailyExchangeRates.begin(); it != dailyExchangeRates.end();
@@ -58,7 +125,7 @@ float getExchangeRate(const std::string &valueDate,
 	// Get the exchange rate for the closest found date
 	for (it = dailyExchangeRates.begin(); it != dailyExchangeRates.end();
 		 it++) {
-		if (it->first == exchangeRateDate) return stringToFloat(it->second);
+		if (it->first == exchangeRateDate) return stringToFloat(it);
 	}
 	return 0;
 }
@@ -67,23 +134,36 @@ float BitcoinExchange::calculateExchange(float value, float exchangeRate) {
 	return (value * exchangeRate);
 }
 
-void printDailyExchange(std::string date, float value, float exchangeValue) {
+void BitcoinExchange::printDailyExchange(std::string date, float value,
+										 float exchangeValue) {
 	if (value == static_cast<int>(value))
-		std::cout << date << " => " << static_cast<int>(value) << " = "
+		std::cout << date << "=> " << static_cast<int>(value) << " = "
 				  << exchangeValue << std::endl;
 	else
-		std::cout << date << " => " << value << " = " << exchangeValue
+		std::cout << date << "=> " << value << " = " << exchangeValue
 				  << std::endl;
 }
 
-void BitcoinExchange::printReport() {
-	std::map<std::string, std::string>::iterator it;
-	for (it = _dailyValues.begin(); it != _dailyValues.end(); it++) {
-		std::string date = it->first;
-		float value = stringToFloat(it->second);
-		float exchangeRate = getExchangeRate(it->first, _dailyExchangeRates);
-		float exchangeValue = calculateExchange(value, exchangeRate);
+void BitcoinExchange::printReport(std::ifstream &inputFile) {
+	std::string line;
+	std::getline(inputFile, line);
 
-		printDailyExchange(date, value, exchangeValue);
+	while (std::getline(inputFile, line)) {
+		split(line, _dailyValues, '|');
+		std::multimap<std::string, std::string>::iterator it;
+		it = _dailyValues.begin();
+		std::string date = it->first;
+		try {
+			float value = stringToFloat(it);
+			float exchangeRate =
+				getExchangeRate(it->first, _dailyExchangeRates);
+			float exchangeValue = calculateExchange(value, exchangeRate);
+
+			printDailyExchange(date, value, exchangeValue);
+		} catch (const std::runtime_error &e) {
+			std::cerr << "Error: " << e.what() << std::endl;
+			std::cerr.flush();
+		}
+		_dailyValues.clear();
 	}
 }
