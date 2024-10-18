@@ -19,7 +19,8 @@ e_inputType inputTypeChecker(const std::string &input) {
   int intValue;
   ss >> intValue;
   if (!ss.fail() && ss.eof()) {
-    return INT;
+    if (input.find('.') == std::string::npos)
+      return INT;
   }
 
   ss.clear();
