@@ -16,6 +16,8 @@ class BitcoinExchange {
 
 	float stringToFloat(
 		const std::multimap<std::string, std::string>::iterator &it);
+	bool isLeapYear(const int &year);
+	void isValidDate(const std::string &date);
 	float getExchangeRate(
 		const std::string &valueDate,
 		std::multimap<std::string, std::string> &dailyExchangeRates);

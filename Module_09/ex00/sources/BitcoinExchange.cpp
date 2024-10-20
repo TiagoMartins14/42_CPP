@@ -144,6 +144,33 @@ void BitcoinExchange::printDailyExchange(std::string date, float value,
 				  << std::endl;
 }
 
+bool BitcoinExchange::isLeapYear(const int &year) {
+	return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+void BitcoinExchange::isValidDate(const std::string &date) {
+	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
+		throw "invalid date.";
+
+	int year, month, day;
+	char dash1, dash2;
+	std::stringstream ss(date);
+
+	ss >> year >> dash1 >> month >> dash2 >> day;
+
+	if (ss.fail() || dash1 != '-' || dash2 != '-') throw "invalid date.";
+
+	if (month < 1 || month > 12) throw "invalid date.";
+
+	int daysInMonth[] = {21, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+	if (isLeapYear(year)) daysInMonth[1] = 29;
+
+	if (day < 1 || day > daysInMonth[month - 1]) throw "invalid date.";
+
+	return;
+}
+
 void BitcoinExchange::printReport(std::ifstream &inputFile) {
 	std::string line;
 	std::getline(inputFile, line);
@@ -154,6 +181,7 @@ void BitcoinExchange::printReport(std::ifstream &inputFile) {
 		it = _dailyValues.begin();
 		std::string date = it->first;
 		try {
+			isValidDate(date);
 			float value = stringToFloat(it);
 			float exchangeRate =
 				getExchangeRate(it->first, _dailyExchangeRates);
