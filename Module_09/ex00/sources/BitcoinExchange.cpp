@@ -1,5 +1,7 @@
 #include "BitcoinExchange.hpp"
 
+#include <stdexcept>
+
 BitcoinExchange::BitcoinExchange(std::ifstream &inputFile,
 								 std::ifstream &dataFile) {
 	if (!inputFile.is_open()) {
@@ -45,7 +47,7 @@ void BitcoinExchange::trimWhiteSpaces(std::string &str) {
 	while (end > start && std::isspace(str[end - 1])) {
 		--end;
 	}
-	str.substr(start, end - start);
+	str = str.substr(start, end - start);
 }
 
 void BitcoinExchange::split(
@@ -137,10 +139,10 @@ float BitcoinExchange::calculateExchange(float value, float exchangeRate) {
 void BitcoinExchange::printDailyExchange(std::string date, float value,
 										 float exchangeValue) {
 	if (value == static_cast<int>(value))
-		std::cout << date << "=> " << static_cast<int>(value) << " = "
+		std::cout << date << " => " << static_cast<int>(value) << " = "
 				  << exchangeValue << std::endl;
 	else
-		std::cout << date << "=> " << value << " = " << exchangeValue
+		std::cout << date << " => " << value << " = " << exchangeValue
 				  << std::endl;
 }
 
@@ -150,7 +152,7 @@ bool BitcoinExchange::isLeapYear(const int &year) {
 
 void BitcoinExchange::isValidDate(const std::string &date) {
 	if (date.size() != 10 || date[4] != '-' || date[7] != '-')
-		throw "invalid date.";
+		throw std::runtime_error("invalid date.");
 
 	int year, month, day;
 	char dash1, dash2;
@@ -158,15 +160,17 @@ void BitcoinExchange::isValidDate(const std::string &date) {
 
 	ss >> year >> dash1 >> month >> dash2 >> day;
 
-	if (ss.fail() || dash1 != '-' || dash2 != '-') throw "invalid date.";
+	if (ss.fail() || dash1 != '-' || dash2 != '-')
+		throw std::runtime_error("invalid date.");
 
-	if (month < 1 || month > 12) throw "invalid date.";
+	if (month < 1 || month > 12) throw std::runtime_error("invalid date.");
 
 	int daysInMonth[] = {21, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 	if (isLeapYear(year)) daysInMonth[1] = 29;
 
-	if (day < 1 || day > daysInMonth[month - 1]) throw "invalid date.";
+	if (day < 1 || day > daysInMonth[month - 1])
+		throw std::runtime_error("invalid date.");
 
 	return;
 }
@@ -181,8 +185,8 @@ void BitcoinExchange::printReport(std::ifstream &inputFile) {
 		it = _dailyValues.begin();
 		std::string date = it->first;
 		try {
-			isValidDate(date);
 			float value = stringToFloat(it);
+			isValidDate(date);
 			float exchangeRate =
 				getExchangeRate(it->first, _dailyExchangeRates);
 			float exchangeValue = calculateExchange(value, exchangeRate);
