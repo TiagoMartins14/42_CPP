@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat (std::string name, int grade) : _name (name)
+Bureaucrat::Bureaucrat (const std::string &name, int grade) : _name (name)
 {
 	if (grade < MAX_GRADE)
 		{
@@ -26,8 +26,8 @@ Bureaucrat::operator= (const Bureaucrat &copy)
 	return *this;
 }
 
-std::string
-Bureaucrat::getName () const
+const std::string
+&Bureaucrat::getName () const
 {
 	return _name;
 }
