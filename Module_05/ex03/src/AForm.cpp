@@ -82,5 +82,5 @@ AForm::GradeTooLowException::what () const throw ()
 const char *
 AForm::FormNotSignedException::what () const throw ()
 {
-	return "Form is already signed";
+	return "Form is not signed";
 }
