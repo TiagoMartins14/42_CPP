@@ -22,7 +22,7 @@ class AForm
 	AForm &operator= (const AForm &copy);
 
 	// Getters
-	const std::string getName () const;
+	const std::string &getName () const;
 	int getGradeToSign () const;
 	int getGradeToExecute () const;
 	bool getSigned () const;

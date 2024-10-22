@@ -24,7 +24,7 @@ AForm::operator= (const AForm &copy)
 }
 
 const std::string
-AForm::getName () const
+&AForm::getName () const
 {
 	return _name;
 }
