@@ -97,4 +97,7 @@ main ()
 	std::cout << *B1 << std::endl;
 	std::cout << "Bureaucrat B1 is attempting to sign form F1..." << std::endl;
 	B1->signForm (*F1);
+
+	delete F1;
+	delete B1;
 }
