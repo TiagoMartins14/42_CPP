@@ -22,7 +22,6 @@ Bureaucrat::operator= (const Bureaucrat &copy)
 {
 	if (this != &copy)
 		{
-			// this->_name = copy._name; // _name is const
 			this->_grade = copy._grade;
 		}
 	return *this;
@@ -83,6 +82,25 @@ Bureaucrat::signForm (AForm &form)
 			std::cerr << e.what () << std::endl;
 		}
 }
+
+void 
+Bureaucrat::executeForm(AForm const & form)
+{
+	try
+	{
+	  	form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << std::endl;
+	}
+	catch (const AForm::FormNotSignedException &e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+	catch (const AForm::GradeTooLowException &e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+}
+
 
 const char *
 Bureaucrat::GradeTooHighException::what () const throw ()
