@@ -21,18 +21,8 @@ int main() {
 	bureaucrat = new Bureaucrat("Andrew", 1);
 
 // Trying to execute before signing
-	try
-	{
-		robotForm->execute(*bureaucrat);
-	}
-	catch (const AForm::FormNotSignedException &e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
-	catch (const AForm::GradeTooLowException &e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
+	bureaucrat->executeForm(*robotForm);
+
 
 // Trying to sign the form
 	try
@@ -45,18 +35,7 @@ int main() {
   	}
 
 // Trying to execute after signing the form
-	try
-	{
-	  	robotForm->execute(*bureaucrat);
-	}
-	catch (const AForm::FormNotSignedException &e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
-	catch (const AForm::GradeTooLowException &e)
-	{
-		std::cerr << "Error: " << e.what() << std::endl;
-	}
+	bureaucrat->executeForm(*robotForm);
 
 	delete shrubForm;
 	delete robotForm;
