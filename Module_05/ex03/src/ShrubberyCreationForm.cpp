@@ -29,12 +29,17 @@ ShrubberyCreationForm::executeAction () const
 
 	// Tries to open the file
 	outFile.open (fileName.c_str (), std::ofstream::out | std::ofstream::app);
+	if (!outFile.is_open())
+	{
+    	std::cerr << "Error: File could not be opened." << std::endl;
+		return;
+	}
 	// Checks if the file is a directory
 	if (stat (fileName.c_str (), &info) != 0)
-		{
-			std::cerr << "Unable to access " << fileName << std::endl;
-			return;
-		}
+	{
+		std::cerr << "Error: Unable to access " << fileName << std::endl;
+		return;
+	}
 
 	if (outFile.is_open ())
 		{
