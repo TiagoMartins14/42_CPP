@@ -93,17 +93,20 @@ void ScalarConverter::printPseudoLiterals(std::string &input) {
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
 
-	if (strcmp(input.c_str(), "nan") || strcmp(input.c_str(), "nanf")) {
+	if (strcmp(input.c_str(), "nan") == 0 ||
+		strcmp(input.c_str(), "nanf") == 0) {
 		std::cout << "float: nanf" << std::endl;
 		std::cout << "double: nan" << std::endl;
 	}
 
-	if (strcmp(input.c_str(), "-inf") || strcmp(input.c_str(), "-inff")) {
+	if (strcmp(input.c_str(), "-inf") == 0 ||
+		strcmp(input.c_str(), "-inff") == 0) {
 		std::cout << "float: -inff" << std::endl;
 		std::cout << "double: -inf" << std::endl;
 	}
 
-	if (strcmp(input.c_str(), "+inf") || strcmp(input.c_str(), "+inff")) {
+	if (strcmp(input.c_str(), "+inf") == 0 ||
+		strcmp(input.c_str(), "+inff") == 0) {
 		std::cout << "float: +inff" << std::endl;
 		std::cout << "double: +inf" << std::endl;
 	}
