@@ -16,6 +16,20 @@ class ScalarConverter {
 	ScalarConverter &operator=(const ScalarConverter &copy);
 	~ScalarConverter();
 
-	template <typename T>
-	static void convert(const std::string &input);
+	static void convert(std::string &input);
+
+   private:
+	static bool isChar(std::string &input);
+	static bool isInt(std::string &input);
+	static bool isFloat(std::string &input);
+	static bool isDouble(std::string &input);
+	static bool isPseudoLiteral(std::string &input);
+	static e_inputType inputTypeChecker(std::string &input);
+	static void printImpossibleInput();
+	static void printPseudoLiterals(std::string &input);
+	static void convertToChar(char c);
+	static void convertToInt(int integer);
+	static void convertToFloat(float fp);
+	static void convertToDouble(double dp);
+	static void converterFunction(long double num);
 };
