@@ -148,9 +148,20 @@ bool overflowChecker(long double num, e_inputType type) {
 }
 
 void ScalarConverter::convertToChar(std::string &input) {
+  if (input.length() == 1) {
+    char c = input[0];
 
-  char c = input[0];
-  long double num = input[0];
+    std::cout << "char: ";
+    if (!isprint(c)) {
+      std::cout << "Non displayable" << std::endl;
+    } else {
+      std::cout << "'" << c << "'" << std::endl;
+    }
+    return;
+  }
+
+  long double num = std::strtold(input.c_str(), NULL);
+  char c = static_cast<char>(num);
 
   std::cout << "char: ";
 
@@ -169,8 +180,10 @@ void ScalarConverter::convertToInt(std::string &input) {
 
   if (overflowChecker(num, INT))
     std::cout << "Overflowed" << std::endl;
-  else
-    std::cout << num << std::endl;
+  else {
+    int integer = static_cast<int>(num);
+    std::cout << integer << std::endl;
+  }
 }
 
 void ScalarConverter::convertToFloat(std::string &input) {
@@ -181,9 +194,10 @@ void ScalarConverter::convertToFloat(std::string &input) {
   if (*endPtr != '\0') {
     if (overflowChecker(num, FLOAT))
       std::cout << "Overflowed" << std::endl;
-    else
-      std::cout << std::fixed << std::setprecision(1) << num << "f"
-                << std::endl;
+    else {
+      float fp = static_cast<float>(num);
+      std::cout << std::fixed << std::setprecision(1) << fp << "f" << std::endl;
+    }
   } else
     std::cout << "Overflowed" << std::endl;
 }
@@ -196,8 +210,10 @@ void ScalarConverter::convertToDouble(std::string &input) {
   if (*endPtr != '\0') {
     if (overflowChecker(num, DOUBLE))
       std::cout << "Overflowed" << std::endl;
-    else
-      std::cout << std::fixed << std::setprecision(1) << num << std::endl;
+    else {
+      double dp = static_cast<double>(num);
+      std::cout << std::fixed << std::setprecision(1) << dp << std::endl;
+    }
   } else
     std::cout << "Overflowed" << std::endl;
 }
