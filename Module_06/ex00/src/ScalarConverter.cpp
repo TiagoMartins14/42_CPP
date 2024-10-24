@@ -174,7 +174,13 @@ void ScalarConverter::convertToChar(std::string &input) {
 }
 
 void ScalarConverter::convertToInt(std::string &input) {
-  long double num = std::atol(input.c_str());
+  if (input.length() == 1 && isprint(input[0])) {
+    int asciiValue = static_cast<int>(input[0]);
+    std::cout << "int: " << asciiValue << std::endl;
+    return;
+  }
+
+  long double num = std::strtold(input.c_str(), NULL);
 
   std::cout << "int: ";
 
@@ -187,35 +193,41 @@ void ScalarConverter::convertToInt(std::string &input) {
 }
 
 void ScalarConverter::convertToFloat(std::string &input) {
-  char *endPtr;
-  long double num = std::strtod(input.c_str(), &endPtr);
+  if (input.length() == 1 && isprint(input[0])) {
+    float asciiValue = static_cast<float>(static_cast<int>(input[0]));
+    std::cout << "float: " << std::fixed << std::setprecision(1) << asciiValue
+              << "f" << std::endl;
+    return;
+  }
+
+  long double num = std::strtold(input.c_str(), NULL);
 
   std::cout << "float: ";
-  if (*endPtr != '\0') {
-    if (overflowChecker(num, FLOAT))
-      std::cout << "Overflowed" << std::endl;
-    else {
-      float fp = static_cast<float>(num);
-      std::cout << std::fixed << std::setprecision(1) << fp << "f" << std::endl;
-    }
-  } else
+  if (overflowChecker(num, FLOAT))
     std::cout << "Overflowed" << std::endl;
+  else {
+    float fp = static_cast<float>(num);
+    std::cout << std::fixed << std::setprecision(1) << fp << "f" << std::endl;
+  }
 }
 
 void ScalarConverter::convertToDouble(std::string &input) {
-  char *endPtr;
-  long double num = std::strtold(input.c_str(), &endPtr);
+  if (input.length() == 1 && isprint(input[0])) {
+    double asciiValue = static_cast<double>(static_cast<int>(input[0]));
+    std::cout << "double: " << std::fixed << std::setprecision(1) << asciiValue
+              << std::endl;
+    return;
+  }
+
+  long double num = std::strtold(input.c_str(), NULL);
 
   std::cout << "double: ";
-  if (*endPtr != '\0') {
-    if (overflowChecker(num, DOUBLE))
-      std::cout << "Overflowed" << std::endl;
-    else {
-      double dp = static_cast<double>(num);
-      std::cout << std::fixed << std::setprecision(1) << dp << std::endl;
-    }
-  } else
+  if (overflowChecker(num, DOUBLE))
     std::cout << "Overflowed" << std::endl;
+  else {
+    double dp = static_cast<double>(num);
+    std::cout << std::fixed << std::setprecision(1) << dp << std::endl;
+  }
 }
 
 void ScalarConverter::converterFunction(std::string &input) {
