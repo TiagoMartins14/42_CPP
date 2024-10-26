@@ -12,10 +12,10 @@ int main(int, char**) {
 		numbers[i] = value;
 		mirror[i] = value;
 	}
-	
+
 	Array<int> tmp = numbers;
 	Array<int> test(tmp);
-	
+
 	std::cout << "Comparing Two arrays ('numbers' and 'mirror'): ";
 	for (int i = 0; i < MAX_VAL; i++) {
 		if (mirror[i] != numbers[i]) {
@@ -35,14 +35,16 @@ int main(int, char**) {
 	std::cout << "SUCCESS!" << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "Requesting an index from 'numbers' that is out of bounds..." << std::endl;
+	std::cout << "Requesting an index from 'numbers' that is out of bounds..."
+			  << std::endl;
 	try {
 		numbers[-2] = 0;
 	} catch (const std::exception& e) {
 		std::cerr << e.what() << '\n';
 	}
 
-	std::cout << "Requesting an index from 'numbers' that is out of bounds..." << std::endl;
+	std::cout << "Requesting an index from 'numbers' that is out of bounds..."
+			  << std::endl;
 	try {
 		numbers[MAX_VAL] = 0;
 	} catch (const std::exception& e) {
