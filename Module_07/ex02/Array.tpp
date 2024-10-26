@@ -16,18 +16,27 @@ class Array {
 		_array = new T[_size];
 	};
 
-	Array(const Array &copy) { *this = copy; };
+	Array(const Array &copy) : _array(NULL), _size(copy._size)
+	{
+		if (_size > 0)
+		{
+			_array = new T[_size];
+			for (size_t i = 0; i < _size; i++)
+				_array[i] = copy._array[i];
+		}
+	};
 
 	Array &operator=(const Array &copy) {
 		if (this != &copy) {
-			delete[] this->_array;
-			this->_size = copy._size;
-			if (this->_size > 0) {
-				this->_array = new T[this->_size];
-				for (size_t i = 0; i < this->_size; i++)
-					this->_array[i] = copy._array[i];
+			delete[] _array;
+
+			_size = copy._size;
+			if (_size > 0) {
+				_array = new T[_size];
+				for (size_t i = 0; i < _size; i++)
+					_array[i] = copy._array[i];
 			} else
-				this->_array = NULL;
+				_array = NULL;
 		}
 
 		return *this;
