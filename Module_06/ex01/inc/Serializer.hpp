@@ -1,14 +1,16 @@
 #pragma once
-#include "Data.hpp"
 #include <stdint.h>
 
-class Serializer {
-public:
-  Serializer();
-  Serializer(const Serializer &other);
-  Serializer &operator=(const Serializer &copy);
-  ~Serializer();
+#include "Data.hpp"
 
-  static uintptr_t serialize(Data *ptr);
-  static Data *deserialize(uintptr_t raw);
+class Serializer {
+   private:
+	Serializer();
+	Serializer(const Serializer &other);
+	Serializer &operator=(const Serializer &copy);
+	~Serializer();
+
+   public:
+	static uintptr_t serialize(Data *ptr);
+	static Data *deserialize(uintptr_t raw);
 };

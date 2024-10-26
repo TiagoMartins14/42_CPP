@@ -3,7 +3,7 @@ CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -Wshadow -pedantic -std=c++98
 SRCDIR		=	src
 INCDIR		=	inc 
-SRC			=	main.cpp Serializer.cpp Data.cpp
+SRC			=	main.cpp Serializer.cpp
 OBJS		=	$(addprefix $(SRCDIR)/, $(SRC:.cpp=.o))
 RM			=	rm -rf
 

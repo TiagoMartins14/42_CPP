@@ -2,7 +2,7 @@
 
 #include <string>
 
-struct Data {
+struct s_Data {
 	std::string brand;
 	std::string model;
 	int year;
