@@ -12,32 +12,43 @@ int main(int, char**) {
 		numbers[i] = value;
 		mirror[i] = value;
 	}
-	// SCOPE
-	{
-		Array<int> tmp = numbers;
-		Array<int> test(tmp);
-	}
-
+	
+	Array<int> tmp = numbers;
+	Array<int> test(tmp);
+	
+	std::cout << "Comparing Two arrays ('numbers' and 'mirror'): ";
 	for (int i = 0; i < MAX_VAL; i++) {
 		if (mirror[i] != numbers[i]) {
 			std::cerr << "didn't save the same value!!" << std::endl;
 			return 1;
 		}
 	}
+	std::cout << "SUCCESS!" << std::endl;
+
+	std::cout << "Comparing Two arrays ('test' and 'tmp'): ";
+	for (int i = 0; i < MAX_VAL; i++) {
+		if (test[i] != tmp[i]) {
+			std::cerr << "didn't save the same value!!" << std::endl;
+			return 1;
+		}
+	}
+	std::cout << "SUCCESS!" << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "Requesting an index from 'numbers' that is out of bounds..." << std::endl;
 	try {
 		numbers[-2] = 0;
 	} catch (const std::exception& e) {
 		std::cerr << e.what() << '\n';
 	}
+
+	std::cout << "Requesting an index from 'numbers' that is out of bounds..." << std::endl;
 	try {
 		numbers[MAX_VAL] = 0;
 	} catch (const std::exception& e) {
 		std::cerr << e.what() << '\n';
 	}
 
-	for (int i = 0; i < MAX_VAL; i++) {
-		numbers[i] = rand();
-	}
-	delete[] mirror;  //
+	delete[] mirror;
 	return 0;
 }
