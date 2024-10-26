@@ -1,7 +1,7 @@
 #include "iter.hpp"
 #include <iostream>
 
-template <typename T> void duplicate(T &num) { num += 2; }
+template <typename T> void addTwo(T &num) { num += 2; }
 
 int main() {
 
@@ -12,7 +12,7 @@ int main() {
     std::cout << intArr[i] << "  ";
   std::cout << std::endl;
   std::cout << "After:  ";
-  iter(intArr, 5, duplicate<int>);
+  iter(intArr, 5, addTwo<int>);
 
   for (int i = 0; i < 5; i++)
     std::cout << intArr[i] << "  ";
@@ -25,7 +25,7 @@ int main() {
     std::cout << floatArr[i] << "  ";
   std::cout << std::endl;
   std::cout << "After:  ";
-  iter(floatArr, 5, duplicate<float>);
+  iter(floatArr, 5, addTwo<float>);
 
   for (int i = 0; i < 5; i++)
     std::cout << floatArr[i] << "  ";
@@ -38,7 +38,7 @@ int main() {
     std::cout << doubleArr[i] << "  ";
   std::cout << std::endl;
   std::cout << "After:  ";
-  iter(doubleArr, 5, duplicate<double>);
+  iter(doubleArr, 5, addTwo<double>);
 
   for (int i = 0; i < 5; i++)
     std::cout << doubleArr[i] << "  ";
@@ -51,7 +51,7 @@ int main() {
     std::cout << charArr[i] << "  ";
   std::cout << std::endl;
   std::cout << "After:  ";
-  iter(charArr, 5, duplicate<char>);
+  iter(charArr, 5, addTwo<char>);
 
   for (int i = 0; i < 5; i++)
     std::cout << charArr[i] << "  ";
