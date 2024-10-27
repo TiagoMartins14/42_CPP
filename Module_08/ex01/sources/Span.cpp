@@ -1,8 +1,5 @@
 #include "Span.hpp"
 
-#include <algorithm>
-#include <stdexcept>
-
 Span::Span(unsigned int N) : _maxSize(N) { _intContainer.reserve(_maxSize); }
 
 Span::Span(const Span &other) { *this = other; }
@@ -21,6 +18,20 @@ void Span::addNumber(int num) {
 	if (_intContainer.size() >= _maxSize)
 		throw std::overflow_error("Span is full.");
 	_intContainer.push_back(num);
+}
+
+void Span::setSequence(int sequence[], size_t size)
+{
+	_sequenceSize = size;
+	_sequence = new int[size];
+	std::copy(sequence, sequence + size, _sequence);
+}
+
+
+void Span::fillSpan() {
+	if (!_sequence || _sequenceSize == 0)
+		throw std::logic_error("Sequence is not set or empty.");
+	std::copy(_sequence, _sequence + _sequenceSize, std::back_inserter(_intContainer));
 }
 
 int Span::shortestSpan() {
@@ -46,11 +57,7 @@ int Span::longestSpan() {
 	std::vector<int> sortedContainer = _intContainer;
 	std::sort(sortedContainer.begin(), sortedContainer.end());
 
-	int longestSpan = sortedContainer[1] - sortedContainer[0];
-	int span;
-	for (size_t i = 1; i < sortedContainer.size() - 1; i++) {
-		span = sortedContainer[i + 1] - sortedContainer[i];
-		if (span < longestSpan) longestSpan = span;
-	}
+	int longestSpan = sortedContainer[_intContainer.size() - 1] - sortedContainer[0];
+
 	return longestSpan;
 }
