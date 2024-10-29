@@ -13,19 +13,24 @@ Base* generate(void) {
 
 	switch (randomNum) {
 		case 0:
+			std::cout << "Class A generated!" << std::endl;
 			return new A;
 
 		case 1:
+			std::cout << "Class B generated!" << std::endl;
 			return new B;
 
 		case 2:
+			std::cout << "Class C generated!" << std::endl;
 			return new C;
+
 		default:
 			return NULL;
 	}
 }
 
 void identify(Base* p) {
+	std::cout << "Identify via pointer: ";
 	if (dynamic_cast<A*>(p))
 		std::cout << "A" << std::endl;
 	else if (dynamic_cast<B*>(p))
@@ -37,6 +42,7 @@ void identify(Base* p) {
 }
 
 void identify(Base& p) {
+	std::cout << "Identify via reference: ";
 	if (dynamic_cast<A*>(&p))
 		std::cout << "A" << std::endl;
 	else if (dynamic_cast<B*>(&p))
@@ -44,19 +50,25 @@ void identify(Base& p) {
 	else if (dynamic_cast<C*>(&p))
 		std::cout << "C" << std::endl;
 	else
-		std::cout << "Unknow type!" << std::endl;
+		std::cout << "Unknown type!" << std::endl;
 }
 
 int main() {
+	std::cout << "---- Testing valid bases ----" << std::endl << std::endl;
 	Base* p = generate();
+	Base* base = new Base();
 
-	std::cout << "Identify via pointer: ";
 	identify(*p);
+	identify(p);
 
-	std::cout << "Identify via reference: ";
-	identify(*p);
+	std::cout << std::endl;
+	std::cout << "---- Testing invalid bases ----" << std::endl << std::endl;
+	identify(*base);
+	identify(base);
+	identify(NULL);
 
 	delete p;
+	delete base;
 
 	return 0;
 }
