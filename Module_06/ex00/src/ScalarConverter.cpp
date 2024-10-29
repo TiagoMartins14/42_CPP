@@ -176,7 +176,11 @@ void ScalarConverter::convertToChar(std::string &input) {
 
 void ScalarConverter::convertToInt(std::string &input) {
   if (input.length() == 1 && isprint(input[0])) {
-    int asciiValue = static_cast<int>(input[0]) - 48;
+    int asciiValue;
+    if (isdigit(input[0]))
+      asciiValue = static_cast<int>(static_cast<int>(input[0])) - 48;
+    else
+      asciiValue = static_cast<int>(static_cast<int>(input[0]));
     std::cout << "int: " << asciiValue << std::endl;
     return;
   }
@@ -195,7 +199,11 @@ void ScalarConverter::convertToInt(std::string &input) {
 
 void ScalarConverter::convertToFloat(std::string &input) {
   if (input.length() == 1 && isprint(input[0])) {
-    float asciiValue = static_cast<float>(static_cast<int>(input[0])) - 48;
+    float asciiValue;
+    if (isdigit(input[0]))
+      asciiValue = static_cast<float>(static_cast<int>(input[0])) - 48;
+    else
+      asciiValue = static_cast<float>(static_cast<int>(input[0]));
     std::cout << "float: " << std::fixed << std::setprecision(1) << asciiValue
               << "f" << std::endl;
     return;
@@ -214,9 +222,12 @@ void ScalarConverter::convertToFloat(std::string &input) {
 
 void ScalarConverter::convertToDouble(std::string &input) {
   if (input.length() == 1 && isprint(input[0])) {
-    double asciiValue = static_cast<double>(static_cast<int>(input[0])) - 48;
-    std::cout << "double: " << std::fixed << std::setprecision(1) << asciiValue
-              << std::endl;
+    double asciiValue;
+    if (isdigit(input[0]))
+      asciiValue = static_cast<double>(static_cast<int>(input[0])) - 48;
+    else
+      asciiValue = static_cast<double>(static_cast<int>(input[0]));
+    std::cout << "double: " << std::fixed << std::setprecision(1) << asciiValue << std::endl;
     return;
   }
 
