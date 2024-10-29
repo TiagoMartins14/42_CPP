@@ -1,6 +1,8 @@
 #include "RPN.hpp"
 
+#include <cctype>
 #include <cstddef>
+#include <cstdlib>
 
 RPN::RPN(std::string &input) {
 	if (isValidInput(input)) stringToVector(input);
@@ -91,12 +93,101 @@ bool RPN::isValidOperation() {
 	return true;
 }
 
+// Pushes numbers to stack until it finds an operator sign. Returns the next
+// operator's index.
+size_t RPN::pushNumbersToStack(std::string &str, size_t i) {
+	while (str[i] != '+' || str[i] != '-' || str[i] != '/' || str[i] != '*') {
+		while (str[i] && isspace(str[i])) i++;
+		size_t pos = i;
+		while (isdigit(str[i])) i++;
+		int numberToPush = std::atoi(str.substr(pos, i - 1).c_str());
+		_numbersStack.push(numberToPush);
+	}
+
+	return i;
+}
+
+// Pushes operators to stack until it finds an integer or the end of the
+// equation. Returns the next index.
+size_t RPN::pushoperatorsToStack(std::string &str, size_t i) {
+	while (str[i] && !std::isdigit(str[i])) {
+		while (str[i] && isspace(str[i])) i++;
+		char operatorToPush = str[i];
+		_operatorsStack.push(operatorToPush);
+		while (str[i] && isspace(str[i])) i++;
+	}
+
+	return i;
+}
+
+// void RPN::calculateResult() {
+// 	if (!isValidOperation())
+// 		std::cerr << "Error." << std::endl;
+// 	else {
+// 		std::size_t numIndex = 1;
+// 		std::size_t opIndex = 0;
+// 		int result = std::atoi(_operation[0].c_str());
+
+// 		while (opIndex < _operation.size()) {
+// 			while (opIndex < _operation.size() &&
+// 				   !isValidOperator(_operation[opIndex]))
+// 				opIndex++;
+// 			while (numIndex < _operation.size() &&
+// 				   !isValidInt(_operation[numIndex]))
+// 				numIndex++;
+
+// 			int num2 = std::atoi(_operation[numIndex].c_str());
+
+// 			if (std::strcmp(_operation[opIndex].c_str(), "+") == 0)
+// 				result += num2;
+// 			else if (std::strcmp(_operation[opIndex].c_str(), "-") == 0)
+// 				result -= num2;
+// 			else if (std::strcmp(_operation[opIndex].c_str(), "/") == 0)
+// 				result /= num2;
+// 			else if (std::strcmp(_operation[opIndex].c_str(), "*") == 0)
+// 				result *= num2;
+
+// 			numIndex++;
+// 			opIndex++;
+// 		}
+// 		std::cout << result << std::endl;
+// 	}
+// }
+
+size_t RPN::skiptWhiteSpaces(std::string &input, size_t i) {
+	while (isspace(input[i])) i++;
+	return i;
+}
+
 void RPN::calculateResult() {
 	if (!isValidOperation())
 		std::cerr << "Error." << std::endl;
 	else {
-		std::size_t numIndex = 1;
 		std::size_t opIndex = 0;
+		int result = 0;
+
+		while (_input[opIndex]) {
+			opIndex = pushNumbersToStack(_input, opIndex);
+
+			while (!_op.empty()) {
+				int num2 = _op.top();
+				_op.pop();
+				int num1 = _op.top();
+				_op.pop();
+
+				char operatorSign = _input[skiptWhiteSpaces(_input, opIndex)];
+
+				if (std::strcmp(_operation[opIndex].c_str(), "+") == 0)
+					result += num2;
+				else if (std::strcmp(_operation[opIndex].c_str(), "-") == 0)
+					result -= num2;
+				else if (std::strcmp(_operation[opIndex].c_str(), "/") == 0)
+					result /= num2;
+				else if (std::strcmp(_operation[opIndex].c_str(), "*") == 0)
+					result *= num2;
+			}
+		}
+		// ------------ //
 		int result = std::atoi(_operation[0].c_str());
 
 		while (opIndex < _operation.size()) {
