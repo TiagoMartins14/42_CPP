@@ -8,7 +8,8 @@
 #include "ScalarConverter.hpp"
 
 bool ScalarConverter::isChar(std::string &input) {
-  return (input.length() == 1 && isprint(input[0]) && !isdigit(input[0]));
+  return (input.length() == 1 && std::isprint(input[0]) &&
+          !std::isdigit(input[0]));
 }
 
 bool ScalarConverter::isInt(std::string &input) {
@@ -152,7 +153,7 @@ void ScalarConverter::convertToChar(std::string &input) {
     char c = input[0];
 
     std::cout << "char: ";
-    if (!isprint(c)) {
+    if (!isprint(c) || std::isdigit(input[0])) {
       std::cout << "Non displayable" << std::endl;
     } else {
       std::cout << "'" << c << "'" << std::endl;
@@ -175,7 +176,7 @@ void ScalarConverter::convertToChar(std::string &input) {
 
 void ScalarConverter::convertToInt(std::string &input) {
   if (input.length() == 1 && isprint(input[0])) {
-    int asciiValue = static_cast<int>(input[0]);
+    int asciiValue = static_cast<int>(input[0]) - 48;
     std::cout << "int: " << asciiValue << std::endl;
     return;
   }
@@ -194,7 +195,7 @@ void ScalarConverter::convertToInt(std::string &input) {
 
 void ScalarConverter::convertToFloat(std::string &input) {
   if (input.length() == 1 && isprint(input[0])) {
-    float asciiValue = static_cast<float>(static_cast<int>(input[0]));
+    float asciiValue = static_cast<float>(static_cast<int>(input[0])) - 48;
     std::cout << "float: " << std::fixed << std::setprecision(1) << asciiValue
               << "f" << std::endl;
     return;
@@ -213,7 +214,7 @@ void ScalarConverter::convertToFloat(std::string &input) {
 
 void ScalarConverter::convertToDouble(std::string &input) {
   if (input.length() == 1 && isprint(input[0])) {
-    double asciiValue = static_cast<double>(static_cast<int>(input[0]));
+    double asciiValue = static_cast<double>(static_cast<int>(input[0])) - 48;
     std::cout << "double: " << std::fixed << std::setprecision(1) << asciiValue
               << std::endl;
     return;
@@ -240,14 +241,14 @@ void ScalarConverter::converterFunction(std::string &input) {
 void ScalarConverter::convert(std::string &input) {
   switch (inputTypeChecker(input)) {
   case CHAR:
-    converterFunction(input);
-    break;
+    // converterFunction(input);
+    // break;
   case INT:
-    converterFunction(input);
-    break;
+    // converterFunction(input);
+    // break;
   case FLOAT:
-    converterFunction(input);
-    break;
+    // converterFunction(input);
+    // break;
   case DOUBLE:
     converterFunction(input);
     break;
