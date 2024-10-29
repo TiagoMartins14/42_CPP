@@ -13,8 +13,7 @@ int main(int, char**) {
 		mirror[i] = value;
 	}
 
-	Array<int> tmp = numbers;
-	Array<int> test(tmp);
+
 
 	std::cout << "Comparing Two arrays ('numbers' and 'mirror'): ";
 	for (int i = 0; i < MAX_VAL; i++) {
@@ -25,13 +24,20 @@ int main(int, char**) {
 	}
 	std::cout << "SUCCESS!" << std::endl;
 
-	std::cout << "Comparing Two arrays ('test' and 'tmp'): ";
-	for (int i = 0; i < MAX_VAL; i++) {
-		if (test[i] != tmp[i]) {
-			std::cerr << "didn't save the same value!!" << std::endl;
-			return 1;
+	{
+		Array<int> tmp;
+		tmp = numbers;
+		Array<int> test(tmp);
+	
+		std::cout << "Comparing Two arrays ('test' and 'tmp'): ";
+		for (int i = 0; i < MAX_VAL; i++) {
+			if (test[i] != tmp[i]) {
+				std::cerr << "didn't save the same value!!" << std::endl;
+				return 1;
+			}
 		}
 	}
+
 	std::cout << "SUCCESS!" << std::endl;
 	std::cout << std::endl;
 

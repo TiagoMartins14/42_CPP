@@ -9,7 +9,10 @@ class Array {
 	size_t _size;
 
    public:
-	Array() : _array(NULL), _size(0){};
+	Array() {
+		_size = 0;
+		_array = new T[_size];
+	};
 
 	Array(unsigned int n) {
 		_size = n;
@@ -18,6 +21,7 @@ class Array {
 
 	Array(const Array &copy) : _array(NULL), _size(copy._size)
 	{
+		std::cout << "Copy constructor called" << std::endl;
 		if (_size > 0)
 		{
 			_array = new T[_size];
@@ -27,6 +31,7 @@ class Array {
 	};
 
 	Array &operator=(const Array &copy) {
+		std::cout << "Copy assignment operator called" << std::endl;
 		if (this != &copy) {
 			delete[] _array;
 

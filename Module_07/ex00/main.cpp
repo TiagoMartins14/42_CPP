@@ -2,7 +2,15 @@
 
 #include "whatever.hpp"
 
-int main(void) {
+int main(int argc, char **argv) {
+
+  	(void)argv;
+  
+	if (argc != 1)
+	{
+		std::cout << "Invalid input. Valid input: './StartWithAFewFunctions'" << std::endl;
+		return 1;
+	}
 	int a = 2;
 	int b = 3;
 
