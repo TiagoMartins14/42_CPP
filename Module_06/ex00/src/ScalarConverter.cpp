@@ -8,7 +8,7 @@
 #include "ScalarConverter.hpp"
 
 bool ScalarConverter::isChar(std::string &input) {
-  return (input.length() == 1 && std::isprint(input[0]) &&
+  return (input.length() == 1 &&
           !std::isdigit(input[0]));
 }
 
@@ -30,7 +30,10 @@ bool ScalarConverter::isFloat(std::string &input) {
   if (input.size() > 0 && (input[0] == '+' || input[0] == '-'))
     str = str.substr(1);
 
-  if (str.length() < 4)
+  if (str.length() < 3)
+    return false;
+
+  if (input.find_first_not_of(allowedInput) != std::string::npos)
     return false;
 
   if (str.find('.') == std::string::npos || str.find('f') == std::string::npos)
@@ -56,7 +59,13 @@ bool ScalarConverter::isDouble(std::string &input) {
   if (input.size() > 0 && (input[0] == '+' || input[0] == '-'))
     str = str.substr(1);
 
-  if (str.length() < 3)
+  if (str.length() < 2)
+    return false;
+
+  if (input.find_first_not_of(allowedInput) != std::string::npos)
+    return false;
+
+  if (str.find('f') != std::string::npos)
     return false;
 
   if (str.find('.') == std::string::npos)
@@ -153,7 +162,7 @@ void ScalarConverter::convertToChar(std::string &input) {
     char c = input[0];
 
     std::cout << "char: ";
-    if (!isprint(c) || std::isdigit(input[0])) {
+    if (!isprint(input[0]) || std::isdigit(input[0])) {
       std::cout << "Non displayable" << std::endl;
     } else {
       std::cout << "'" << c << "'" << std::endl;
@@ -175,7 +184,7 @@ void ScalarConverter::convertToChar(std::string &input) {
 }
 
 void ScalarConverter::convertToInt(std::string &input) {
-  if (input.length() == 1 && isprint(input[0])) {
+  if (input.length() == 1) {
     int asciiValue;
     if (isdigit(input[0]))
       asciiValue = static_cast<int>(static_cast<int>(input[0])) - 48;
@@ -198,7 +207,7 @@ void ScalarConverter::convertToInt(std::string &input) {
 }
 
 void ScalarConverter::convertToFloat(std::string &input) {
-  if (input.length() == 1 && isprint(input[0])) {
+  if (input.length() == 1) {
     float asciiValue;
     if (isdigit(input[0]))
       asciiValue = static_cast<float>(static_cast<int>(input[0])) - 48;
@@ -221,7 +230,7 @@ void ScalarConverter::convertToFloat(std::string &input) {
 }
 
 void ScalarConverter::convertToDouble(std::string &input) {
-  if (input.length() == 1 && isprint(input[0])) {
+  if (input.length() == 1) {
     double asciiValue;
     if (isdigit(input[0]))
       asciiValue = static_cast<double>(static_cast<int>(input[0])) - 48;
