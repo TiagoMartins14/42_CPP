@@ -227,7 +227,8 @@ void ScalarConverter::convertToDouble(std::string &input) {
       asciiValue = static_cast<double>(static_cast<int>(input[0])) - 48;
     else
       asciiValue = static_cast<double>(static_cast<int>(input[0]));
-    std::cout << "double: " << std::fixed << std::setprecision(1) << asciiValue << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(1) << asciiValue
+              << std::endl;
     return;
   }
 
