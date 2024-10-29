@@ -1,4 +1,4 @@
-NAME		=	ConversionOfScalarTypes
+NAME		=	convert
 CXX			=	c++
 CXXFLAGS	=	-Wall -Wextra -Werror -Wshadow -pedantic -std=c++98
 SRCDIR		=	src
