@@ -1,24 +1,26 @@
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+NAME		=	Array
+CXX			=	c++
+CXXFLAGS	=	-Wall -Wextra -Werror -Wshadow -pedantic -std=c++98
+SRCDIR		=	src
+INCDIR		=	inc 
+SRC			=	main.cpp
+OBJS		=	$(addprefix $(SRCDIR)/, $(SRC:.cpp=.o))
+RM			=	rm -rf
 
-NAME = Array
-
-SRCS = main.cpp 
-OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(SRCDIR)/%.o: $(SRCDIR)/%.cpp
+	$(CXX) $(CXXFLAGS) -I $(INCDIR) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	$(RM) $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 
