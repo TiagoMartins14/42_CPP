@@ -1,5 +1,5 @@
 NAME		=	RPN
-CXX			=	c++
+CXX			=	c++ -g
 CXXFLAGS	=	-Wall -Wextra -Werror -Wshadow -pedantic -std=c++98
 SRCDIR		=	sources
 INCDIR		=	includes
