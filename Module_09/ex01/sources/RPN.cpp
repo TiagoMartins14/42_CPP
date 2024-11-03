@@ -72,8 +72,7 @@ size_t RPN::pushNumbersToStack(std::string &str, size_t i) {
 	while (str[i] != '+' && str[i] != '-' && str[i] != '/' && str[i] != '*') {
 		while (str[i] && isspace(str[i])) i++;
 		size_t pos = i;
-		if (!isdigit(str[i]))
-			return i;
+		if (!isdigit(str[i])) return i;
 		while (isdigit(str[i])) i++;
 		int numberToPush = std::atoi(str.substr(pos, i - pos).c_str());
 		_numbersStack.push(numberToPush);
@@ -134,7 +133,7 @@ void RPN::calculateResult() {
 				result = num1 / num2;
 			else if (operatorSign == '*')
 				result = num1 * num2;
-			
+
 			_numbersStack.push(result);
 		}
 	}
