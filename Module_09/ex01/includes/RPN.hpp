@@ -22,11 +22,9 @@ class RPN {
 	std::stack<char> _operatorsStack;
 
 	bool isValidInput(const std::string &str);
-	void stringToVector(const std::string str);
 	bool isValidInt(const std::string num);
 	bool isValidOperator(const std::string operatorSign);
-	bool isValidOperation();
 	size_t pushNumbersToStack(std::string &str, size_t i);
-	size_t pushoperatorsToStack(std::string &str, size_t i);
+	size_t pushOperatorsToStack(std::string &str, size_t i);
 	size_t skiptWhiteSpaces(std::string &input, size_t i);
 };
