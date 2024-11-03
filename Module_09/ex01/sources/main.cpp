@@ -13,7 +13,11 @@ int main(int argc, char **argv) {
 		}
 
 		RPN calculator(input);
-		calculator.calculateResult();
+		try {
+			calculator.calculateResult();
+		} catch (const std::exception &e) {
+			std::cerr << e.what() << std::endl;
+		}
 	}
 
 	return 0;
