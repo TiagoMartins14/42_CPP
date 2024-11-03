@@ -114,7 +114,7 @@ void RPN::calculateResult() {
 		opIndex = pushOperatorsToStack(_input, opIndex);
 
 		if (_numbersStack.size() != _operatorsStack.size() + 1) {
-			std::cerr << "Error: Invalid input" << std::endl;
+			std::cerr << "Error" << std::endl;
 			return;
 		}
 		while (!_numbersStack.empty() && _numbersStack.size() > 1) {
@@ -126,13 +126,13 @@ void RPN::calculateResult() {
 			_operatorsStack.pop();
 
 			if (operatorSign == '+')
-				result = num1 + num2;
+				result = num2 + num1;
 			else if (operatorSign == '-')
-				result = num1 - num2;
+				result = num2 - num1;
 			else if (operatorSign == '/')
-				result = num1 / num2;
+				result = num2 / num1;
 			else if (operatorSign == '*')
-				result = num1 * num2;
+				result = num2 * num1;
 
 			_numbersStack.push(result);
 		}
