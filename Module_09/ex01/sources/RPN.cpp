@@ -3,6 +3,7 @@
 #include <cctype>
 #include <cstddef>
 #include <cstdlib>
+#include <stdexcept>
 
 RPN::RPN(std::string &input) : _input(input) {}
 
@@ -69,12 +70,21 @@ bool RPN::isValidOperator(const std::string operatorSign) {
 // Pushes numbers to stack until it finds an operator sign. Returns the next
 // operator's index.
 size_t RPN::pushNumbersToStack(std::string &str, size_t i) {
-	while (str[i] != '+' && str[i] != '-' && str[i] != '/' && str[i] != '*') {
+	while (str[i] != '/' && str[i] != '*') {
 		while (str[i] && isspace(str[i])) i++;
+
 		size_t pos = i;
+
+		if ((str[i] == '-' || str[i] == '+') && str[i + 1] &&
+			isdigit(str[i + 1])) {
+			i++;
+		}
 		if (!isdigit(str[i])) return i;
 		while (isdigit(str[i])) i++;
+		if (!isspace(str[i])) throw std::logic_error("Error");
 		int numberToPush = std::atoi(str.substr(pos, i - pos).c_str());
+		if (numberToPush <= -10 || numberToPush >= 10)
+			throw std::logic_error("Error");
 		_numbersStack.push(numberToPush);
 	}
 
@@ -113,10 +123,8 @@ void RPN::calculateResult() {
 		opIndex = pushNumbersToStack(_input, opIndex);
 		opIndex = pushOperatorsToStack(_input, opIndex);
 
-		if (_numbersStack.size() != _operatorsStack.size() + 1) {
-			std::cerr << "Error" << std::endl;
-			return;
-		}
+		if (_numbersStack.size() != _operatorsStack.size() + 1)
+			throw std::logic_error("Error");
 		while (!_numbersStack.empty() && _numbersStack.size() > 1) {
 			int num1 = _numbersStack.top();
 			_numbersStack.pop();
