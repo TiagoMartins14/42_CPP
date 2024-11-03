@@ -5,7 +5,6 @@
 #include <iostream>
 #include <stack>
 #include <string>
-#include <vector>
 
 class RPN {
    public:
