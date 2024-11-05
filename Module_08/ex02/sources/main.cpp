@@ -64,10 +64,12 @@ void test_list() {
 }
 
 int main() {
+	std::cout << " ----- MutantStack -----" << std::endl;
 	test_stack();
 
 	std::cout << std::endl << std::endl;
 
+	std::cout << " ----- List -----" << std::endl;
 	test_list();
 	return 0;
 }
