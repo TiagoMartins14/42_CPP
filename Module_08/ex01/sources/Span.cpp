@@ -22,7 +22,11 @@ void Span::addNumber(int num) {
 
 void Span::fillSpan(unsigned int min, unsigned int max) {
   for (unsigned int num = min; num <= max; num++)
+  {
+    if (_intContainer.size() >= _maxSize)
+      throw std::overflow_error("Span is full.");
     _intContainer.push_back(num);
+  }
 }
 
 int Span::shortestSpan() {
