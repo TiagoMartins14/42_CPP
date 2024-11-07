@@ -105,12 +105,19 @@ void PmergeMe::vectorSplitContainer() {
 }
 
 void PmergeMe::vectorInsertNumbers() {
-	size_t i = 1;
-	long jacobsthalNumber = getJacobsthalNumber(i);
+	size_t counter = 2;
+	size_t i;
+	long jacobsthalNumber = getJacobsthalNumber(counter);
 	long savedNumber = jacobsthalNumber;
 	long maxNumber = static_cast<long>(_vectorContainer.size());
 
+	_vectorContainer.insert(_vectorContainer.begin(), _vectorAidContainer[0]);
+
 	while (jacobsthalNumber < maxNumber) {
+		long mid = findMiddleValue(jacobsthalNumber);
+		if (_vectorAidContainer[jacobsthalNumber] > mid)
+
+		// TODO: recursiva para ir partindo a meio ate encontrar o sweet spot
 	}
 }
 
