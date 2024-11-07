@@ -56,6 +56,8 @@ long PmergeMe::getJacobsthalNumber(size_t index) {
 	return number;
 }
 
+long PmergeMe::findMiddleValue(long max) { return max / 2; }
+
 // Vector functions
 void PmergeMe::vectorOrderPairs() {
 	for (size_t i = 0; i < _vectorContainer.size(); i += 2) {
@@ -99,6 +101,16 @@ void PmergeMe::vectorSplitContainer() {
 		_vectorAidContainer.push_back(_vectorContainer[i]);
 		_vectorContainer.erase(it);
 		it++;
+	}
+}
+
+void PmergeMe::vectorInsertNumbers() {
+	size_t i = 1;
+	long jacobsthalNumber = getJacobsthalNumber(i);
+	long savedNumber = jacobsthalNumber;
+	long maxNumber = static_cast<long>(_vectorContainer.size());
+
+	while (jacobsthalNumber < maxNumber) {
 	}
 }
 

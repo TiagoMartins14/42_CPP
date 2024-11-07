@@ -20,6 +20,7 @@ class PmergeMe {
 	bool isValidInput(const std::string &input);
 	void createContainers(char **argv);
 	long getJacobsthalNumber(size_t index);
+	long findMiddleValue(long max);
 
    public:
 	PmergeMe(char **argv);
@@ -31,7 +32,7 @@ class PmergeMe {
 	void vectorOrderPairs();
 	void vectorPutPairsInAscendingOrder();
 	void vectorSplitContainer();
-	// void vectorInsertNumbers();
+	void vectorInsertNumbers();
 
 	// List functions
 	void listOrderPairs();
