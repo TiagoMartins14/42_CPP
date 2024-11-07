@@ -1,17 +1,35 @@
+#include <cmath>
+
 #include "PmergeMe.hpp"
 
 int main(int argc, char **argv) {
+	if (argc >= 2) {
+		PmergeMe algorithm(argv);
+		std::cout << " ----- Original containers ----- " << std::endl;
+		algorithm.printVector();
+		algorithm.printList();
+		std::cout << std::endl;
 
-  if (argc >= 2) {
-    PmergeMe algorithm(argv);
+		algorithm.vectorOrderPairs();
+		algorithm.listOrderPairs();
 
-    algorithm.printVector();
-    algorithm.printList();
+		std::cout << " ----- Ordered pairs ----- " << std::endl;
+		algorithm.printVector();
+		algorithm.printList();
+		std::cout << std::endl;
 
-    algorithm.vectorOrderPairs();
-    algorithm.listOrderPairs();
+		algorithm.vectorPutPairsInAscendingOrder();
+		algorithm.listPutPairsInAscendingOrder();
 
-    algorithm.printVector();
-    algorithm.printList();
-  }
+		std::cout << " ----- Pairs in ascending order ----- " << std::endl;
+		algorithm.printVector();
+		algorithm.printList();
+		std::cout << std::endl;
+
+		algorithm.vectorSplitContainer();
+
+		std::cout << " ----- Split containers ----- " << std::endl;
+		algorithm.printVector();
+		algorithm.printVectorAid();
+	}
 }
