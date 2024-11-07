@@ -27,9 +27,13 @@ int main(int argc, char **argv) {
 		std::cout << std::endl;
 
 		algorithm.vectorSplitContainer();
+		algorithm.listSplitContainer();
 
 		std::cout << " ----- Split containers ----- " << std::endl;
 		algorithm.printVector();
 		algorithm.printVectorAid();
+		std::cout << std::endl;
+		algorithm.printList();
+		algorithm.printListAid();
 	}
 }
