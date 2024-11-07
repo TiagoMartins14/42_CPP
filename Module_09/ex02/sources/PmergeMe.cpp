@@ -154,6 +154,19 @@ void PmergeMe::listPutPairsInAscendingOrder() {
 	}
 }
 
+void PmergeMe::listSplitContainer() {
+	std::list<int>::iterator it = _listContainer.begin();
+
+	for (size_t i = 0; i < _listContainer.size(); i++) {
+		if (i == _listContainer.size() - 1) break;
+		_listAidContainer.push_back(*it);
+		std::list<int>::iterator tempIt = it;
+		it++;
+		it++;
+		_listContainer.erase(tempIt);
+	}
+}
+
 // TEST FUNCTIONS
 void PmergeMe::printVector() {
 	std::cout << "Elements in vector: ";
@@ -191,4 +204,17 @@ void PmergeMe::printList() {
 	std::cout << std::endl;
 }
 
+void PmergeMe::printListAid() {
+	int index = 0;
+	std::cout << "Elements in listAid:   ";
+	for (std::list<int>::const_iterator it = _listAidContainer.begin();
+		 it != _listAidContainer.end(); ++it) {
+		if (index % 2 == 1)
+			std::cout << "[" << *it << "] ";
+		else
+			std::cout << *it << " ";
+		index++;
+	}
+	std::cout << std::endl;
+}
 // TEST FUNCTIONS

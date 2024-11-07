@@ -36,11 +36,12 @@ class PmergeMe {
 	// List functions
 	void listOrderPairs();
 	void listPutPairsInAscendingOrder();
+	void listSplitContainer();
 
 	// TEST FUNCTIONS
 	void printVector();
 	void printVectorAid();
 
 	void printList();
-	//	void printListAid();
+	void printListAid();
 };
