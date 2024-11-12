@@ -24,12 +24,6 @@ class PmergeMe {
 	long getJacobsthalNumber(size_t index);
 	long findMiddleValue(long minIndex, long maxIndex);
 
-   public:
-	PmergeMe(char **argv);
-	PmergeMe(const PmergeMe &other);
-	PmergeMe &operator=(const PmergeMe &other);
-	~PmergeMe();
-
 	// Vector functions
 	void vectorOrderPairs();
 	void vectorPutPairsInAscendingOrder();
@@ -40,7 +34,7 @@ class PmergeMe {
 	void listOrderPairs();
 	void listPutPairsInAscendingOrder();
 	void listSplitContainer();
-	int getNumAtIndex(long index);
+	int getNumAtIndex(long index, std::list<int> container);
 	void insertNumAtIndex(int num, long index);
 	void listInsertNumbers();
 
@@ -50,4 +44,13 @@ class PmergeMe {
 
 	void printList();
 	void printListAid();
+
+   public:
+	PmergeMe(char **argv);
+	PmergeMe(const PmergeMe &other);
+	PmergeMe &operator=(const PmergeMe &other);
+	~PmergeMe();
+
+	void sortVector();
+	void sortList();
 };

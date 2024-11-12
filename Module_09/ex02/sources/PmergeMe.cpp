@@ -2,6 +2,7 @@
 
 #include <algorithm>
 
+// Public functions
 PmergeMe::PmergeMe(char **argv) : _argv(argv) { createContainers(_argv); }
 
 PmergeMe::PmergeMe(const PmergeMe &other)
@@ -20,6 +21,22 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
 }
 
 PmergeMe::~PmergeMe() {}
+
+void PmergeMe::sortVector() {
+	vectorOrderPairs();
+	vectorPutPairsInAscendingOrder();
+	vectorSplitContainer();
+	vectorInsertNumbers();
+	printVector();
+}
+
+void PmergeMe::sortList() {
+	listOrderPairs();
+	listPutPairsInAscendingOrder();
+	listSplitContainer();
+	listInsertNumbers();
+	printList();
+}
 
 // General functions
 bool PmergeMe::isValidInput(const std::string &input) {
@@ -154,15 +171,15 @@ void PmergeMe::vectorInsertNumbers() {
 	// Adds remaining numbers
 	aidIndex = _vectorAidContainer.size() - 1;
 	while (aidIndex >= previousJSNumber) {
-		insertCounter = 0;
 		long numToInsert = _vectorAidContainer[aidIndex];
-		long maxIndex = _vectorContainer.size() - 1 + insertCounter;
+		long maxIndex = _vectorContainer.size() - 1;
 		long midIndex = findMiddleValue(0, maxIndex);
 		long minIndex = 0;
-		while (minIndex != maxIndex - 1) {
-			if (numToInsert >= _vectorContainer[_vectorContainer.size() - 1]) {
+		while (minIndex < maxIndex - 1) {
+			if (numToInsert >= _vectorContainer[_vectorContainer.size() - 1])
 				break;
-			} else if (numToInsert >= _vectorContainer[midIndex])
+			if (numToInsert < _vectorContainer[0]) break;
+			if (numToInsert >= _vectorContainer[midIndex])
 				minIndex = midIndex;
 			else if (numToInsert < _vectorContainer[midIndex])
 				maxIndex = midIndex;
@@ -170,11 +187,12 @@ void PmergeMe::vectorInsertNumbers() {
 		}
 		if (numToInsert >= _vectorContainer[_vectorContainer.size() - 1])
 			_vectorContainer.insert(_vectorContainer.end(), numToInsert);
+		if (numToInsert < _vectorContainer[0])
+			_vectorContainer.insert(_vectorContainer.begin(), numToInsert);
 		else {
 			_vectorContainer.insert(_vectorContainer.begin() + maxIndex,
 									numToInsert);
 		}
-		insertCounter++;
 		aidIndex--;
 	}
 }
@@ -242,10 +260,14 @@ void PmergeMe::listSplitContainer() {
 		it++;
 		_listContainer.erase(tempIt);
 	}
+	if (_listContainer.size() > _listAidContainer.size()) {
+		_listAidContainer.push_back(_listContainer.back());
+		_listContainer.pop_back();
+	}
 }
 
-int PmergeMe::getNumAtIndex(long index) {
-	std::list<int>::iterator it = _listContainer.begin();
+int PmergeMe::getNumAtIndex(long index, std::list<int> container) {
+	std::list<int>::iterator it = container.begin();
 	while (index > 0) {
 		it++;
 		index--;
@@ -273,7 +295,7 @@ void PmergeMe::listInsertNumbers() {
 	// Jacobsthal number
 	while (jacobsthalNumber < listSize) {
 		std::list<int>::iterator it = _listContainer.begin();
-		long numToInsert = getNumAtIndex(aidIndex);
+		long numToInsert = getNumAtIndex(aidIndex, _listAidContainer);
 		long maxIndex = jacobsthalNumber - 1 + insertCounter;
 		long midIndex = findMiddleValue(0, maxIndex);
 		long minIndex = 0;
@@ -282,9 +304,9 @@ void PmergeMe::listInsertNumbers() {
 				maxIndex = 0;
 				break;
 			}
-			if (numToInsert > getNumAtIndex(midIndex))
+			if (numToInsert >= getNumAtIndex(midIndex, _listContainer))
 				minIndex = midIndex;
-			else if (numToInsert < getNumAtIndex(midIndex))
+			else if (numToInsert < getNumAtIndex(midIndex, _listContainer))
 				maxIndex = midIndex;
 			midIndex = findMiddleValue(minIndex, maxIndex);
 		}
@@ -297,34 +319,34 @@ void PmergeMe::listInsertNumbers() {
 			aidIndex = jacobsthalNumber - 1;
 		}
 	}
-
 	// Adds remaining numbers
 	aidIndex = _listAidContainer.size() - 1;
 	while (aidIndex >= previousJSNumber) {
-		insertCounter = 0;
-		long numToInsert = _vectorAidContainer[aidIndex];
-		long maxIndex = _vectorContainer.size() - 1 + insertCounter;
+		long numToInsert = getNumAtIndex(aidIndex, _listAidContainer);
+		long maxIndex = _listContainer.size() - 1;
 		long midIndex = findMiddleValue(0, maxIndex);
 		long minIndex = 0;
-		while (minIndex != maxIndex - 1) {
-			if (numToInsert >= _vectorContainer[_vectorContainer.size() - 1]) {
+		while (minIndex < maxIndex - 1) {
+			if (numToInsert >= _listContainer.back()) {
 				break;
-			} else if (numToInsert > _vectorContainer[midIndex])
+				if (numToInsert < _listContainer.front()) break;
+			} else if (numToInsert >= getNumAtIndex(midIndex, _listContainer))
 				minIndex = midIndex;
-			else if (numToInsert < _vectorContainer[midIndex])
+			else if (numToInsert < getNumAtIndex(midIndex, _listContainer))
 				maxIndex = midIndex;
 			midIndex = findMiddleValue(minIndex, maxIndex);
 		}
-		if (numToInsert >= _vectorContainer[_vectorContainer.size() - 1])
-			_vectorContainer.insert(_vectorContainer.end(), numToInsert);
+		if (numToInsert >= _listContainer.back())
+			_listContainer.push_back(numToInsert);
+		else if (numToInsert < _listContainer.front())
+			_listContainer.push_front(numToInsert);
 		else {
-			_vectorContainer.insert(_vectorContainer.begin() + maxIndex,
-									numToInsert);
+			insertNumAtIndex(numToInsert, maxIndex);
 		}
-		insertCounter++;
 		aidIndex--;
 	}
 }
+
 // TEST FUNCTIONS
 void PmergeMe::printVector() {
 	std::cout << "Elements in vector: ";
@@ -375,4 +397,3 @@ void PmergeMe::printListAid() {
 	}
 	std::cout << std::endl;
 }
-// TEST FUNCTIONS
