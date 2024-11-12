@@ -1,5 +1,7 @@
 #include "PmergeMe.hpp"
 
+#include <algorithm>
+
 PmergeMe::PmergeMe(char **argv) : _argv(argv) { createContainers(_argv); }
 
 PmergeMe::PmergeMe(const PmergeMe &other)
@@ -56,7 +58,9 @@ long PmergeMe::getJacobsthalNumber(size_t index) {
 	return number;
 }
 
-long PmergeMe::findMiddleValue(long max) { return max / 2; }
+long PmergeMe::findMiddleValue(long minIndex, long maxIndex) {
+	return ((minIndex + maxIndex) / 2);
+}
 
 // Vector functions
 void PmergeMe::vectorOrderPairs() {
@@ -102,22 +106,76 @@ void PmergeMe::vectorSplitContainer() {
 		_vectorContainer.erase(it);
 		it++;
 	}
+
+	if (_vectorContainer.size() > _vectorAidContainer.size()) {
+		_vectorAidContainer.push_back(
+			_vectorContainer[_vectorContainer.size() - 1]);
+		_vectorContainer.pop_back();
+	}
 }
 
 void PmergeMe::vectorInsertNumbers() {
 	size_t counter = 2;
-	size_t i;
+	size_t insertCounter = 0;
 	long jacobsthalNumber = getJacobsthalNumber(counter);
-	long savedNumber = jacobsthalNumber;
-	long maxNumber = static_cast<long>(_vectorContainer.size());
+	long previousJSNumber = 0;
+	long aidIndex = jacobsthalNumber - 1;
+	long vectorSize = static_cast<long>(_vectorContainer.size());
 
-	_vectorContainer.insert(_vectorContainer.begin(), _vectorAidContainer[0]);
+	// Adds all numbers while the main chain is smaller than the updated
+	// Jacobsthal number
+	while (jacobsthalNumber < vectorSize) {
+		long numToInsert = _vectorAidContainer[aidIndex];
+		long maxIndex = jacobsthalNumber - 1 + insertCounter;
+		long midIndex = findMiddleValue(0, maxIndex);
+		long minIndex = 0;
+		while (minIndex != maxIndex - 1) {
+			if (numToInsert < _vectorContainer[0]) {
+				maxIndex = 0;
+				break;
+			}
+			if (numToInsert >= _vectorContainer[midIndex])
+				minIndex = midIndex;
+			else if (numToInsert < _vectorContainer[midIndex])
+				maxIndex = midIndex;
+			midIndex = findMiddleValue(minIndex, maxIndex);
+		}
+		_vectorContainer.insert(_vectorContainer.begin() + maxIndex,
+								numToInsert);
+		insertCounter++;
+		aidIndex--;
+		if (aidIndex < previousJSNumber) {
+			previousJSNumber = jacobsthalNumber;
+			jacobsthalNumber = getJacobsthalNumber(++counter);
+			aidIndex = jacobsthalNumber - 1;
+		}
+	}
 
-	while (jacobsthalNumber < maxNumber) {
-		long mid = findMiddleValue(jacobsthalNumber);
-		if (_vectorAidContainer[jacobsthalNumber] > mid)
-
-		// TODO: recursiva para ir partindo a meio ate encontrar o sweet spot
+	// Adds remaining numbers
+	aidIndex = _vectorAidContainer.size() - 1;
+	while (aidIndex >= previousJSNumber) {
+		insertCounter = 0;
+		long numToInsert = _vectorAidContainer[aidIndex];
+		long maxIndex = _vectorContainer.size() - 1 + insertCounter;
+		long midIndex = findMiddleValue(0, maxIndex);
+		long minIndex = 0;
+		while (minIndex != maxIndex - 1) {
+			if (numToInsert >= _vectorContainer[_vectorContainer.size() - 1]) {
+				break;
+			} else if (numToInsert >= _vectorContainer[midIndex])
+				minIndex = midIndex;
+			else if (numToInsert < _vectorContainer[midIndex])
+				maxIndex = midIndex;
+			midIndex = findMiddleValue(minIndex, maxIndex);
+		}
+		if (numToInsert >= _vectorContainer[_vectorContainer.size() - 1])
+			_vectorContainer.insert(_vectorContainer.end(), numToInsert);
+		else {
+			_vectorContainer.insert(_vectorContainer.begin() + maxIndex,
+									numToInsert);
+		}
+		insertCounter++;
+		aidIndex--;
 	}
 }
 
@@ -186,6 +244,87 @@ void PmergeMe::listSplitContainer() {
 	}
 }
 
+int PmergeMe::getNumAtIndex(long index) {
+	std::list<int>::iterator it = _listContainer.begin();
+	while (index > 0) {
+		it++;
+		index--;
+	}
+
+	return *it;
+}
+
+void PmergeMe::insertNumAtIndex(int num, long index) {
+	std::list<int>::iterator it = _listContainer.begin();
+
+	std::advance(it, index);
+	_listContainer.insert(it, num);
+}
+
+void PmergeMe::listInsertNumbers() {
+	size_t counter = 2;
+	size_t insertCounter = 0;
+	long jacobsthalNumber = getJacobsthalNumber(counter);
+	long previousJSNumber = 0;
+	long aidIndex = jacobsthalNumber - 1;
+	long listSize = static_cast<long>(_listContainer.size());
+
+	// Adds all numbers while the main chain is smaller than the updated
+	// Jacobsthal number
+	while (jacobsthalNumber < listSize) {
+		std::list<int>::iterator it = _listContainer.begin();
+		long numToInsert = getNumAtIndex(aidIndex);
+		long maxIndex = jacobsthalNumber - 1 + insertCounter;
+		long midIndex = findMiddleValue(0, maxIndex);
+		long minIndex = 0;
+		while (minIndex != maxIndex - 1) {
+			if (numToInsert < *it) {
+				maxIndex = 0;
+				break;
+			}
+			if (numToInsert > getNumAtIndex(midIndex))
+				minIndex = midIndex;
+			else if (numToInsert < getNumAtIndex(midIndex))
+				maxIndex = midIndex;
+			midIndex = findMiddleValue(minIndex, maxIndex);
+		}
+		insertNumAtIndex(numToInsert, maxIndex);
+		insertCounter++;
+		aidIndex--;
+		if (aidIndex < previousJSNumber) {
+			previousJSNumber = jacobsthalNumber;
+			jacobsthalNumber = getJacobsthalNumber(++counter);
+			aidIndex = jacobsthalNumber - 1;
+		}
+	}
+
+	// Adds remaining numbers
+	aidIndex = _listAidContainer.size() - 1;
+	while (aidIndex >= previousJSNumber) {
+		insertCounter = 0;
+		long numToInsert = _vectorAidContainer[aidIndex];
+		long maxIndex = _vectorContainer.size() - 1 + insertCounter;
+		long midIndex = findMiddleValue(0, maxIndex);
+		long minIndex = 0;
+		while (minIndex != maxIndex - 1) {
+			if (numToInsert >= _vectorContainer[_vectorContainer.size() - 1]) {
+				break;
+			} else if (numToInsert > _vectorContainer[midIndex])
+				minIndex = midIndex;
+			else if (numToInsert < _vectorContainer[midIndex])
+				maxIndex = midIndex;
+			midIndex = findMiddleValue(minIndex, maxIndex);
+		}
+		if (numToInsert >= _vectorContainer[_vectorContainer.size() - 1])
+			_vectorContainer.insert(_vectorContainer.end(), numToInsert);
+		else {
+			_vectorContainer.insert(_vectorContainer.begin() + maxIndex,
+									numToInsert);
+		}
+		insertCounter++;
+		aidIndex--;
+	}
+}
 // TEST FUNCTIONS
 void PmergeMe::printVector() {
 	std::cout << "Elements in vector: ";

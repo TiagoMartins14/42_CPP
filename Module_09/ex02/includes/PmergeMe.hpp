@@ -1,4 +1,6 @@
 #pragma once
+#include <unistd.h>
+
 #include <cstdlib>
 #include <iostream>
 #include <iterator>
@@ -20,7 +22,7 @@ class PmergeMe {
 	bool isValidInput(const std::string &input);
 	void createContainers(char **argv);
 	long getJacobsthalNumber(size_t index);
-	long findMiddleValue(long max);
+	long findMiddleValue(long minIndex, long maxIndex);
 
    public:
 	PmergeMe(char **argv);
@@ -38,6 +40,9 @@ class PmergeMe {
 	void listOrderPairs();
 	void listPutPairsInAscendingOrder();
 	void listSplitContainer();
+	int getNumAtIndex(long index);
+	void insertNumAtIndex(int num, long index);
+	void listInsertNumbers();
 
 	// TEST FUNCTIONS
 	void printVector();
