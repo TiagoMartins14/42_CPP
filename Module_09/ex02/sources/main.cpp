@@ -35,5 +35,10 @@ int main(int argc, char **argv) {
 		std::cout << std::endl;
 		algorithm.printList();
 		algorithm.printListAid();
+		std::cout << std::endl;
+
+		std::cout << " ----- Sort containers ----- " << std::endl;
+		algorithm.vectorInsertNumbers();
+		algorithm.printVector();
 	}
 }
