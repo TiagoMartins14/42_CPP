@@ -38,11 +38,8 @@ class PmergeMe {
 	void insertNumAtIndex(int num, long index);
 	void listInsertNumbers();
 
-	// TEST FUNCTIONS
-	void printVector();
+	// Test functions
 	void printVectorAid();
-
-	void printList();
 	void printListAid();
 
    public:
@@ -51,6 +48,11 @@ class PmergeMe {
 	PmergeMe &operator=(const PmergeMe &other);
 	~PmergeMe();
 
+	// Sort functions
 	void sortVector();
 	void sortList();
+
+	// Print functions
+	void printVector();
+	void printList();
 };

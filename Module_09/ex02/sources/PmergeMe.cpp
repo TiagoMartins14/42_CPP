@@ -27,7 +27,6 @@ void PmergeMe::sortVector() {
 	vectorPutPairsInAscendingOrder();
 	vectorSplitContainer();
 	vectorInsertNumbers();
-	printVector();
 }
 
 void PmergeMe::sortList() {
@@ -35,7 +34,6 @@ void PmergeMe::sortList() {
 	listPutPairsInAscendingOrder();
 	listSplitContainer();
 	listInsertNumbers();
-	printList();
 }
 
 // General functions
@@ -53,7 +51,7 @@ bool PmergeMe::isValidInput(const std::string &input) {
 
 void PmergeMe::createContainers(char **argv) {
 	for (size_t i = 1; argv[i]; i++) {
-		if (!isValidInput(argv[i])) throw std::logic_error("Invalid input");
+		if (!isValidInput(argv[i])) throw std::logic_error("Invalid input.");
 
 		_vectorContainer.push_back(std::atoi(argv[i]));
 		_listContainer.push_back(std::atoi(argv[i]));
@@ -349,51 +347,31 @@ void PmergeMe::listInsertNumbers() {
 
 // TEST FUNCTIONS
 void PmergeMe::printVector() {
-	std::cout << "Elements in vector: ";
 	for (size_t i = 0; i < _vectorContainer.size(); ++i) {
-		if (i % 2 == 1)
-			std::cout << "[" << _vectorContainer[i] << "] ";
-		else
-			std::cout << _vectorContainer[i] << " ";
+		std::cout << _vectorContainer[i] << " ";
 	}
 	std::cout << std::endl;
 }
 
 void PmergeMe::printVectorAid() {
-	std::cout << "Elements in vectorAid: ";
 	for (size_t i = 0; i < _vectorAidContainer.size(); ++i) {
-		if (i % 2 == 1)
-			std::cout << "[" << _vectorAidContainer[i] << "] ";
-		else
-			std::cout << _vectorAidContainer[i] << " ";
+		std::cout << _vectorAidContainer[i] << " ";
 	}
 	std::cout << std::endl;
 }
 
 void PmergeMe::printList() {
-	int index = 0;
-	std::cout << "Elements in list:   ";
 	for (std::list<int>::const_iterator it = _listContainer.begin();
 		 it != _listContainer.end(); ++it) {
-		if (index % 2 == 1)
-			std::cout << "[" << *it << "] ";
-		else
-			std::cout << *it << " ";
-		index++;
+		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
 }
 
 void PmergeMe::printListAid() {
-	int index = 0;
-	std::cout << "Elements in listAid:   ";
 	for (std::list<int>::const_iterator it = _listAidContainer.begin();
 		 it != _listAidContainer.end(); ++it) {
-		if (index % 2 == 1)
-			std::cout << "[" << *it << "] ";
-		else
-			std::cout << *it << " ";
-		index++;
+		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
 }
