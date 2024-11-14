@@ -5,6 +5,7 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include <limits>
 
 class RPN {
    public:
@@ -17,7 +18,7 @@ class RPN {
 
    private:
 	std::string _input;
-	std::stack<int> _numbersStack;
+	std::stack<long> _numbersStack;
 	std::stack<char> _operatorsStack;
 
 	bool isValidInput(const std::string &str);

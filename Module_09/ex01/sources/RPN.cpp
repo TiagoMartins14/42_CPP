@@ -25,17 +25,20 @@ bool RPN::isValidInput(const std::string &str) {
 
 	if (str.find_first_not_of(allowedInput) != std::string::npos) return false;
 
-	std::string subStr;
-	for (std::string::const_iterator it = str.begin(); it != str.end(); ++it) {
-		if (*it == ' ') {
-			if (!isValidInt(subStr) || !isValidOperator(subStr)) return false;
-			subStr.clear();
-		} else
-			subStr += *it;
+	std::size_t opIndex = 0;
+
+	while (_input[opIndex]) {
+		opIndex = pushNumbersToStack(_input, opIndex);
+		opIndex = pushOperatorsToStack(_input, opIndex);
+
+		if (_numbersStack.size() != _operatorsStack.size() + 1)
+			return false;
 	}
-	// Check the last subStr if there's any
-	if (!subStr.empty())
-		if (!isValidInt(subStr) || !isValidOperator(subStr)) return false;
+
+	while (!_numbersStack.empty())
+		_numbersStack.pop();
+	while (!_operatorsStack.empty())
+		_operatorsStack.pop();
 
 	return true;
 }
@@ -117,18 +120,19 @@ size_t RPN::skiptWhiteSpaces(std::string &input, size_t i) {
 
 void RPN::calculateResult() {
 	std::size_t opIndex = 0;
-	int result = 0;
+	long result = 0;
+
+	if (!isValidInput(_input))
+		throw std::logic_error("Error");
 
 	while (_input[opIndex]) {
 		opIndex = pushNumbersToStack(_input, opIndex);
 		opIndex = pushOperatorsToStack(_input, opIndex);
 
-		if (_numbersStack.size() != _operatorsStack.size() + 1)
-			throw std::logic_error("Error");
 		while (!_numbersStack.empty() && _numbersStack.size() > 1) {
-			int num1 = _numbersStack.top();
+			long num1 = _numbersStack.top();
 			_numbersStack.pop();
-			int num2 = _numbersStack.top();
+			long num2 = _numbersStack.top();
 			_numbersStack.pop();
 			char operatorSign = _operatorsStack.top();
 			_operatorsStack.pop();
@@ -142,6 +146,9 @@ void RPN::calculateResult() {
 			else if (operatorSign == '*')
 				result = num2 * num1;
 
+			if (result > std::numeric_limits<int>::max() || result < std::numeric_limits<int>::min())
+				throw std::logic_error("Error (RPN can only handle numbers within integer range)");
+				
 			_numbersStack.push(result);
 		}
 	}
