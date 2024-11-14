@@ -185,7 +185,7 @@ void PmergeMe::vectorInsertNumbers() {
 		}
 		if (numToInsert >= _vectorContainer[_vectorContainer.size() - 1])
 			_vectorContainer.insert(_vectorContainer.end(), numToInsert);
-		if (numToInsert < _vectorContainer[0])
+		else if (numToInsert < _vectorContainer[0])
 			_vectorContainer.insert(_vectorContainer.begin(), numToInsert);
 		else {
 			_vectorContainer.insert(_vectorContainer.begin() + maxIndex,
@@ -325,10 +325,9 @@ void PmergeMe::listInsertNumbers() {
 		long midIndex = findMiddleValue(0, maxIndex);
 		long minIndex = 0;
 		while (minIndex < maxIndex - 1) {
-			if (numToInsert >= _listContainer.back()) {
-				break;
-				if (numToInsert < _listContainer.front()) break;
-			} else if (numToInsert >= getNumAtIndex(midIndex, _listContainer))
+			if (numToInsert >= _listContainer.back()) break;
+			if (numToInsert < _listContainer.front()) break;
+			if (numToInsert >= getNumAtIndex(midIndex, _listContainer))
 				minIndex = midIndex;
 			else if (numToInsert < getNumAtIndex(midIndex, _listContainer))
 				maxIndex = midIndex;
