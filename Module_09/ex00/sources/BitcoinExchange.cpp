@@ -94,7 +94,7 @@ float BitcoinExchange::stringToFloat(
 
 	if (number < 0) throw std::runtime_error("not a positive number.");
 	if ((it->second).find('.') == std::string::npos) {
-		if (std::atol((it->second).c_str()) > INT_MAX)
+		if (std::atol((it->second).c_str()) > 1000)
 			throw std::runtime_error("too large a number");
 	}
 
@@ -120,7 +120,7 @@ float BitcoinExchange::getExchangeRate(
 	// Get the closest exchange rate date to the valueDate given;
 	for (it = dailyExchangeRates.begin(); it != dailyExchangeRates.end();
 		 it++) {
-		if (it->first < valueDate && exchangeRateDate < it->first)
+		if (it->first <= valueDate && exchangeRateDate <= it->first)
 			exchangeRateDate = it->first;
 	}
 
@@ -165,7 +165,7 @@ void BitcoinExchange::isValidDate(const std::string &date) {
 
 	if (month < 1 || month > 12) throw std::runtime_error("invalid date.");
 
-	int daysInMonth[] = {21, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	int daysInMonth[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 	if (isLeapYear(year)) daysInMonth[1] = 29;
 
