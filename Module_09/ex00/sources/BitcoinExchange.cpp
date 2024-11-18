@@ -86,7 +86,7 @@ float BitcoinExchange::stringToFloat(
 	float number = std::strtof((it->second).c_str(), &end);
 
 	if (end == (it->second).c_str())
-		throw std::runtime_error("invalid input: " + it->second);
+		throw std::runtime_error("invalid input.");
 
 	if (errno == ERANGE)
 		throw std::runtime_error("input value " + it->second +
